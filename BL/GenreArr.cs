@@ -10,67 +10,84 @@ using RecordStore_CarmellWasserman.DAL;
 
 namespace RecordStore_CarmellWasserman.BL
 {
-    public class ClientArr : ArrayList
+    public class GenreArr : ArrayList
     {
         public void Fill()
         {
 
             //להביא מה-DAL טבלה מלאה בכל הלקוחות
 
-            DataTable dataTable = Client_Dal.GetDataTable();
+            DataTable dataTable = Genre_Dal.GetDataTable();
 
             //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
             //להעביר כל שורה בטבלה ללקוח
 
             DataRow dataRow;
-            Client curClient;
+            Genre curGenre;
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 dataRow = dataTable.Rows[i];
-                curClient = new Client(dataRow);
-                this.Add(curClient);
+                curGenre = new Genre(dataRow);
+                this.Add(curGenre);
             }
         }
 
-        public ClientArr Filter(int id, string firstName, string lastName, string cellNumber)
+        public GenreArr Filter(int id, string name)
         {
-            ClientArr clientArr = new ClientArr();
-            Client client;
+            GenreArr cityArr = new GenreArr();
+            Genre city;
             for (int i = 0; i < this.Count; i++)
             {
 
                 //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
 
-                client = (this[i] as Client);
+                city = (this[i] as Genre);
                 if
                 (
 
                 // מזהה 0 – כלומר, לא נבחר מזהה בסינון
 
-                (id == 0 || client.Id == id)
-                && client.FirstName.ToLower().StartsWith(firstName.ToLower())
-                && client.LastName.ToLower().StartsWith(lastName.ToLower())
-                && client.PhoneNumber.ToString().Contains(cellNumber)
+                (id == 0 || city.Id == id)
+                && city.Name.ToLower().StartsWith(name.ToLower())
+
                 )
 
                     //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
 
-                    clientArr.Add(client);
+                    cityArr.Add(city);
             }
-            return clientArr;
+            return cityArr;
         }
 
-        public bool DoesExist(City curCity)
+        public bool IsContains(string cityName)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //בדיקה האם יש ישוב עם אותו שם
 
             for (int i = 0; i < this.Count; i++)
-                if ((this[i] as Client).City.Id == curCity.Id)
+                if ((this[i] as Genre).Name == cityName)
                     return true;
-
             return false;
         }
+
+        public Genre GetGenreWithMaxId()
+        {
+
+            //מחזירה את הישוב עם המזהה הגבוה ביותר
+
+            Genre maxGenre = new Genre();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if ((this[i] as Genre).Id > maxGenre.Id)
+                {
+                    maxGenre = this[i] as Genre;
+                }
+            }
+
+            return maxGenre;
+        }
+
+    
 
 
 

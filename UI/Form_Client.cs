@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using RecordStore_CarmellWasserman.BL;
+using RecordStore_CarmellWasserman.BL;
 
 namespace RecordStore_CarmellWasserman
 {
@@ -130,14 +130,7 @@ namespace RecordStore_CarmellWasserman
                 label_City.ForeColor = Color.Black;
             }
 
-            if (!flag)
-            {
-                pictureBox1.Image = PromoFinal_CarmellWasserman.Properties.Resources.chunk_the_groundhog_chunk;
-            }
-            else
-            {
-                pictureBox1.Image = PromoFinal_CarmellWasserman.Properties.Resources.chunk_the_groundhog_chunk2;
-            }
+            
             return flag;
         }
 
@@ -259,6 +252,15 @@ namespace RecordStore_CarmellWasserman
             CityArrToForm();
         }
 
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilter.Text = "";
+            textBox_FirstNameFilter.Text = "";
+            textBox_LastNameFilter.Text = "";
+            textBox_PhoneNumberFilter.Text = "";
+        }
+
+
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Client client = FormToClient();
@@ -297,8 +299,8 @@ namespace RecordStore_CarmellWasserman
 
             //אם המשתמש רשם ערך בשדה המזהה
 
-            if (textBox_FilterId.Text != "")
-                id = int.Parse(textBox_FilterId.Text);
+            if (textBox_IdFilter.Text != "")
+                id = int.Parse(textBox_IdFilter.Text);
 
             //מייצרים אוסף של כלל הלקוחות
 
@@ -307,8 +309,8 @@ namespace RecordStore_CarmellWasserman
 
             //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
 
-            clientArr = clientArr.Filter(id, textBox_FilterLastName.Text,
-            textBox_FilterCell.Text);
+            clientArr = clientArr.Filter(id, textBox_FirstName.Text, textBox_LastNameFilter.Text,
+            textBox_PhoneNumberFilter.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
             listBox_Clients.DataSource = clientArr;

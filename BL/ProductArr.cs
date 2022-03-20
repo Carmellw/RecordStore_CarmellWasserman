@@ -10,64 +10,71 @@ using RecordStore_CarmellWasserman.DAL;
 
 namespace RecordStore_CarmellWasserman.BL
 {
-    public class ClientArr : ArrayList
+    public class ProductArr : ArrayList
     {
         public void Fill()
         {
 
             //להביא מה-DAL טבלה מלאה בכל הלקוחות
 
-            DataTable dataTable = Client_Dal.GetDataTable();
+            DataTable dataTable = Product_Dal.GetDataTable();
 
             //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
             //להעביר כל שורה בטבלה ללקוח
 
             DataRow dataRow;
-            Client curClient;
+            Product curProduct;
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 dataRow = dataTable.Rows[i];
-                curClient = new Client(dataRow);
-                this.Add(curClient);
+                curProduct = new Product(dataRow);
+                this.Add(curProduct);
             }
         }
 
-        public ClientArr Filter(int id, string firstName, string lastName, string cellNumber)
+        /*/public ProductArr Filter(int id, string firstName, string lastName, string cellNumber)
         {
-            ClientArr clientArr = new ClientArr();
-            Client client;
+            ProductArr productArr = new ProductArr();
+            Product product;
             for (int i = 0; i < this.Count; i++)
             {
 
                 //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
 
-                client = (this[i] as Client);
+                product = (this[i] as Product);
                 if
                 (
 
                 // מזהה 0 – כלומר, לא נבחר מזהה בסינון
 
-                (id == 0 || client.Id == id)
-                && client.FirstName.ToLower().StartsWith(firstName.ToLower())
-                && client.LastName.ToLower().StartsWith(lastName.ToLower())
-                && client.PhoneNumber.ToString().Contains(cellNumber)
+                (id == 0 || product.Id == id)
+                && product.FirstName.ToLower().StartsWith(firstName.ToLower())
+                && product.LastName.ToLower().StartsWith(lastName.ToLower())
+                && product.PhoneNumber.ToString().Contains(cellNumber)
                 )
 
                     //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
 
-                    clientArr.Add(client);
+                    productArr.Add(product);
             }
-            return clientArr;
-        }
+            return productArr;
+        }/*/
 
-        public bool DoesExist(City curCity)
+        public bool DoesExist(Category curCategory, Genre curGenre, Artist curArtist, Company curCompany)
         {
 
             //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
 
             for (int i = 0; i < this.Count; i++)
-                if ((this[i] as Client).City.Id == curCity.Id)
+            {
+                if ((this[i] as Product).Category.Id == curCategory.Id ||
+                    (this[i] as Product).Genre.Id == curGenre.Id ||
+                    (this[i] as Product).Artist.Id == curArtist.Id ||
+                    (this[i] as Product).Company.Id == curCompany.Id)
+                {
                     return true;
+                }
+            }
 
             return false;
         }

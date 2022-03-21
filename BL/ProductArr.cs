@@ -32,7 +32,7 @@ namespace RecordStore_CarmellWasserman.BL
             }
         }
 
-        /*/public ProductArr Filter(int id, string firstName, string lastName, string cellNumber)
+        public ProductArr Filter(int id, string firstName, string lastName, string cellNumber)
         {
             ProductArr productArr = new ProductArr();
             Product product;
@@ -58,23 +58,52 @@ namespace RecordStore_CarmellWasserman.BL
                     productArr.Add(product);
             }
             return productArr;
-        }/*/
+        }
 
-        public bool DoesExist(Category curCategory, Genre curGenre, Artist curArtist, Company curCompany)
+        public bool DoesExist(Category curCategory)
         {
 
             //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
 
             for (int i = 0; i < this.Count; i++)
-            {
-                if ((this[i] as Product).Category.Id == curCategory.Id ||
-                    (this[i] as Product).Genre.Id == curGenre.Id ||
-                    (this[i] as Product).Artist.Id == curArtist.Id ||
-                    (this[i] as Product).Company.Id == curCompany.Id)
-                {
+                if ((this[i] as Product).Category.Id == curCategory.Id)
                     return true;
-                }
-            }
+
+            return false;
+        }
+
+        public bool DoesExist(Genre curGenre)
+        {
+
+            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Product).Genre.Id == curGenre.Id)
+                    return true;
+
+            return false;
+        }
+
+        public bool DoesExist(Artist curArtist)
+        {
+
+            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Product).Artist.Id == curArtist.Id)
+                    return true;
+
+            return false;
+        }
+
+        public bool DoesExist(Company curCompany)
+        {
+
+            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Product).Company.Id == curCompany.Id)
+                    return true;
 
             return false;
         }

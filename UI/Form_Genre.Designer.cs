@@ -1,5 +1,5 @@
 ﻿
-namespace RecordStore_CarmellWasserman.UI
+namespace RecordStore_CarmellWasserman
 {
     partial class Form_Genre
     {
@@ -116,6 +116,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_NameFilter.Name = "textBox_NameFilter";
             this.textBox_NameFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_NameFilter.TabIndex = 2;
+            this.textBox_NameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
+            this.textBox_NameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // label_NameFilter
             // 
@@ -135,6 +137,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_ClearFilter.TabIndex = 3;
             this.button_ClearFilter.Text = "clear";
             this.button_ClearFilter.UseVisualStyleBackColor = true;
+            this.button_ClearFilter.Click += new System.EventHandler(this.clearFilter_Click);
             // 
             // textBox_IdFilter
             // 
@@ -142,6 +145,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilter.Name = "textBox_IdFilter";
             this.textBox_IdFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_IdFilter.TabIndex = 1;
+            this.textBox_IdFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_IdFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // groupBox2
             // 
@@ -177,6 +182,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(214, 31);
             this.textBox_Name.TabIndex = 4;
+            this.textBox_Name.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
             // 
             // label_Name
             // 
@@ -196,6 +202,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_Delete.TabIndex = 7;
             this.button_Delete.Text = "delete";
             this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
             // button_Clear
             // 
@@ -205,6 +212,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_Clear.TabIndex = 6;
             this.button_Clear.Text = "clear";
             this.button_Clear.UseVisualStyleBackColor = true;
+            this.button_Clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // label_Id
             // 
@@ -224,6 +232,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_Save.TabIndex = 5;
             this.button_Save.Text = "save";
             this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.save_Click);
             // 
             // listBox_Genres
             // 
@@ -233,6 +242,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.listBox_Genres.Name = "listBox_Genres";
             this.listBox_Genres.Size = new System.Drawing.Size(569, 504);
             this.listBox_Genres.TabIndex = 33;
+            this.listBox_Genres.DoubleClick += new System.EventHandler(this.listBox_Genres_DoubleClick);
             // 
             // Form_Genre
             // 

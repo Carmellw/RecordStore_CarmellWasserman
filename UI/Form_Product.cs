@@ -18,10 +18,15 @@ namespace RecordStore_CarmellWasserman
             InitializeComponent();
             label_DateToday.Text = DateTime.Now.ToLongDateString();
             ProductArrToForm();
-            CategoryArrToForm();
-            GenreArrToForm();
-            ArtistArrToForm();
-            CompanyArrToForm();
+            CategoryArrToForm(comboBox_Category, true);
+            CategoryArrToForm(comboBox_CategoryFilter, false);
+
+            GenreArrToForm(comboBox_Genre, true);
+
+            ArtistArrToForm(comboBox_Artist, true);
+            ArtistArrToForm(comboBox_ArtistFilter, false);
+
+            CompanyArrToForm(comboBox_Company, true);
         }
 
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
@@ -69,7 +74,7 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
-        /*/
+        
         private bool CheckForm()
         {
 
@@ -79,62 +84,84 @@ namespace RecordStore_CarmellWasserman
 
             //בדיקת שם פרטי //
 
-            if (textBox_FirstName.Text.Length < 2)
+            if (textBox_Name.Text.Length < 2)
             {
                 flag = false;
-                label_FirstName.ForeColor = Color.Red;
+                label_Name.ForeColor = Color.Red;
             }
             else
-                label_FirstName.ForeColor = Color.Black;
+                label_Name.ForeColor = Color.Black;
 
             //בדיקת שם משפחה //
 
-            if (textBox_LastName.Text.Length < 2)
-            {
-                flag = false;
-                label_LastName.ForeColor = Color.Red;
-            }
-            else
-                label_LastName.ForeColor = Color.Black;
-
             //בדיקת מספר טלפון //
 
-            if (textBox_PhoneNumber.Text.Length != 10)
+            if (textBox_Price.Text == null)
             {
                 flag = false;
-                label_PhoneNumber.ForeColor = Color.Red;
+                label_Price.ForeColor = Color.Red;
             }
             else
-                label_PhoneNumber.ForeColor = Color.Black;
+                label_Price.ForeColor = Color.Black;
 
 
             //בדיקת מיקוד //
 
-            if (textBox_ZipCode.Text.Length != 7)
+            if (textBox_Count.Text == null)
             {
                 flag = false;
-                label_ZipCode.ForeColor = Color.Red;
+                label_Count.ForeColor = Color.Red;
             }
             else
             {
-                label_ZipCode.ForeColor = Color.Black;
+                label_Count.ForeColor = Color.Black;
             }
 
-            if ((comboBox_City.SelectedItem as City).Id < 0)
+            if ((comboBox_Category.SelectedItem as Category).Id < 0)
             {
                 flag = false;
-                label_City.ForeColor = Color.Red;
+                label_Category.ForeColor = Color.Red;
             }
             else
             {
-                label_City.ForeColor = Color.Black;
+                label_Category.ForeColor = Color.Black;
+            }
+
+            if ((comboBox_Genre.SelectedItem as Genre).Id < 0)
+            {
+                flag = false;
+                label_Genre.ForeColor = Color.Red;
+            }
+            else
+            {
+                label_Genre.ForeColor = Color.Black;
+            }
+
+            if ((comboBox_Artist.SelectedItem as Artist).Id < 0)
+            {
+                flag = false;
+                label_Artist.ForeColor = Color.Red;
+            }
+            else
+            {
+                label_Artist.ForeColor = Color.Black;
+            }
+
+            if ((comboBox_Company.SelectedItem as Company).Id < 0)
+            {
+                flag = false;
+                label_Company.ForeColor = Color.Red;
+            }
+            else
+            {
+                label_Company.ForeColor = Color.Black;
             }
 
 
             return flag;
         }
 
-        /*/
+        
 
         private Product FormToProduct()
         {
@@ -175,7 +202,7 @@ namespace RecordStore_CarmellWasserman
             listBox_Products.DisplayMember = "";
         }
 
-        private void CategoryArrToForm(Category curCategory = null)
+        private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
         {
 
             //ממירה את הטנ "מ אוסף לקוחות לטופס
@@ -187,18 +214,25 @@ namespace RecordStore_CarmellWasserman
 
             Category categoryDefault = new Category();
             categoryDefault.Id = -1;
-            categoryDefault.Name = "בחר קטגוריה";
+
+            if (isMustChoose)
+            {
+                categoryDefault.Name = "Choose a category";
+            }
+            else
+            {
+                categoryDefault.Name = "All categories";
+            }
+
+            categoryArr.Add(categoryDefault);
+            categoryArr.Fill();
+            comboBox.DataSource = categoryArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+
             //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
 
             categoryArr.Add(categoryDefault);
-
-            categoryArr.Fill();
-            if (categoryArr != null)
-            {
-                comboBox_Category.DataSource = categoryArr;
-                comboBox_Category.ValueMember = "Id";
-                comboBox_Category.DisplayMember = "Name";
-            }
 
 
             if (curCategory != null)
@@ -207,7 +241,7 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
-        private void GenreArrToForm(Genre curGenre = null)
+        private void GenreArrToForm(ComboBox comboBox, bool isMustChoose, Genre curGenre = null)
         {
 
             //ממירה את הטנ "מ אוסף לקוחות לטופס
@@ -219,18 +253,21 @@ namespace RecordStore_CarmellWasserman
 
             Genre genreDefault = new Genre();
             genreDefault.Id = -1;
-            genreDefault.Name = "בחר ז'אנר";
+
+            if (isMustChoose)
+            {
+                genreDefault.Name = "Choose a genre";
+            }
+            else
+                genreDefault.Name = "All categories";
+            genreArr.Add(genreDefault);
+            genreArr.Fill();
+            comboBox.DataSource = genreArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
             //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
 
             genreArr.Add(genreDefault);
-
-            genreArr.Fill();
-            if (genreArr != null)
-            {
-                comboBox_Genre.DataSource = genreArr;
-                comboBox_Genre.ValueMember = "Id";
-                comboBox_Genre.DisplayMember = "Name";
-            }
 
 
             if (curGenre != null)
@@ -239,7 +276,7 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
-        private void ArtistArrToForm(Artist curArtist = null)
+        private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
         {
 
             //ממירה את הטנ "מ אוסף לקוחות לטופס
@@ -251,18 +288,21 @@ namespace RecordStore_CarmellWasserman
 
             Artist artistDefault = new Artist();
             artistDefault.Id = -1;
-            artistDefault.Name = "בחר אמן";
+
+            if (isMustChoose)
+            {
+                artistDefault.Name = "Choose a artist";
+            }
+            else
+                artistDefault.Name = "All categories";
+            artistArr.Add(artistDefault);
+            artistArr.Fill();
+            comboBox.DataSource = artistArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
             //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
 
             artistArr.Add(artistDefault);
-
-            artistArr.Fill();
-            if (artistArr != null)
-            {
-                comboBox_Artist.DataSource = artistArr;
-                comboBox_Artist.ValueMember = "Id";
-                comboBox_Artist.DisplayMember = "Name";
-            }
 
 
             if (curArtist != null)
@@ -271,7 +311,7 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
-        private void CompanyArrToForm(Company curCompany = null)
+        private void CompanyArrToForm(ComboBox comboBox, bool isMustChoose, Company curCompany = null)
         {
 
             //ממירה את הטנ "מ אוסף לקוחות לטופס
@@ -283,18 +323,21 @@ namespace RecordStore_CarmellWasserman
 
             Company companyDefault = new Company();
             companyDefault.Id = -1;
-            companyDefault.Name = "בחר יצרן";
+
+            if (isMustChoose)
+            {
+                companyDefault.Name = "Choose a company";
+            }
+            else
+                companyDefault.Name = "All categories";
+            companyArr.Add(companyDefault);
+            companyArr.Fill();
+            comboBox.DataSource = companyArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
             //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
 
             companyArr.Add(companyDefault);
-
-            companyArr.Fill();
-            if (companyArr != null)
-            {
-                comboBox_Company.DataSource = companyArr;
-                comboBox_Company.ValueMember = "Id";
-                comboBox_Company.DisplayMember = "Name";
-            }
 
 
             if (curCompany != null)
@@ -332,11 +375,11 @@ namespace RecordStore_CarmellWasserman
             else
             {
                 label_Id.Text = "0";
-                CategoryArrToForm();
+                CategoryArrToForm(comboBox_Category, true);
                 textBox_Name.Text = "";
-                GenreArrToForm();
-                ArtistArrToForm();
-                CompanyArrToForm();
+                GenreArrToForm(comboBox_Genre, true);
+                ArtistArrToForm(comboBox_Artist, true);
+                CompanyArrToForm(comboBox_Company, true);
                 checkBox_IsNew.Checked = false;
                 textBox_Price.Text = "";
                 textBox_Count.Text = "";
@@ -353,11 +396,11 @@ namespace RecordStore_CarmellWasserman
         {
 
             label_Id.Text = "0";
-            CategoryArrToForm();
+            CategoryArrToForm(comboBox_Category, true);
             textBox_Name.Text = "";
-            GenreArrToForm();
-            ArtistArrToForm();
-            CompanyArrToForm();
+            GenreArrToForm(comboBox_Genre, true);
+            ArtistArrToForm(comboBox_Artist, true);
+            CompanyArrToForm(comboBox_Company, true);
             checkBox_IsNew.Checked = false;
             textBox_Price.Text = "";
             textBox_Count.Text = "";
@@ -366,9 +409,9 @@ namespace RecordStore_CarmellWasserman
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
-            textBox_FirstNameFilter.Text = "";
-            textBox_LastNameFilter.Text = "";
-            textBox_PhoneNumberFilter.Text = "";
+            CategoryArrToForm(comboBox_CategoryFilter, false);
+            textBox_NameFilter.Text = "";
+            ArtistArrToForm(comboBox_ArtistFilter, false);
         }
 
 
@@ -406,54 +449,67 @@ namespace RecordStore_CarmellWasserman
 
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
+            SetProductsByFilter();
+        }
+        private void comboBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox_CategoryFilter.SelectedItem as Category != null &&
+                comboBox_ArtistFilter.SelectedItem as Artist != null &&
+                (comboBox_CategoryFilter.SelectedItem as Category).Id > 0 &&
+                (comboBox_ArtistFilter.SelectedItem as Artist).Id > 0)
+            {
+                SetProductsByFilter();
+            }
+        }
+        private void SetProductsByFilter()
+        {
             int id = 0;
-
-            //אם המשתמש רשם ערך בשדה המזהה
-
+            //מייצרים אוסף של כלל המוצרים
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
-
-            //מייצרים אוסף של כלל הלקוחות
 
             ProductArr productArr = new ProductArr();
             productArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
 
-            productArr = productArr.Filter(id, textBox_FirstName.Text, textBox_LastNameFilter.Text,
-            textBox_PhoneNumberFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            productArr = productArr.Filter(id,
+            textBox_NameFilter.Text,
+            comboBox_CategoryFilter.SelectedItem as Category,
+            comboBox_ArtistFilter.SelectedItem as Artist
+            );
+
+            //מציבים בתיבת הרשימה את אוסף המוצרים
 
             listBox_Products.DataSource = productArr;
-
         }
 
         private void button_AddCategory_Click(object sender, EventArgs e)
         {
             Form_Category form_Category = new Form_Category(comboBox_Category.SelectedItem as Category);
             form_Category.ShowDialog();
-            CategoryArrToForm(form_Category.SelectedCategory);
+            CategoryArrToForm(comboBox_Category, true, form_Category.SelectedCategory);
         }
 
         private void button_AddGenre_Click(object sender, EventArgs e)
         {
             Form_Genre form_Genre = new Form_Genre(comboBox_Genre.SelectedItem as Genre);
             form_Genre.ShowDialog();
-            GenreArrToForm(form_Genre.SelectedGenre);
+            GenreArrToForm(comboBox_Genre, true, form_Genre.SelectedGenre);
         }
 
         private void button_AddArtist_Click(object sender, EventArgs e)
         {
             Form_Artist form_Artist = new Form_Artist(comboBox_Artist.SelectedItem as Artist);
             form_Artist.ShowDialog();
-            ArtistArrToForm(form_Artist.SelectedArtist);
+            ArtistArrToForm(comboBox_Artist, true, form_Artist.SelectedArtist);
         }
 
         private void button_AddCompany_Click(object sender, EventArgs e)
         {
             Form_Company form_Company = new Form_Company(comboBox_Company.SelectedItem as Company);
             form_Company.ShowDialog();
-            CompanyArrToForm(form_Company.SelectedCompany);
+            CompanyArrToForm(comboBox_Company, true, form_Company.SelectedCompany);
         }
 
         public Product SelectedProduct

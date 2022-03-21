@@ -232,7 +232,7 @@ namespace RecordStore_CarmellWasserman
             this.button_Save.TabIndex = 5;
             this.button_Save.Text = "save";
             this.button_Save.UseVisualStyleBackColor = true;
-            this.button_Save.Click += new System.EventHandler(this.button_Delete_Click);
+            this.button_Save.Click += new System.EventHandler(this.save_Click);
             // 
             // listBox_Artists
             // 

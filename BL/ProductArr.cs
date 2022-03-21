@@ -32,28 +32,29 @@ namespace RecordStore_CarmellWasserman.BL
             }
         }
 
-        public ProductArr Filter(int id, string firstName, string lastName, string cellNumber)
+        public ProductArr Filter(int id, string name, Category category= null, Artist artist = null)
         {
             ProductArr productArr = new ProductArr();
-            Product product;
+
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
-                product = (this[i] as Product);
-                if
-                (
+                Product product = (this[i] as Product);
+                if (
 
-                // מזהה 0 – כלומר, לא נבחר מזהה בסינון
+                //סינון לפי שם המוצר
+                (id == 0 || product.Id == id) &&
+                product.Name.ToLower().StartsWith(name.ToLower())
 
-                (id == 0 || product.Id == id)
-                && product.FirstName.ToLower().StartsWith(firstName.ToLower())
-                && product.LastName.ToLower().StartsWith(lastName.ToLower())
-                && product.PhoneNumber.ToString().Contains(cellNumber)
+                //סינון לפי החברה
+                && (artist == null || artist.Id == -1 || product.Artist.Id == artist.Id)
+                //סינון לפי קטגוריה
+                && (category == null || category.Id == -1 || product.Category.Id == category.Id)
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
 
                     productArr.Add(product);
             }

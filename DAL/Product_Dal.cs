@@ -10,7 +10,7 @@ namespace RecordStore_CarmellWasserman.DAL
 {
     public class Product_Dal
     {
-        public static bool Insert(int category, string name, int genre, int artist, int company, bool isNew, int price, int count)
+        public static bool Insert(int category, string name, int genre, int artist, int company, int isNew, int price, int count)
         {
 
             //מוסיפה את הלקוח למסד הנתונים
@@ -22,7 +22,7 @@ namespace RecordStore_CarmellWasserman.DAL
             + ")"
             + " VALUES "
             + "("
-            + $"'{category}','{name}','{genre}',{artist},{company},{isNew},{price},{count}"
+            + $"{category},'{name}',{genre},{artist},{company},{isNew},{price},{count}"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -124,7 +124,7 @@ namespace RecordStore_CarmellWasserman.DAL
 
         }
 
-        public static bool Update(int Id, int category, string name, int genre, int artist, int company, bool isNew, int price, int count)
+        public static bool Update(int Id, int category, string name, int genre, int artist, int company, int isNew, int price, int count)
         {
 
             //מעדכנת את הלקוח במסד הנתונים

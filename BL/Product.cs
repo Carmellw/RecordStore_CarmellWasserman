@@ -37,7 +37,7 @@ namespace RecordStore_CarmellWasserman.BL
 
         public void Insert()
         {
-            Product_Dal.Insert(m_Category.Id, m_Name, m_Genre.Id, m_Artist.Id, m_Company.Id, m_New, m_Price, m_Count);
+            Product_Dal.Insert(m_Category.Id, m_Name, m_Genre.Id, m_Artist.Id, m_Company.Id, Convert.ToInt32(m_IsNew), m_Price, m_Count);
         }
 
         public Product() { }
@@ -77,7 +77,7 @@ namespace RecordStore_CarmellWasserman.BL
 
         public bool Update()
         {
-            return Product_Dal.Update(m_Id, m_Category.Id, m_Name, m_Genre.Id, m_Artist.Id, m_Company.Id, m_IsNew, m_Price, m_Count);
+            return Product_Dal.Update(m_Id, m_Category.Id, m_Name, m_Genre.Id, m_Artist.Id, m_Company.Id, Convert.ToInt32(m_IsNew), m_Price, m_Count);
         }
 
         public bool Delete()

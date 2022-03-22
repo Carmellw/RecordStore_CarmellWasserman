@@ -71,9 +71,9 @@ namespace RecordStore_CarmellWasserman.DAL
 
             string str = "UPDATE Table_Order SET"
 
-            + $",[Client] = {client}"
-            + $",[Date]   = {date:yyyy-MM-dd}"
-            + $" [Note] = N'{note}'"
+            + $"[Client] = {client}"
+            + $",[Date]   = '{date:yyyy-MM-dd}'"
+            + $" ,[Note] = N'{note}'"
             + $" WHERE [Id] = {Id}";
 
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה

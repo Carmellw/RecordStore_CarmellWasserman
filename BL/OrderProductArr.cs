@@ -32,7 +32,7 @@ namespace RecordStore_CarmellWasserman.BL
             }
         }
 
-        /*/public OrderProductArr Filter(int id, Order category= null, Artist artist = null)
+        public OrderProductArr FilterOrder(Order order)
         {
             OrderProductArr orderProductArr = new OrderProductArr();
 
@@ -42,17 +42,7 @@ namespace RecordStore_CarmellWasserman.BL
                 //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
                 OrderProduct orderProduct = (this[i] as OrderProduct);
-                if (
-
-                //סינון לפי שם המוצר
-                (id == 0 || orderProduct.Id == id) &&
-                orderProduct.Name.ToLower().StartsWith(name.ToLower())
-
-                //סינון לפי החברה
-                && (artist == null || artist.Id == -1 || orderProduct.Artist.Id == artist.Id)
-                //סינון לפי קטגוריה
-                && (category == null || category.Id == -1 || orderProduct.Order.Id == category.Id)
-                )
+                if (orderProduct.Order.Id == order.Id)
 
                     //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
 
@@ -60,7 +50,26 @@ namespace RecordStore_CarmellWasserman.BL
             }
             return orderProductArr;
         }
-        /*/
+
+        public OrderProductArr FilterProduct(Product product)
+        {
+            OrderProductArr orderProductArr = new OrderProductArr();
+
+            for (int i = 0; i < this.Count; i++)
+            {
+
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
+
+                OrderProduct orderProduct = (this[i] as OrderProduct);
+                if (orderProduct.Product.Id == product.Id)
+
+                    //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
+
+                    orderProductArr.Add(orderProduct);
+            }
+            return orderProductArr;
+        }
+
 
         public bool DoesExist(Order curOrder)
         {
@@ -101,10 +110,6 @@ namespace RecordStore_CarmellWasserman.BL
             return true;
         }
 
-        
-
-
-
         public OrderProduct GetOrderProductWithMaxId()
         {
 
@@ -122,6 +127,45 @@ namespace RecordStore_CarmellWasserman.BL
             return maxOrderProduct;
         }
 
+        public ProductArr GetProductArr()
+        {
 
+            //מחזירה את אוסף הפריטים מתוך אוסף הזוגות פריט-הזמנה
+
+            ProductArr productArr = new ProductArr();
+            for (int i = 0; i < this.Count; i++)
+                productArr.Add((this[i] as OrderProduct).Product);
+            return productArr;
+        }
+
+        public void Remove(ProductArr productArr)
+        {
+
+            //מסירה מהאוסף הנוכחי את האוסף המתקבל
+
+            for (int i = 0; i < productArr.Count; i++)
+                this.Remove(productArr[i] as Product);
+        }
+        public void Remove(Product product)
+        {
+
+            //מסירה מהאוסף הנוכחי את הפריט המתקבל
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Product).Id == product.Id)
+                {
+                    this.RemoveAt(i); return;
+                }
+        }
+
+        public bool Delete()
+        {
+
+            //מוחקת את אוסף המוצרים להזמנה ממסד הנתונים
+
+            for (int i = 0; i < this.Count; i++)
+                (this[i] as OrderProduct).Delete();
+            return true;
+        }
     }
 }

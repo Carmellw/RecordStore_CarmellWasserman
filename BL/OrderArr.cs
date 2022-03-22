@@ -90,23 +90,6 @@ namespace RecordStore_CarmellWasserman.BL
             return maxOrder;
         }
 
-        public Order GetOrderId(int id)
-        {
-
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
-
-            Order order = new Order();
-            for (int i = 0; i < this.Count; i++)
-            {
-                if ((this[i] as Order).Id == id)
-                {
-                    return (this[i] as Order);
-                }
-            }
-
-            return (order);
-
-        }
 
 
 

@@ -61,24 +61,51 @@ namespace RecordStore_CarmellWasserman
             this.dateTimePicker_ToDateFilter = new System.Windows.Forms.DateTimePicker();
             this.groupBox_Filter = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox_InOrderProducts = new System.Windows.Forms.ListBox();
             this.listBox_Products = new System.Windows.Forms.ListBox();
+            this.comboBox_ArtistFilter = new System.Windows.Forms.ComboBox();
+            this.comboBox_CategoryFilter = new System.Windows.Forms.ComboBox();
+            this.label_CategoryFilter = new System.Windows.Forms.Label();
+            this.label_NameFilter = new System.Windows.Forms.Label();
+            this.label_ArtistFilter = new System.Windows.Forms.Label();
+            this.textBox_NameFilter = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox_PhoneNumberFilter = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_FirstNameFilter = new System.Windows.Forms.TextBox();
+            this.label_FirstNameFilter = new System.Windows.Forms.Label();
+            this.label_LastNameFilter = new System.Windows.Forms.Label();
+            this.label_PhoneNumerFilter = new System.Windows.Forms.Label();
+            this.textBox_LastNameFilter = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_FirstNameClient = new System.Windows.Forms.Label();
+            this.label_LastNameClient = new System.Windows.Forms.Label();
+            this.label_CityClient = new System.Windows.Forms.Label();
+            this.label_PhoneNumberClient = new System.Windows.Forms.Label();
+            this.label_ZipCodeCilent = new System.Windows.Forms.Label();
+            this.label_IdClient = new System.Windows.Forms.Label();
+            this.listBox_Clients = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl_Order.SuspendLayout();
             this.tabPage_OrderDetails.SuspendLayout();
+            this.tabPage_OrderClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage_OrderItems.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox_Filter.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Order
@@ -108,6 +135,9 @@ namespace RecordStore_CarmellWasserman
             // tabPage_OrderClient
             // 
             this.tabPage_OrderClient.BackColor = System.Drawing.Color.Firebrick;
+            this.tabPage_OrderClient.Controls.Add(this.groupBox3);
+            this.tabPage_OrderClient.Controls.Add(this.groupBox4);
+            this.tabPage_OrderClient.Controls.Add(this.listBox_Clients);
             this.tabPage_OrderClient.Location = new System.Drawing.Point(8, 39);
             this.tabPage_OrderClient.Name = "tabPage_OrderClient";
             this.tabPage_OrderClient.Padding = new System.Windows.Forms.Padding(3);
@@ -367,7 +397,7 @@ namespace RecordStore_CarmellWasserman
             this.dateTimePicker_FromDateFilter.Name = "dateTimePicker_FromDateFilter";
             this.dateTimePicker_FromDateFilter.Size = new System.Drawing.Size(213, 31);
             this.dateTimePicker_FromDateFilter.TabIndex = 26;
-            this.dateTimePicker_FromDateFilter.ValueChanged += new System.EventHandler(this.clear_Click);
+            this.dateTimePicker_FromDateFilter.ValueChanged += new System.EventHandler(this.dateTimePicker_DateFilter_ValueChanged);
             // 
             // label_ToDateFilter
             // 
@@ -409,12 +439,12 @@ namespace RecordStore_CarmellWasserman
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.comboBox_ArtistFilter);
+            this.groupBox1.Controls.Add(this.comboBox_CategoryFilter);
+            this.groupBox1.Controls.Add(this.label_CategoryFilter);
+            this.groupBox1.Controls.Add(this.label_NameFilter);
+            this.groupBox1.Controls.Add(this.label_ArtistFilter);
+            this.groupBox1.Controls.Add(this.textBox_NameFilter);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -424,59 +454,6 @@ namespace RecordStore_CarmellWasserman
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(268, 212);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(213, 31);
-            this.dateTimePicker1.TabIndex = 28;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(17, 208);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 37);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "To";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(268, 160);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(213, 31);
-            this.dateTimePicker2.TabIndex = 26;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(268, 98);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(213, 33);
-            this.comboBox1.TabIndex = 24;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(16, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 37);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Client";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(15, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 37);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "From";
             // 
             // label4
             // 
@@ -523,10 +500,310 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Products.TabIndex = 30;
             this.listBox_Products.DoubleClick += new System.EventHandler(this.listBox_Products_DoubleClick);
             // 
+            // comboBox_ArtistFilter
+            // 
+            this.comboBox_ArtistFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ArtistFilter.FormattingEnabled = true;
+            this.comboBox_ArtistFilter.Location = new System.Drawing.Point(267, 207);
+            this.comboBox_ArtistFilter.Name = "comboBox_ArtistFilter";
+            this.comboBox_ArtistFilter.Size = new System.Drawing.Size(214, 33);
+            this.comboBox_ArtistFilter.TabIndex = 28;
+            // 
+            // comboBox_CategoryFilter
+            // 
+            this.comboBox_CategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_CategoryFilter.FormattingEnabled = true;
+            this.comboBox_CategoryFilter.Location = new System.Drawing.Point(267, 94);
+            this.comboBox_CategoryFilter.Name = "comboBox_CategoryFilter";
+            this.comboBox_CategoryFilter.Size = new System.Drawing.Size(214, 33);
+            this.comboBox_CategoryFilter.TabIndex = 27;
+            // 
+            // label_CategoryFilter
+            // 
+            this.label_CategoryFilter.AutoSize = true;
+            this.label_CategoryFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_CategoryFilter.Location = new System.Drawing.Point(14, 88);
+            this.label_CategoryFilter.Name = "label_CategoryFilter";
+            this.label_CategoryFilter.Size = new System.Drawing.Size(146, 37);
+            this.label_CategoryFilter.TabIndex = 23;
+            this.label_CategoryFilter.Text = "Category";
+            // 
+            // label_NameFilter
+            // 
+            this.label_NameFilter.AutoSize = true;
+            this.label_NameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_NameFilter.Location = new System.Drawing.Point(14, 146);
+            this.label_NameFilter.Name = "label_NameFilter";
+            this.label_NameFilter.Size = new System.Drawing.Size(103, 37);
+            this.label_NameFilter.TabIndex = 24;
+            this.label_NameFilter.Text = "Name";
+            // 
+            // label_ArtistFilter
+            // 
+            this.label_ArtistFilter.AutoSize = true;
+            this.label_ArtistFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_ArtistFilter.Location = new System.Drawing.Point(14, 201);
+            this.label_ArtistFilter.Name = "label_ArtistFilter";
+            this.label_ArtistFilter.Size = new System.Drawing.Size(91, 37);
+            this.label_ArtistFilter.TabIndex = 25;
+            this.label_ArtistFilter.Text = "Artist";
+            // 
+            // textBox_NameFilter
+            // 
+            this.textBox_NameFilter.Location = new System.Drawing.Point(267, 152);
+            this.textBox_NameFilter.Name = "textBox_NameFilter";
+            this.textBox_NameFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_NameFilter.TabIndex = 26;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox3.Controls.Add(this.textBox_PhoneNumberFilter);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.textBox_FirstNameFilter);
+            this.groupBox3.Controls.Add(this.label_FirstNameFilter);
+            this.groupBox3.Controls.Add(this.label_LastNameFilter);
+            this.groupBox3.Controls.Add(this.label_PhoneNumerFilter);
+            this.groupBox3.Controls.Add(this.textBox_LastNameFilter);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Location = new System.Drawing.Point(45, 47);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(513, 336);
+            this.groupBox3.TabIndex = 26;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Filter";
+            // 
+            // textBox_PhoneNumberFilter
+            // 
+            this.textBox_PhoneNumberFilter.Location = new System.Drawing.Point(267, 208);
+            this.textBox_PhoneNumberFilter.MaxLength = 10;
+            this.textBox_PhoneNumberFilter.Name = "textBox_PhoneNumberFilter";
+            this.textBox_PhoneNumberFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_PhoneNumberFilter.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Location = new System.Drawing.Point(18, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 37);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Id";
+            // 
+            // textBox_FirstNameFilter
+            // 
+            this.textBox_FirstNameFilter.Location = new System.Drawing.Point(267, 95);
+            this.textBox_FirstNameFilter.MaxLength = 4000;
+            this.textBox_FirstNameFilter.Name = "textBox_FirstNameFilter";
+            this.textBox_FirstNameFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_FirstNameFilter.TabIndex = 2;
+            // 
+            // label_FirstNameFilter
+            // 
+            this.label_FirstNameFilter.AutoSize = true;
+            this.label_FirstNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_FirstNameFilter.Location = new System.Drawing.Point(8, 89);
+            this.label_FirstNameFilter.Name = "label_FirstNameFilter";
+            this.label_FirstNameFilter.Size = new System.Drawing.Size(184, 37);
+            this.label_FirstNameFilter.TabIndex = 1;
+            this.label_FirstNameFilter.Text = " First Name";
+            // 
+            // label_LastNameFilter
+            // 
+            this.label_LastNameFilter.AutoSize = true;
+            this.label_LastNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_LastNameFilter.Location = new System.Drawing.Point(8, 147);
+            this.label_LastNameFilter.Name = "label_LastNameFilter";
+            this.label_LastNameFilter.Size = new System.Drawing.Size(182, 37);
+            this.label_LastNameFilter.TabIndex = 2;
+            this.label_LastNameFilter.Text = " Last Name";
+            // 
+            // label_PhoneNumerFilter
+            // 
+            this.label_PhoneNumerFilter.AutoSize = true;
+            this.label_PhoneNumerFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_PhoneNumerFilter.Location = new System.Drawing.Point(18, 202);
+            this.label_PhoneNumerFilter.Name = "label_PhoneNumerFilter";
+            this.label_PhoneNumerFilter.Size = new System.Drawing.Size(233, 37);
+            this.label_PhoneNumerFilter.TabIndex = 3;
+            this.label_PhoneNumerFilter.Text = "Phone Number";
+            // 
+            // textBox_LastNameFilter
+            // 
+            this.textBox_LastNameFilter.Location = new System.Drawing.Point(267, 153);
+            this.textBox_LastNameFilter.Name = "textBox_LastNameFilter";
+            this.textBox_LastNameFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_LastNameFilter.TabIndex = 3;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(387, 265);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 47);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "clear";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(267, 40);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(214, 31);
+            this.textBox2.TabIndex = 1;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.label_FirstNameClient);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label_LastNameClient);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label_CityClient);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.label_PhoneNumberClient);
+            this.groupBox4.Controls.Add(this.label_ZipCodeCilent);
+            this.groupBox4.Controls.Add(this.label_IdClient);
+            this.groupBox4.Location = new System.Drawing.Point(45, 415);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(513, 486);
+            this.groupBox4.TabIndex = 25;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Add/Update";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label2.Location = new System.Drawing.Point(18, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 37);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Id";
+            // 
+            // label_FirstNameClient
+            // 
+            this.label_FirstNameClient.AutoSize = true;
+            this.label_FirstNameClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_FirstNameClient.Location = new System.Drawing.Point(260, 89);
+            this.label_FirstNameClient.Name = "label_FirstNameClient";
+            this.label_FirstNameClient.Size = new System.Drawing.Size(0, 37);
+            this.label_FirstNameClient.TabIndex = 1;
+            // 
+            // label_LastNameClient
+            // 
+            this.label_LastNameClient.AutoSize = true;
+            this.label_LastNameClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_LastNameClient.Location = new System.Drawing.Point(260, 147);
+            this.label_LastNameClient.Name = "label_LastNameClient";
+            this.label_LastNameClient.Size = new System.Drawing.Size(0, 37);
+            this.label_LastNameClient.TabIndex = 2;
+            // 
+            // label_CityClient
+            // 
+            this.label_CityClient.AutoSize = true;
+            this.label_CityClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_CityClient.Location = new System.Drawing.Point(260, 316);
+            this.label_CityClient.Name = "label_CityClient";
+            this.label_CityClient.Size = new System.Drawing.Size(0, 37);
+            this.label_CityClient.TabIndex = 16;
+            // 
+            // label_PhoneNumberClient
+            // 
+            this.label_PhoneNumberClient.AutoSize = true;
+            this.label_PhoneNumberClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_PhoneNumberClient.Location = new System.Drawing.Point(260, 202);
+            this.label_PhoneNumberClient.Name = "label_PhoneNumberClient";
+            this.label_PhoneNumberClient.Size = new System.Drawing.Size(0, 37);
+            this.label_PhoneNumberClient.TabIndex = 3;
+            // 
+            // label_ZipCodeCilent
+            // 
+            this.label_ZipCodeCilent.AutoSize = true;
+            this.label_ZipCodeCilent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_ZipCodeCilent.Location = new System.Drawing.Point(260, 258);
+            this.label_ZipCodeCilent.Name = "label_ZipCodeCilent";
+            this.label_ZipCodeCilent.Size = new System.Drawing.Size(0, 37);
+            this.label_ZipCodeCilent.TabIndex = 8;
+            // 
+            // label_IdClient
+            // 
+            this.label_IdClient.AutoSize = true;
+            this.label_IdClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label_IdClient.Location = new System.Drawing.Point(261, 37);
+            this.label_IdClient.Name = "label_IdClient";
+            this.label_IdClient.Size = new System.Drawing.Size(0, 31);
+            this.label_IdClient.TabIndex = 12;
+            // 
+            // listBox_Clients
+            // 
+            this.listBox_Clients.FormattingEnabled = true;
+            this.listBox_Clients.ItemHeight = 25;
+            this.listBox_Clients.Location = new System.Drawing.Point(591, 47);
+            this.listBox_Clients.Name = "listBox_Clients";
+            this.listBox_Clients.Size = new System.Drawing.Size(569, 854);
+            this.listBox_Clients.TabIndex = 24;
+            this.listBox_Clients.DoubleClick += new System.EventHandler(this.listBox_Clients_DoubleClick);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.Location = new System.Drawing.Point(20, 258);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(147, 37);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Zip Code";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.Location = new System.Drawing.Point(20, 202);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(233, 37);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Phone Number";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label7.Location = new System.Drawing.Point(10, 316);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 37);
+            this.label7.TabIndex = 16;
+            this.label7.Text = " City";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label8.Location = new System.Drawing.Point(10, 147);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(182, 37);
+            this.label8.TabIndex = 2;
+            this.label8.Text = " Last Name";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label9.Location = new System.Drawing.Point(10, 89);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(184, 37);
+            this.label9.TabIndex = 1;
+            this.label9.Text = " First Name";
+            // 
             // Form_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1244, 1189);
             this.Controls.Add(this.label_DateToday);
@@ -537,9 +814,11 @@ namespace RecordStore_CarmellWasserman
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.button_Clear);
             this.Name = "Form_Order";
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             this.Text = "Form_Order";
             this.tabControl_Order.ResumeLayout(false);
             this.tabPage_OrderDetails.ResumeLayout(false);
+            this.tabPage_OrderClient.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage_OrderItems.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -548,6 +827,10 @@ namespace RecordStore_CarmellWasserman
             this.groupBox_Filter.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,15 +871,39 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.TabPage tabPage_OrderItems;
         private System.Windows.Forms.ListBox listBox_Products;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ListBox listBox_InOrderProducts;
+        private System.Windows.Forms.ComboBox comboBox_ArtistFilter;
+        private System.Windows.Forms.ComboBox comboBox_CategoryFilter;
+        private System.Windows.Forms.Label label_CategoryFilter;
+        private System.Windows.Forms.Label label_NameFilter;
+        private System.Windows.Forms.Label label_ArtistFilter;
+        private System.Windows.Forms.TextBox textBox_NameFilter;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBox_PhoneNumberFilter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_FirstNameFilter;
+        private System.Windows.Forms.Label label_FirstNameFilter;
+        private System.Windows.Forms.Label label_LastNameFilter;
+        private System.Windows.Forms.Label label_PhoneNumerFilter;
+        private System.Windows.Forms.TextBox textBox_LastNameFilter;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label_FirstNameClient;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_LastNameClient;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label_CityClient;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label_PhoneNumberClient;
+        private System.Windows.Forms.Label label_ZipCodeCilent;
+        private System.Windows.Forms.Label label_IdClient;
+        private System.Windows.Forms.ListBox listBox_Clients;
     }
 }

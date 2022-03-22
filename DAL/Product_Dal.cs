@@ -156,5 +156,14 @@ namespace RecordStore_CarmellWasserman.DAL
 
             return Dal.ExecuteSql(str);
         }
+
+        public static bool UpdateCount(int id, int count)
+        {
+
+            // מעדכנת את מלאי המוצר במסד הנתונים
+            string str = $"UPDATE Table_Product SET [Count] = {count} WHERE ID = {id}";
+            //הפעלת פעולת ה SQL-תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
+            return Dal.ExecuteSql(str);
+        }
     }
 }

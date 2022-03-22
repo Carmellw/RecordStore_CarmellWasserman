@@ -69,8 +69,10 @@
     <Compile Include="BL\CityArr.cs" />
     <Compile Include="BL\Order.cs" />
     <Compile Include="BL\OrderArr.cs" />
+    <Compile Include="BL\OrderProduct.cs" />
     <Compile Include="BL\Product.cs" />
     <Compile Include="BL\Client.cs" />
+    <Compile Include="BL\OrderProductArr.cs" />
     <Compile Include="BL\ProductArr.cs" />
     <Compile Include="BL\ClientArr.cs" />
     <Compile Include="BL\Artist.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="DAL\Category_Dal.cs" />
     <Compile Include="DAL\City_Dal.cs" />
     <Compile Include="DAL\Order_Dal.cs" />
+    <Compile Include="DAL\OrderProduct_Dal.cs" />
     <Compile Include="DAL\Product_Dal.cs" />
     <Compile Include="DAL\Client_Dal.cs" />
     <Compile Include="DAL\Genre_Dal.cs" />

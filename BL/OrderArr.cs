@@ -61,16 +61,51 @@ namespace RecordStore_CarmellWasserman.BL
             return orderArr;
         }
 
-        public bool DoesExist(City curCity)
+        public bool DoesExist(Order curOrder)
         {
 
             //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
 
             for (int i = 0; i < this.Count; i++)
-                if ((this[i] as Order).Client.Id == curCity.Id)
+                if ((this[i] as Order).Client.Id == curOrder.Id)
                     return true;
 
             return false;
+        }
+
+        public Order GetOrderWithMaxId()
+        {
+
+            //מחזירה את הישוב עם המזהה הגבוה ביותר
+
+            Order maxOrder = new Order();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if ((this[i] as Order).Id > maxOrder.Id)
+                {
+                    maxOrder = this[i] as Order;
+                }
+            }
+
+            return maxOrder;
+        }
+
+        public Order GetOrderId(int id)
+        {
+
+            //מחזירה את הישוב עם המזהה הגבוה ביותר
+
+            Order order = new Order();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if ((this[i] as Order).Id == id)
+                {
+                    return (this[i] as Order);
+                }
+            }
+
+            return (order);
+
         }
 
 

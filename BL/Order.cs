@@ -24,9 +24,9 @@ namespace RecordStore_CarmellWasserman.BL
 
 
 
-        public void Insert()
+        public bool Insert()
         {
-            Order_Dal.Insert(m_Client.Id, m_Date, m_Note);
+            return (Order_Dal.Insert(m_Client.Id, m_Date, m_Note));
         }
 
         public Order() { }

@@ -59,17 +59,42 @@ namespace RecordStore_CarmellWasserman
             {
                 MessageBox.Show("All Fields OK");
                 Order order = FormToOrder();
+                OrderProductArr orderProductArr_New;
 
                 if (label_Id.Text == "0")
                 {
-                    order.Insert();
-                    MessageBox.Show("Saved");
+                    if(!order.Insert())
+                    {
+                        OrderArr orderArr = new OrderArr();
+                        orderArr.Fill();
+                        order = orderArr.GetOrderWithMaxId();
+                        orderProductArr_New = FormToOrderProductArr(order);
+
+                        //מוסיפים את הפריטים החדשים להזמנה
+
+                        if (orderProductArr_New.Insert())
+                            MessageBox.Show("Successfully saved");
+                        else
+                            MessageBox.Show("Error in insert");
+                    }
                 }
 
                 else
                 {
-                    order.Update();
-                    MessageBox.Show("Updated");
+                    if(!order.Update())
+                    {
+                        OrderArr orderArr = new OrderArr();
+                        orderArr.Fill();
+                        order = orderArr.GetOrderId(Int32.Parse(label_Id.Text));
+                        orderProductArr_New = FormToOrderProductArr(order);
+
+                        //מוסיפים את הפריטים החדשים להזמנה
+
+                        /*/if (orderProductArr_New.Update())
+                            MessageBox.Show("Successfully updated");
+                        else
+                            MessageBox.Show("Error in update");/*/
+                    }
                 }
                 OrderArrToForm();
 
@@ -92,6 +117,14 @@ namespace RecordStore_CarmellWasserman
             {
                 label_Client.ForeColor = Color.Black;
             }
+
+            if(listBox_InOrderProducts.Items.Count==0)
+            { 
+                flag = false;
+                MessageBox.Show("choose items");
+            }
+
+            
 
 
             return flag;
@@ -197,6 +230,12 @@ namespace RecordStore_CarmellWasserman
             OrderToForm(order);
         }
 
+        private void listBox_Products_DoubleClick(object sender, EventArgs e)
+        {
+            Product product = listBox_Products.SelectedItem as Product;
+            MoveSelectedProductBetweenListBox(listBox_Products, listBox_InOrderProducts);
+        }
+
         private void clear_Click(object sender, EventArgs e)
         {
 
@@ -204,6 +243,8 @@ namespace RecordStore_CarmellWasserman
             richTextBox_Note.Text = "";
             dateTimePicker_Date.Value = DateTime.Now;
             ClientArrToForm(comboBox_Client, true);
+            listBox_InOrderProducts.Items.Clear();
+            ProductArrToForm(listBox_Products);
         }
 
         private void clearFilter_Click(object sender, EventArgs e)
@@ -303,6 +344,67 @@ namespace RecordStore_CarmellWasserman
             get => listBox_Orders.SelectedItem as Order;
         }
 
-        
+        private void ProductArrToForm(ListBox listBox, ProductArr productArr = null)
+        {
+
+            //מקבלת אוסף פריטים ותיבת רשימה לפריטים ומציבה את האוסף בתוך התיבה
+            //אם האוסף ריק - מייצרת אוסף חדש מלא בכל הערכים מהטבלה
+
+            listBox.DataSource = null;
+            if (productArr == null)
+            {
+                productArr = new ProductArr();
+                productArr.Fill();
+            }
+            listBox.DataSource = productArr;
+        }
+        private OrderProductArr FormToOrderProductArr(Order curOrder)
+        {
+
+            // יצירת אוסף המוצרים להזמנה מהטופס
+            // מייצרים זוגות של הזמנה-מוצר , ההזמנה - תמיד אותה הזמנה )הרי מדובר על הזמנה אחת(, המוצר - מגיע מרשימת המוצרים שנבחרו
+            OrderProductArr orderProductArr = new OrderProductArr();
+            /*/
+            יצירת אוסף הזוגות הזמנה -מוצר /*/
+            OrderProduct orderProduct;
+
+            //סורקים את כל הערכים בתיבת הרשימה של המוצרים שנבחרו להזמנה
+            for (int i = 0; i < listBox_InOrderProducts.Items.Count; i++)
+            {
+                orderProduct = new OrderProduct();
+
+                //ההזמנה הנוכחית היא ההזמנה לכל הזוגות באוסף
+
+                orderProduct.Order = curOrder;
+
+                //מוצר נוכחי לזוג הזמנה-מוצר
+
+                orderProduct.Product = listBox_InOrderProducts.Items[i] as Product;
+
+                //הוספת הזוג הזמנה -מוצר לאוסף
+
+                orderProductArr.Add(orderProduct);
+            }
+            return orderProductArr;
+        }
+        private void MoveSelectedProductBetweenListBox(ListBox listBox_From, ListBox listBox_To)
+        {
+            ProductArr arrList = null;
+
+            //מוצאים את הפריט הנבחר
+
+            Product selectedItem = listBox_From.SelectedItem as Product;
+
+            //מוסיפים את הפריט הנבחר לרשימת הפריטים הפוטנציאליים
+            //אם כבר יש פריטים ברשימת הפוטנציאליים
+
+            if (listBox_To.DataSource != null)
+                arrList = listBox_To.DataSource as ProductArr;
+            else
+                arrList = new ProductArr();
+            arrList.Add(selectedItem);
+            ProductArrToForm(listBox_To, arrList);
+        }
+
     }
 }

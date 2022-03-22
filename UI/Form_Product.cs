@@ -519,4 +519,3 @@ namespace RecordStore_CarmellWasserman
 
     }
 }
-//לסדר את הפילטר ואת הדיקה של החרא

@@ -67,6 +67,8 @@
     <Compile Include="BL\CategoryArr.cs" />
     <Compile Include="BL\City.cs" />
     <Compile Include="BL\CityArr.cs" />
+    <Compile Include="BL\Order.cs" />
+    <Compile Include="BL\OrderArr.cs" />
     <Compile Include="BL\Product.cs" />
     <Compile Include="BL\Client.cs" />
     <Compile Include="BL\ProductArr.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="BL\CompanyArr.cs" />
     <Compile Include="DAL\Category_Dal.cs" />
     <Compile Include="DAL\City_Dal.cs" />
+    <Compile Include="DAL\Order_Dal.cs" />
     <Compile Include="DAL\Product_Dal.cs" />
     <Compile Include="DAL\Client_Dal.cs" />
     <Compile Include="DAL\Genre_Dal.cs" />
@@ -123,6 +126,12 @@
     <Compile Include="UI\Form_Genre.Designer.cs">
       <DependentUpon>Form_Genre.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Order.Designer.cs">
+      <DependentUpon>Form_Order.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Genre.resx">
       <DependentUpon>Form_Genre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Order.resx">
+      <DependentUpon>Form_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Product.resx">
       <DependentUpon>Form_Product.cs</DependentUpon>

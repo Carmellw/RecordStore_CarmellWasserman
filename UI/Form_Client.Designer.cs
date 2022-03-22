@@ -73,6 +73,7 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Clients.Name = "listBox_Clients";
             this.listBox_Clients.Size = new System.Drawing.Size(569, 854);
             this.listBox_Clients.TabIndex = 0;
+            this.listBox_Clients.DoubleClick += new System.EventHandler(this.listBox_Clients_DoubleClick);
             // 
             // groupBox2
             // 

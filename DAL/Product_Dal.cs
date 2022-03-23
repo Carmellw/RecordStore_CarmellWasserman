@@ -131,8 +131,8 @@ namespace RecordStore_CarmellWasserman.DAL
 
             string str = "UPDATE Table_Product SET"
 
-            + $",[Category] = {category}"
-            + $" [Name] = N'{name}'"
+            + $"[Category] = {category}"
+            + $",[Name] = N'{name}'"
             + $",[Genre] = {genre}"
             + $",[Artist] = {artist}"
             + $",[Company] = {company}"

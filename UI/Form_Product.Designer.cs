@@ -59,7 +59,6 @@ namespace RecordStore_CarmellWasserman
             this.label_Name = new System.Windows.Forms.Label();
             this.label_Company = new System.Windows.Forms.Label();
             this.label_Genre = new System.Windows.Forms.Label();
-            this.textBox_Count = new System.Windows.Forms.TextBox();
             this.textBox_Price = new System.Windows.Forms.TextBox();
             this.textBox_Name = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
@@ -69,9 +68,11 @@ namespace RecordStore_CarmellWasserman
             this.save = new System.Windows.Forms.Button();
             this.checkBox_IsNew = new System.Windows.Forms.CheckBox();
             this.listBox_Products = new System.Windows.Forms.ListBox();
+            this.numericUpDown_Count = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_Filter.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Count)).BeginInit();
             this.SuspendLayout();
             // 
             // label_DateToday
@@ -216,6 +217,7 @@ namespace RecordStore_CarmellWasserman
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox2.Controls.Add(this.numericUpDown_Count);
             this.groupBox2.Controls.Add(this.label_IdName);
             this.groupBox2.Controls.Add(this.button_AddCategory);
             this.groupBox2.Controls.Add(this.button_AddGenre);
@@ -232,7 +234,6 @@ namespace RecordStore_CarmellWasserman
             this.groupBox2.Controls.Add(this.label_Name);
             this.groupBox2.Controls.Add(this.label_Company);
             this.groupBox2.Controls.Add(this.label_Genre);
-            this.groupBox2.Controls.Add(this.textBox_Count);
             this.groupBox2.Controls.Add(this.textBox_Price);
             this.groupBox2.Controls.Add(this.textBox_Name);
             this.groupBox2.Controls.Add(this.delete);
@@ -404,14 +405,6 @@ namespace RecordStore_CarmellWasserman
             this.label_Genre.TabIndex = 3;
             this.label_Genre.Text = "Genre";
             // 
-            // textBox_Count
-            // 
-            this.textBox_Count.Location = new System.Drawing.Point(267, 488);
-            this.textBox_Count.Name = "textBox_Count";
-            this.textBox_Count.Size = new System.Drawing.Size(214, 31);
-            this.textBox_Count.TabIndex = 7;
-            this.textBox_Count.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
-            // 
             // textBox_Price
             // 
             this.textBox_Price.Location = new System.Drawing.Point(267, 432);
@@ -498,6 +491,13 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Products.TabIndex = 27;
             this.listBox_Products.DoubleClick += new System.EventHandler(this.listBox_Products_DoubleClick);
             // 
+            // numericUpDown_Count
+            // 
+            this.numericUpDown_Count.Location = new System.Drawing.Point(267, 488);
+            this.numericUpDown_Count.Name = "numericUpDown_Count";
+            this.numericUpDown_Count.Size = new System.Drawing.Size(214, 31);
+            this.numericUpDown_Count.TabIndex = 22;
+            // 
             // Form_Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -519,6 +519,7 @@ namespace RecordStore_CarmellWasserman
             this.groupBox_Filter.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Count)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -561,10 +562,10 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Label label_Count;
         private System.Windows.Forms.Label label_Price;
         private System.Windows.Forms.Label label_IsNew;
-        private System.Windows.Forms.TextBox textBox_Count;
         private System.Windows.Forms.TextBox textBox_Price;
         private System.Windows.Forms.CheckBox checkBox_IsNew;
         private System.Windows.Forms.ComboBox comboBox_ArtistFilter;
         private System.Windows.Forms.ComboBox comboBox_CategoryFilter;
+        private System.Windows.Forms.NumericUpDown numericUpDown_Count;
     }
 }

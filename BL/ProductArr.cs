@@ -109,7 +109,29 @@ namespace RecordStore_CarmellWasserman.BL
             return false;
         }
 
+        public void UpdateCount()
+        {
 
+            //מעדכנת את אוסף המוצרים
+
+            for (int i = 0; i < this.Count; i++)
+            {
+                (this[i] as Product).UpdateCount();
+            }
+        }
+
+        public void UpdateProduct(Product product)
+        {
+
+            //מעדכנת את הכמות של הפריט באוסף הנוכחי
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Product).Id == product.Id)
+                {
+                    this[i] = product;
+                    return;
+                }
+        }
 
     }
 }

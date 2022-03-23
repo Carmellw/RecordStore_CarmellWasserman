@@ -62,6 +62,7 @@ namespace RecordStore_CarmellWasserman
                 {
                     product.Insert();
                     MessageBox.Show("Saved");
+
                 }
 
                 else
@@ -70,6 +71,15 @@ namespace RecordStore_CarmellWasserman
                     MessageBox.Show("Updated");
                 }
                 ProductArrToForm();
+                label_Id.Text = "0";
+                CategoryArrToForm(comboBox_Category, true);
+                textBox_Name.Text = "";
+                GenreArrToForm(comboBox_Genre, true);
+                ArtistArrToForm(comboBox_Artist, true);
+                CompanyArrToForm(comboBox_Company, true);
+                checkBox_IsNew.Checked = false;
+                textBox_Price.Text = "";
+                numericUpDown_Count.Value = 0;
 
             }
         }
@@ -104,10 +114,11 @@ namespace RecordStore_CarmellWasserman
             else
                 label_Price.ForeColor = Color.Black;
 
-
             //בדיקת מיקוד //
+            
 
-            if (textBox_Count.Text == null)
+
+            if (numericUpDown_Count.Value<0)
             {
                 flag = false;
                 label_Count.ForeColor = Color.Red;
@@ -181,7 +192,7 @@ namespace RecordStore_CarmellWasserman
             product.Company = comboBox_Company.SelectedItem as Company;
             product.IsNew = checkBox_IsNew.Checked;
             product.Price = int.Parse(textBox_Price.Text);
-            product.Count = int.Parse(textBox_Count.Text);
+            product.Count = int.Parse(numericUpDown_Count.Value.ToString());
             product.Id = int.Parse(label_Id.Text);
             //בדיקה האם יש ערך בשדה להמרה
 
@@ -369,7 +380,7 @@ namespace RecordStore_CarmellWasserman
                 comboBox_Company.SelectedValue = product.Company.Id;
                 checkBox_IsNew.Checked = product.IsNew;
                 textBox_Price.Text = product.Price.ToString();
-                textBox_Count.Text = product.Count.ToString();
+                numericUpDown_Count.Value = product.Count;
             }
 
             else
@@ -382,7 +393,7 @@ namespace RecordStore_CarmellWasserman
                 CompanyArrToForm(comboBox_Company, true);
                 checkBox_IsNew.Checked = false;
                 textBox_Price.Text = "";
-                textBox_Count.Text = "";
+                numericUpDown_Count.Value = 0;
             }
         }
 
@@ -403,9 +414,9 @@ namespace RecordStore_CarmellWasserman
             CompanyArrToForm(comboBox_Company, true);
             checkBox_IsNew.Checked = false;
             textBox_Price.Text = "";
-            textBox_Count.Text = "";
+            numericUpDown_Count.Value = 0;
         }
-        //
+        
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -486,28 +497,28 @@ namespace RecordStore_CarmellWasserman
 
         private void button_AddCategory_Click(object sender, EventArgs e)
         {
-            Form_Category form_Category = new Form_Category(comboBox_Category.SelectedItem as Category);
+            Form_Category form_Category = new Form_Category();
             form_Category.ShowDialog();
             CategoryArrToForm(comboBox_Category, true, form_Category.SelectedCategory);
         }
 
         private void button_AddGenre_Click(object sender, EventArgs e)
         {
-            Form_Genre form_Genre = new Form_Genre(comboBox_Genre.SelectedItem as Genre);
+            Form_Genre form_Genre = new Form_Genre();
             form_Genre.ShowDialog();
             GenreArrToForm(comboBox_Genre, true, form_Genre.SelectedGenre);
         }
 
         private void button_AddArtist_Click(object sender, EventArgs e)
         {
-            Form_Artist form_Artist = new Form_Artist(comboBox_Artist.SelectedItem as Artist);
+            Form_Artist form_Artist = new Form_Artist();
             form_Artist.ShowDialog();
             ArtistArrToForm(comboBox_Artist, true, form_Artist.SelectedArtist);
         }
 
         private void button_AddCompany_Click(object sender, EventArgs e)
         {
-            Form_Company form_Company = new Form_Company(comboBox_Company.SelectedItem as Company);
+            Form_Company form_Company = new Form_Company();
             form_Company.ShowDialog();
             CompanyArrToForm(comboBox_Company, true, form_Company.SelectedCompany);
         }

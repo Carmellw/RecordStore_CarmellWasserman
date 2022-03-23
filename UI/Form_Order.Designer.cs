@@ -96,6 +96,9 @@ namespace RecordStore_CarmellWasserman
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.button_Plus = new System.Windows.Forms.Button();
+            this.button_Minus = new System.Windows.Forms.Button();
+            this.listBox_InOrderProductsCount = new System.Windows.Forms.ListBox();
             this.tabControl_Order.SuspendLayout();
             this.tabPage_OrderDetails.SuspendLayout();
             this.tabPage_OrderClient.SuspendLayout();
@@ -180,6 +183,9 @@ namespace RecordStore_CarmellWasserman
             // tabPage_OrderItems
             // 
             this.tabPage_OrderItems.BackColor = System.Drawing.Color.Firebrick;
+            this.tabPage_OrderItems.Controls.Add(this.listBox_InOrderProductsCount);
+            this.tabPage_OrderItems.Controls.Add(this.button_Minus);
+            this.tabPage_OrderItems.Controls.Add(this.button_Plus);
             this.tabPage_OrderItems.Controls.Add(this.listBox_Products);
             this.tabPage_OrderItems.Controls.Add(this.groupBox1);
             this.tabPage_OrderItems.Controls.Add(this.listBox_InOrderProducts);
@@ -201,6 +207,7 @@ namespace RecordStore_CarmellWasserman
             // 
             // button_Save
             // 
+            this.button_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button_Save.Location = new System.Drawing.Point(930, 1119);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(94, 47);
@@ -487,8 +494,9 @@ namespace RecordStore_CarmellWasserman
             this.listBox_InOrderProducts.ItemHeight = 25;
             this.listBox_InOrderProducts.Location = new System.Drawing.Point(590, 52);
             this.listBox_InOrderProducts.Name = "listBox_InOrderProducts";
-            this.listBox_InOrderProducts.Size = new System.Drawing.Size(569, 854);
+            this.listBox_InOrderProducts.Size = new System.Drawing.Size(437, 779);
             this.listBox_InOrderProducts.TabIndex = 27;
+            this.listBox_InOrderProducts.Click += new System.EventHandler(this.listBox_InOrderProducts_Click);
             // 
             // listBox_Products
             // 
@@ -799,6 +807,40 @@ namespace RecordStore_CarmellWasserman
             this.label9.TabIndex = 1;
             this.label9.Text = " First Name";
             // 
+            // button_Plus
+            // 
+            this.button_Plus.BackColor = System.Drawing.Color.White;
+            this.button_Plus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Plus.Location = new System.Drawing.Point(1099, 847);
+            this.button_Plus.Name = "button_Plus";
+            this.button_Plus.Size = new System.Drawing.Size(60, 60);
+            this.button_Plus.TabIndex = 33;
+            this.button_Plus.Text = "+";
+            this.button_Plus.UseVisualStyleBackColor = false;
+            this.button_Plus.Click += new System.EventHandler(this.button_Plus_Click);
+            // 
+            // button_Minus
+            // 
+            this.button_Minus.BackColor = System.Drawing.Color.White;
+            this.button_Minus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.button_Minus.Location = new System.Drawing.Point(1033, 847);
+            this.button_Minus.Name = "button_Minus";
+            this.button_Minus.Size = new System.Drawing.Size(60, 60);
+            this.button_Minus.TabIndex = 33;
+            this.button_Minus.Text = "-";
+            this.button_Minus.UseVisualStyleBackColor = false;
+            this.button_Minus.Click += new System.EventHandler(this.button_Minus_Click);
+            // 
+            // listBox_InOrderProductsCount
+            // 
+            this.listBox_InOrderProductsCount.FormattingEnabled = true;
+            this.listBox_InOrderProductsCount.ItemHeight = 25;
+            this.listBox_InOrderProductsCount.Location = new System.Drawing.Point(1033, 52);
+            this.listBox_InOrderProductsCount.Name = "listBox_InOrderProductsCount";
+            this.listBox_InOrderProductsCount.Size = new System.Drawing.Size(126, 779);
+            this.listBox_InOrderProductsCount.TabIndex = 34;
+            this.listBox_InOrderProductsCount.Click += new System.EventHandler(this.listBox_InOrderProductsCount_Click);
+            // 
             // Form_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -905,5 +947,8 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Label label_ZipCodeCilent;
         private System.Windows.Forms.Label label_IdClient;
         private System.Windows.Forms.ListBox listBox_Clients;
+        private System.Windows.Forms.Button button_Minus;
+        private System.Windows.Forms.Button button_Plus;
+        private System.Windows.Forms.ListBox listBox_InOrderProductsCount;
     }
 }

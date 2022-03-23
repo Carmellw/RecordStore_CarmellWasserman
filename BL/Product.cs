@@ -73,7 +73,12 @@ namespace RecordStore_CarmellWasserman.BL
         }
 
         public override string ToString()
-        { return $"{m_Name}"; }
+        {
+            if (m_Count > 0)
+                return $"{m_Name} [{m_Artist.Name}] ({m_Count} In stock)";
+            else
+                return $"{m_Name} [{m_Artist.Name}] (Out of stock)";
+        }
 
         public bool Update()
         {
@@ -84,6 +89,9 @@ namespace RecordStore_CarmellWasserman.BL
         {
             return Product_Dal.Delete(m_Id);
         }
+
+        public bool UpdateCount()
+        { return Product_Dal.UpdateCount(m_Id, m_Count); }
 
 
 

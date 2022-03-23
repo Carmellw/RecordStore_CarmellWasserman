@@ -37,7 +37,6 @@ namespace RecordStore_CarmellWasserman
                 e.KeyChar = char.MinValue;
         }
 
-
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -64,7 +63,12 @@ namespace RecordStore_CarmellWasserman
                         //מוסיפים את הפריטים החדשים להזמנה
 
                         if (orderProductArr_New.Insert())
+                        {
                             MessageBox.Show("Successfully saved");
+                            //מעדכנים את מלאי הפריטים שהוזמנו
+
+                            (listBox_InOrderProducts.DataSource as ProductArr).UpdateCount();
+                        }
                         else
                             MessageBox.Show("Error in insert");
                     }
@@ -93,6 +97,10 @@ namespace RecordStore_CarmellWasserman
 
                         orderProductArr_New = FormToOrderProductArr(order);
                         orderProductArr_New.Insert();
+                        //מעדכנים את מלאי הפריטים, אלו שהוזמנו ואלו שבפוטנציאל
+
+                        (listBox_InOrderProducts.DataSource as ProductArr).UpdateCount();
+                        (listBox_Products.DataSource as ProductArr).UpdateCount();
                     }
                     else
                         MessageBox.Show("Error");
@@ -258,7 +266,7 @@ namespace RecordStore_CarmellWasserman
         private void listBox_Products_DoubleClick(object sender, EventArgs e)
         {
             Product product = listBox_Products.SelectedItem as Product;
-            MoveSelectedProductBetweenListBox(listBox_Products, listBox_InOrderProducts);
+            MoveSelectedProductBetweenListBox(listBox_Products, listBox_InOrderProducts, true);
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -268,7 +276,7 @@ namespace RecordStore_CarmellWasserman
             richTextBox_Note.Text = "";
             dateTimePicker_Date.Value = DateTime.Now;
             ClientArrToForm(comboBox_Client, true);
-            listBox_InOrderProducts.DataSource= null;
+            listBox_InOrderProducts.DataSource = null;
             ProductArrToForm(listBox_Products);
         }
 
@@ -422,13 +430,16 @@ namespace RecordStore_CarmellWasserman
 
                 orderProduct.Product = listBox_InOrderProducts.Items[i] as Product;
 
+                //כמות מוצר נוכחי לזוג הזמנה-מוצר
+                orderProduct.Count = (int)listBox_InOrderProductsCount.Items[i];
+
                 //הוספת הזוג הזמנה -מוצר לאוסף
 
                 orderProductArr.Add(orderProduct);
             }
             return orderProductArr;
         }
-        private void MoveSelectedProductBetweenListBox(ListBox listBox_From, ListBox listBox_To)
+        private void MoveSelectedProductBetweenListBox(ListBox listBox_From, ListBox listBox_To, bool isToOrder)
         {
             ProductArr productArr = null;
 
@@ -438,6 +449,20 @@ namespace RecordStore_CarmellWasserman
 
             //מוסיפים את הפריט הנבחר לרשימת הפריטים הפוטנציאליים
             //אם כבר יש פריטים ברשימת הפוטנציאליים
+            if (isToOrder)
+
+            //ההעברה היא אל הרשימה של הפריטים בהזמנה
+
+            {
+                product.Count--;
+                listBox_InOrderProductsCount.Items.Add(1);
+            }
+            else
+            {
+                product.Count += (int)listBox_InOrderProductsCount.SelectedItem;
+                listBox_InOrderProductsCount.Items.RemoveAt(listBox_InOrderProductsCount.SelectedIndex);
+
+            }
 
             if (listBox_To.DataSource != null)
                 productArr = listBox_To.DataSource as ProductArr;
@@ -450,6 +475,13 @@ namespace RecordStore_CarmellWasserman
             productArr = listBox_From.DataSource as ProductArr;
             productArr.Remove(product);
             ProductArrToForm(listBox_From, productArr);
+            //אם זאת הוספה לתיבת המוצרים בהזמנה - סימון שתי השורה האחרונה בה וגם בתיבת הרשימה של הכמויות
+            if (isToOrder)
+            {
+                int k = listBox_To.Items.Count - 1;
+                listBox_To.SelectedIndex = k;
+                listBox_InOrderProductsCount.SelectedIndex = k;
+            }
         }
         private void textBox_FilterProduct_KeyUp(object sender, KeyEventArgs e)
         {
@@ -546,6 +578,101 @@ namespace RecordStore_CarmellWasserman
             listBox_Clients.ValueMember = "Id";
             listBox_Clients.DisplayMember = "";
         }
+
+        private void listBox_InOrderProducts_Click(object sender, EventArgs e)
+        {
+            listBox_InOrderProductsCount.SelectedIndex = listBox_InOrderProducts.SelectedIndex;
+        }
+        private void listBox_InOrderProductsCount_Click(object sender, EventArgs e)
+        {
+            listBox_InOrderProducts.SelectedIndex = listBox_InOrderProductsCount.SelectedIndex;
+        }
+
+        private void button_Plus_Click(object sender, EventArgs e)
+        {
+
+            //הגדלת הכמות של המוצר בהזמנה באחד
+            //אם לא מסומנת השורה של הכמויות
+
+            if (listBox_InOrderProductsCount.SelectedIndex >= 0)
+            {
+                //בדיקה האם יש במלאי לפחות 1
+
+                if ((listBox_InOrderProducts.SelectedItem as Product).Count > 0)
+
+                //אם כן, הוספה לכמות של פריט-הזמנה והורדה מהמלאי
+
+                {
+
+                    //עדכון כמות המוצר בתוך רשימת כמויות המוצרים בהזמנה
+
+                    int k = listBox_InOrderProductsCount.SelectedIndex;
+                    listBox_InOrderProductsCount.Items[k] =
+                    (int)listBox_InOrderProductsCount.Items[k] + 1;
+
+                    //הורדה מהמלאי - עדכון כמות המוצר בתוך אוסף המוצרים ברשימת המוצרים בהזמנה
+                    ProductArr productArr = listBox_InOrderProducts.DataSource as ProductArr;
+                    Product product = listBox_InOrderProducts.SelectedItem as Product;
+                    product.Count--;
+                    productArr.UpdateProduct(product);
+                    ProductArrToForm(listBox_InOrderProducts, productArr);
+                }
+            }
+            //אם לא הודעה מתאימה
+
+            else
+            {
+                MessageBox.Show("choose an item");
+            }
+        }
+        private void button_Minus_Click(object sender, EventArgs e)
+        {
+
+            //הגדלת הכמות של המוצר בהזמנה באחד
+            //אם לא מסומנת השורה של הכמויות
+
+            if (listBox_InOrderProductsCount.SelectedIndex >= 0)
+            {
+                //בדיקה האם יש במלאי לפחות 1
+
+                    //עדכון כמות המוצר בתוך רשימת כמויות המוצרים בהזמנה
+
+                    int k = listBox_InOrderProductsCount.SelectedIndex;
+                    listBox_InOrderProductsCount.Items[k] =
+                    (int)listBox_InOrderProductsCount.Items[k] - 1;
+
+                    //הורדה מהמלאי - עדכון כמות המוצר בתוך אוסף המוצרים ברשימת המוצרים בהזמנה
+                    ProductArr productArr = listBox_InOrderProducts.DataSource as ProductArr;
+                    Product product = listBox_InOrderProducts.SelectedItem as Product;
+                    product.Count++;
+                    productArr.UpdateProduct(product);
+                    ProductArrToForm(listBox_InOrderProducts, productArr);
+                
+
+            }
+
+            //אם לא הודעה מתאימה
+
+            else
+            {
+                MessageBox.Show("choose an item");
+            }
+        }
+        private void ProductArrCountToForm(OrderProductArr curOrderproductArr)
+        {
+            listBox_InOrderProductsCount.Items.Clear();
+            for (int i = 0; i < curOrderproductArr.Count; i++)
+            {
+                listBox_InOrderProductsCount.Items.Add(
+                (curOrderproductArr[i] as OrderProduct).Count);
+            }
+
+            //כדי לסמן את השורה הראשונה ישר בהתחלה )אם יש כזאת(
+
+            if (listBox_InOrderProductsCount.Items.Count > 0)
+                listBox_InOrderProductsCount.SelectedIndex = 0;
+        }
+
 
     }
 }

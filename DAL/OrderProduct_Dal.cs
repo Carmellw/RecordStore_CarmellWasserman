@@ -10,7 +10,7 @@ namespace RecordStore_CarmellWasserman.DAL
 {
     public class OrderProduct_Dal
     {
-        public static bool Insert(int order, int product)
+        public static bool Insert(int order, int product, int count)
         {
 
             //מוסיפה את הלקוח למסד הנתונים
@@ -18,11 +18,11 @@ namespace RecordStore_CarmellWasserman.DAL
 
             string str = "INSERT INTO Table_OrderProduct"
             + "("
-            + "[Order],[Product]"
+            + "[Order],[Product],[Count]"
             + ")"
             + " VALUES "
             + "("
-            + $"{order},{product}"
+            + $"{order},{product},{count}"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -84,7 +84,7 @@ namespace RecordStore_CarmellWasserman.DAL
 
         }
 
-        public static bool Update(int Id, int order, int product)
+        public static bool Update(int Id, int order, int product, int count)
         {
 
             //מעדכנת את הלקוח במסד הנתונים
@@ -93,6 +93,7 @@ namespace RecordStore_CarmellWasserman.DAL
 
             + $",[Order] = {order}"
             + $",[Product] = {product}"
+            + $",[Count] = {count}"
             + $" WHERE [Id] = {Id}";
 
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה

@@ -67,7 +67,11 @@
     <Compile Include="BL\CategoryArr.cs" />
     <Compile Include="BL\City.cs" />
     <Compile Include="BL\CityArr.cs" />
+    <Compile Include="BL\EmployeeArr.cs" />
+    <Compile Include="BL\Employee.cs" />
+    <Compile Include="BL\Shift.cs" />
     <Compile Include="BL\Order.cs" />
+    <Compile Include="BL\ShiftArr.cs" />
     <Compile Include="BL\OrderArr.cs" />
     <Compile Include="BL\OrderProduct.cs" />
     <Compile Include="BL\Product.cs" />
@@ -83,6 +87,8 @@
     <Compile Include="BL\CompanyArr.cs" />
     <Compile Include="DAL\Category_Dal.cs" />
     <Compile Include="DAL\City_Dal.cs" />
+    <Compile Include="DAL\Employee_Dal.cs" />
+    <Compile Include="DAL\Shift_Dal.cs" />
     <Compile Include="DAL\Order_Dal.cs" />
     <Compile Include="DAL\OrderProduct_Dal.cs" />
     <Compile Include="DAL\Product_Dal.cs" />
@@ -123,11 +129,23 @@
     <Compile Include="UI\Form_Company.Designer.cs">
       <DependentUpon>Form_Company.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_Employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Employee.Designer.cs">
+      <DependentUpon>Form_Employee.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Genre.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Form_Genre.Designer.cs">
       <DependentUpon>Form_Genre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Form_Order.cs">
       <SubType>Form</SubType>
@@ -141,6 +159,13 @@
     <Compile Include="UI\Form_Product.Designer.cs">
       <DependentUpon>Form_Product.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_ProductReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_ProductReport.Designer.cs">
+      <DependentUpon>Form_ProductReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListViewSorter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -166,14 +191,23 @@
     <EmbeddedResource Include="UI\Form_Company.resx">
       <DependentUpon>Form_Company.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Employee.resx">
+      <DependentUpon>Form_Employee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Genre.resx">
       <DependentUpon>Form_Genre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Order.resx">
       <DependentUpon>Form_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Product.resx">
       <DependentUpon>Form_Product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_ProductReport.resx">
+      <DependentUpon>Form_ProductReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

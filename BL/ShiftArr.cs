@@ -79,7 +79,17 @@ namespace RecordStore_CarmellWasserman.BL
             return maxShift;
         }
 
+        public bool DoesExist(DateTime dateTime, bool isMorning)
+        {
 
+            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Shift).Date == dateTime && (this[i] as Shift).IsMorning == isMorning)
+                    return true;
+
+            return false;
+        }
 
 
     }

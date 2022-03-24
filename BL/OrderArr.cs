@@ -64,7 +64,6 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Order curOrder)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Order).Client.Id == curOrder.Id)

@@ -29,6 +29,8 @@ namespace RecordStore_CarmellWasserman.BL
 
         public Shift() { }
 
+        
+
         public Shift(DataRow dataRow)
         {
 

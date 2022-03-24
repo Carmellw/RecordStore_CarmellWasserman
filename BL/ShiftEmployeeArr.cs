@@ -43,10 +43,11 @@ namespace RecordStore_CarmellWasserman.BL
 
                 ShiftEmployee shiftEmployee = (this[i] as ShiftEmployee);
                 if (shiftEmployee.Shift.Id == shift.Id)
-
+                {
                     //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
 
                     shiftEmployeeArr.Add(shiftEmployee);
+                }
             }
             return shiftEmployeeArr;
         }
@@ -165,5 +166,7 @@ namespace RecordStore_CarmellWasserman.BL
                 (this[i] as ShiftEmployee).Delete();
             return true;
         }
+
+        
     }
 }

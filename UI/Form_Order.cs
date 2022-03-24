@@ -37,6 +37,20 @@ namespace RecordStore_CarmellWasserman
                 e.KeyChar = char.MinValue;
         }
 
+        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
+
+
+
+
+
+        }
+
+
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -673,6 +687,6 @@ namespace RecordStore_CarmellWasserman
                 listBox_InOrderProductsCount.SelectedIndex = 0;
         }
 
-
+       
     }
 }

@@ -79,6 +79,22 @@ namespace RecordStore_CarmellWasserman.BL
             return maxShift;
         }
 
+        public Shift GetShiftId(DateTime date, bool isMorning)
+        {
+            Shift shift = new Shift();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if((this[i] as Shift).Date == date &&
+                    (this[i] as Shift).IsMorning == isMorning)
+                {
+                    shift = this[i] as Shift;
+                    return shift;
+                }
+            }
+
+            return shift;
+        }
+
         public bool DoesExist(DateTime dateTime, bool isMorning)
         {
 

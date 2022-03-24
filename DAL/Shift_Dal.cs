@@ -10,7 +10,7 @@ namespace RecordStore_CarmellWasserman.DAL
 {
     public class Shift_Dal
     {
-        public static bool Insert(DateTime date, int isMorning)
+        /*/public static bool Insert(DateTime date, int isMorning)
         {
 
             //מוסיפה את הלקוח למסד הנתונים
@@ -22,7 +22,25 @@ namespace RecordStore_CarmellWasserman.DAL
             + ")"
             + " VALUES "
             + "("
-            + $"{date:yyyy-MM-dd}',{isMorning}"
+            + $"'{date:yyyy-MM-dd}',{isMorning}"
+            + ")";
+            //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
+            return Dal.ExecuteSql(str);
+        }/*/
+
+        public static bool Insert(DateTime date, int isMorning)
+        {
+
+            //מוסיפה את הלקוח למסד הנתונים
+            //בניית הוראת ה-SQL
+
+            string str = "INSERT INTO Table_Shift"
+            + "("
+            + "[IsMorning],[Date]"
+            + ")"
+            + " VALUES "
+            + "("
+            + $"{isMorning},'{date:yyyy-MM-dd}'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);

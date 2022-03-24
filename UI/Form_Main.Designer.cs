@@ -117,7 +117,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_Shifts.TabIndex = 0;
             this.label_Shifts.Text = "Shifts";
             this.label_Shifts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label_Shifts.Click += new System.EventHandler(this.label_Order_Click);
+            this.label_Shifts.Click += new System.EventHandler(this.label_Shifts_Click);
             // 
             // label_Manager
             // 

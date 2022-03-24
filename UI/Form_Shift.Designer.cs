@@ -162,37 +162,40 @@ namespace RecordStore_CarmellWasserman.UI
             // label_MondayMorning11
             // 
             this.label_MondayMorning11.BackColor = System.Drawing.Color.White;
-            this.label_MondayMorning11.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_MondayMorning11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_MondayMorning11.Location = new System.Drawing.Point(218, 200);
             this.label_MondayMorning11.Name = "label_MondayMorning11";
             this.label_MondayMorning11.Size = new System.Drawing.Size(200, 350);
             this.label_MondayMorning11.TabIndex = 33;
             this.label_MondayMorning11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_MondayMorning11.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_SaturdayMorning61
             // 
             this.label_SaturdayMorning61.BackColor = System.Drawing.Color.MistyRose;
-            this.label_SaturdayMorning61.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_SaturdayMorning61.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SaturdayMorning61.Location = new System.Drawing.Point(1248, 200);
             this.label_SaturdayMorning61.Name = "label_SaturdayMorning61";
             this.label_SaturdayMorning61.Size = new System.Drawing.Size(200, 350);
             this.label_SaturdayMorning61.TabIndex = 34;
             this.label_SaturdayMorning61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_SaturdayMorning61.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_WednesdayEvening30
             // 
             this.label_WednesdayEvening30.BackColor = System.Drawing.Color.MistyRose;
-            this.label_WednesdayEvening30.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_WednesdayEvening30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_WednesdayEvening30.Location = new System.Drawing.Point(630, 556);
             this.label_WednesdayEvening30.Name = "label_WednesdayEvening30";
             this.label_WednesdayEvening30.Size = new System.Drawing.Size(200, 350);
             this.label_WednesdayEvening30.TabIndex = 35;
             this.label_WednesdayEvening30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_WednesdayEvening30.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_SundayMorning01
             // 
             this.label_SundayMorning01.BackColor = System.Drawing.Color.Salmon;
-            this.label_SundayMorning01.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_SundayMorning01.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SundayMorning01.Location = new System.Drawing.Point(12, 200);
             this.label_SundayMorning01.Name = "label_SundayMorning01";
             this.label_SundayMorning01.Size = new System.Drawing.Size(200, 350);
@@ -203,102 +206,112 @@ namespace RecordStore_CarmellWasserman.UI
             // label_TuesdayMorning21
             // 
             this.label_TuesdayMorning21.BackColor = System.Drawing.Color.MistyRose;
-            this.label_TuesdayMorning21.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_TuesdayMorning21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TuesdayMorning21.Location = new System.Drawing.Point(424, 200);
             this.label_TuesdayMorning21.Name = "label_TuesdayMorning21";
             this.label_TuesdayMorning21.Size = new System.Drawing.Size(200, 350);
             this.label_TuesdayMorning21.TabIndex = 37;
             this.label_TuesdayMorning21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_TuesdayMorning21.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_WednesdayMorning31
             // 
             this.label_WednesdayMorning31.BackColor = System.Drawing.Color.Salmon;
-            this.label_WednesdayMorning31.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_WednesdayMorning31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_WednesdayMorning31.Location = new System.Drawing.Point(630, 200);
             this.label_WednesdayMorning31.Name = "label_WednesdayMorning31";
             this.label_WednesdayMorning31.Size = new System.Drawing.Size(200, 350);
             this.label_WednesdayMorning31.TabIndex = 38;
             this.label_WednesdayMorning31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_WednesdayMorning31.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_FridayMorning51
             // 
             this.label_FridayMorning51.BackColor = System.Drawing.Color.Salmon;
-            this.label_FridayMorning51.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_FridayMorning51.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_FridayMorning51.Location = new System.Drawing.Point(1042, 200);
             this.label_FridayMorning51.Name = "label_FridayMorning51";
             this.label_FridayMorning51.Size = new System.Drawing.Size(200, 350);
             this.label_FridayMorning51.TabIndex = 39;
             this.label_FridayMorning51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_FridayMorning51.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_ThursdayMorning41
             // 
             this.label_ThursdayMorning41.BackColor = System.Drawing.Color.White;
-            this.label_ThursdayMorning41.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_ThursdayMorning41.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_ThursdayMorning41.Location = new System.Drawing.Point(836, 200);
             this.label_ThursdayMorning41.Name = "label_ThursdayMorning41";
             this.label_ThursdayMorning41.Size = new System.Drawing.Size(200, 350);
             this.label_ThursdayMorning41.TabIndex = 33;
             this.label_ThursdayMorning41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_ThursdayMorning41.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_ThursdayEvening40
             // 
             this.label_ThursdayEvening40.BackColor = System.Drawing.Color.Salmon;
-            this.label_ThursdayEvening40.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_ThursdayEvening40.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_ThursdayEvening40.Location = new System.Drawing.Point(836, 556);
             this.label_ThursdayEvening40.Name = "label_ThursdayEvening40";
             this.label_ThursdayEvening40.Size = new System.Drawing.Size(200, 350);
             this.label_ThursdayEvening40.TabIndex = 34;
             this.label_ThursdayEvening40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_ThursdayEvening40.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_FridayEvening50
             // 
             this.label_FridayEvening50.BackColor = System.Drawing.Color.White;
-            this.label_FridayEvening50.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_FridayEvening50.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_FridayEvening50.Location = new System.Drawing.Point(1042, 556);
             this.label_FridayEvening50.Name = "label_FridayEvening50";
             this.label_FridayEvening50.Size = new System.Drawing.Size(200, 350);
             this.label_FridayEvening50.TabIndex = 35;
             this.label_FridayEvening50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_FridayEvening50.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_SaturdayEvening60
             // 
             this.label_SaturdayEvening60.BackColor = System.Drawing.Color.Salmon;
-            this.label_SaturdayEvening60.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_SaturdayEvening60.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SaturdayEvening60.Location = new System.Drawing.Point(1248, 556);
             this.label_SaturdayEvening60.Name = "label_SaturdayEvening60";
             this.label_SaturdayEvening60.Size = new System.Drawing.Size(200, 350);
             this.label_SaturdayEvening60.TabIndex = 36;
             this.label_SaturdayEvening60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_SaturdayEvening60.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_SundayEvening00
             // 
             this.label_SundayEvening00.BackColor = System.Drawing.Color.MistyRose;
-            this.label_SundayEvening00.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_SundayEvening00.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SundayEvening00.Location = new System.Drawing.Point(12, 556);
             this.label_SundayEvening00.Name = "label_SundayEvening00";
             this.label_SundayEvening00.Size = new System.Drawing.Size(200, 350);
             this.label_SundayEvening00.TabIndex = 37;
             this.label_SundayEvening00.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_SundayEvening00.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_TuesdayEvening20
             // 
             this.label_TuesdayEvening20.BackColor = System.Drawing.Color.White;
-            this.label_TuesdayEvening20.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_TuesdayEvening20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TuesdayEvening20.Location = new System.Drawing.Point(424, 556);
             this.label_TuesdayEvening20.Name = "label_TuesdayEvening20";
             this.label_TuesdayEvening20.Size = new System.Drawing.Size(200, 350);
             this.label_TuesdayEvening20.TabIndex = 38;
             this.label_TuesdayEvening20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_TuesdayEvening20.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // label_MondayEvening10
             // 
             this.label_MondayEvening10.BackColor = System.Drawing.Color.Salmon;
-            this.label_MondayEvening10.Font = new System.Drawing.Font("Aharoni", 28F, System.Drawing.FontStyle.Bold);
+            this.label_MondayEvening10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_MondayEvening10.Location = new System.Drawing.Point(218, 556);
             this.label_MondayEvening10.Name = "label_MondayEvening10";
             this.label_MondayEvening10.Size = new System.Drawing.Size(200, 350);
             this.label_MondayEvening10.TabIndex = 39;
             this.label_MondayEvening10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_MondayEvening10.Click += new System.EventHandler(this.label_Shift_Click);
             // 
             // Form_Shift
             // 

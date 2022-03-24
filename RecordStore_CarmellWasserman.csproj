@@ -175,6 +175,12 @@
     <Compile Include="UI\Form_Shift.Designer.cs">
       <DependentUpon>Form_Shift.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_ShiftAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_ShiftAdd.Designer.cs">
+      <DependentUpon>Form_ShiftAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ListViewSorter.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Shift.resx">
       <DependentUpon>Form_Shift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_ShiftAdd.resx">
+      <DependentUpon>Form_ShiftAdd.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

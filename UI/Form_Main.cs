@@ -29,5 +29,11 @@ namespace RecordStore_CarmellWasserman.UI
             Form_Client form_Client = new Form_Client();
             form_Client.ShowDialog();
         }
+
+        private void label_Shifts_Click(object sender, EventArgs e)
+        {
+            Form_Shift form_Shift = new Form_Shift();
+            form_Shift.ShowDialog();
+        }
     }
 }

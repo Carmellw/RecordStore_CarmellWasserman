@@ -56,7 +56,7 @@ namespace RecordStore_CarmellWasserman.UI
 
             //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
 
-            e.Graphics.DrawImage(m_bitmap, 100, 100);
+            e.Graphics.DrawImage(m_bitmap, 0, 0, listView_Products.Width*2, listView_Products.Height*2);
         }
 
         /*/private void CaptureScreen()
@@ -84,7 +84,7 @@ namespace RecordStore_CarmellWasserman.UI
             int addAboveListView = 30;
             int moveLeft = 0;
             Graphics graphics = listView_Products.CreateGraphics();
-            Size curSize = new Size(listView_Products.Width * 3, listView_Products.Height * 2);
+            Size curSize = new Size(listView_Products.Width *2, listView_Products.Height *2);
             curSize.Height += addAboveListView;
             curSize.Width += moveLeft;
             m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);

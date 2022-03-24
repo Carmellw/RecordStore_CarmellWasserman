@@ -244,7 +244,6 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.ColumnHeader columnHeader_Name;
         private System.Windows.Forms.ColumnHeader columnHeader_Artist;
         private System.Windows.Forms.ColumnHeader columnHeader_Count;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Button button_Print;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.GroupBox groupBox_Filter;
@@ -257,5 +256,6 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.TextBox textBox_NameFilter;
         private System.Windows.Forms.Button button_ClearFilter;
         private System.Windows.Forms.TextBox textBox_IdFilter;
+        protected System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

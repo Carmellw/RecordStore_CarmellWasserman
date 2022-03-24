@@ -56,7 +56,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(822, 60);
+            this.label_DateToday.Location = new System.Drawing.Point(374, 60);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -70,9 +70,9 @@ namespace RecordStore_CarmellWasserman
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(126, 27);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(254, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "CITIES";
             // 
             // groupBox_Filter
             // 
@@ -127,6 +127,7 @@ namespace RecordStore_CarmellWasserman
             this.button_ClearFilter.TabIndex = 3;
             this.button_ClearFilter.Text = "clear";
             this.button_ClearFilter.UseVisualStyleBackColor = true;
+            this.button_ClearFilter.Click += new System.EventHandler(this.clearFilter_Click);
             // 
             // textBox_IdFilter
             // 
@@ -231,6 +232,7 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Cities.Name = "listBox_Cities";
             this.listBox_Cities.Size = new System.Drawing.Size(569, 504);
             this.listBox_Cities.TabIndex = 27;
+            this.listBox_Cities.DoubleClick += new System.EventHandler(this.listBox_Cities_DoubleClick);
             // 
             // pictureBox1
             // 
@@ -255,7 +257,7 @@ namespace RecordStore_CarmellWasserman
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.listBox_Cities);
             this.Name = "Form_City";
-            this.Text = "Form_City";
+            this.Text = "Cities";
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
             this.groupBox2.ResumeLayout(false);

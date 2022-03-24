@@ -62,6 +62,8 @@ namespace RecordStore_CarmellWasserman
                     MessageBox.Show("Updated");
                 }
                 ArtistArrToForm(artist);
+                label_Id.Text = "0";
+                textBox_Name.Text = "";
 
             }
         }
@@ -81,7 +83,7 @@ namespace RecordStore_CarmellWasserman
                 label_Name.ForeColor = Color.Red;
             }
             else
-                label_Name.ForeColor = Color.White;
+                label_Name.ForeColor = Color.Black;
 
 
 
@@ -159,6 +161,7 @@ namespace RecordStore_CarmellWasserman
         {
             textBox_IdFilter.Text = "";
             textBox_NameFilter.Text = "";
+            ArtistArrToForm();
 
         }
 

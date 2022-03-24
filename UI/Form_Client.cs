@@ -278,17 +278,29 @@ namespace RecordStore_CarmellWasserman
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
                 System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (client.Delete())
-                    {
-                        MessageBox.Show("Deleted");
-                    }
+                    client = FormToClient();
 
+                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
+                    //בדיקה עבור לקוחות
+
+                    OrderArr orderArr = new OrderArr();
+                    orderArr.Fill();
+                    if (orderArr.DoesExist(client))
+                        MessageBox.Show("You can’t delete a city that is related to a client");
                     else
                     {
-                        MessageBox.Show("Not Deleted");
+                        if (client.Delete())
+                        {
+                            MessageBox.Show("Deleted");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Not Deleted");
+                        }
+                        ClientToForm(null);
+                        ClientArrToForm();
                     }
-                    ClientToForm(null);
-                    ClientArrToForm();
                 }
             }
         }

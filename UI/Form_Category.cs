@@ -47,7 +47,6 @@ namespace RecordStore_CarmellWasserman
             }
             else
             {
-                MessageBox.Show("All Fields OK");
                 Category category = FormToCategory();
 
                 if (label_Id.Text == "0")
@@ -62,6 +61,8 @@ namespace RecordStore_CarmellWasserman
                     MessageBox.Show("Updated");
                 }
                 CategoryArrToForm(category);
+                label_Id.Text = "0";
+                textBox_Name.Text = "";
 
             }
         }
@@ -81,7 +82,7 @@ namespace RecordStore_CarmellWasserman
                 label_Name.ForeColor = Color.Red;
             }
             else
-                label_Name.ForeColor = Color.White;
+                label_Name.ForeColor = Color.Black;
 
 
 
@@ -159,6 +160,7 @@ namespace RecordStore_CarmellWasserman
         {
             textBox_IdFilter.Text = "";
             textBox_NameFilter.Text = "";
+            CategoryArrToForm();
 
         }
 

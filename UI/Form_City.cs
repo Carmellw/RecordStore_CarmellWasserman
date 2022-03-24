@@ -81,7 +81,7 @@ namespace RecordStore_CarmellWasserman
                 label_Name.ForeColor = Color.Red;
             }
             else
-                label_Name.ForeColor = Color.White;
+                label_Name.ForeColor = Color.Black;
 
             
 
@@ -159,6 +159,7 @@ namespace RecordStore_CarmellWasserman
         {
             textBox_IdFilter.Text = "";
             textBox_NameFilter.Text = "";
+            CityArrToForm();
 
         }
 
@@ -167,7 +168,7 @@ namespace RecordStore_CarmellWasserman
             City city = FormToCity();
             if (city.Id == 0)
             {
-                MessageBox.Show("You need to choose a client");
+                MessageBox.Show("You need to choose a city");
             }
             else
 
@@ -234,5 +235,6 @@ namespace RecordStore_CarmellWasserman
             get => listBox_Cities.SelectedItem as City;
         }
 
+        
     }
 }

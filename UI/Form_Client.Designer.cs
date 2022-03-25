@@ -42,9 +42,7 @@ namespace RecordStore_CarmellWasserman
             this.label_PhoneNumber = new System.Windows.Forms.Label();
             this.textBox_LastName = new System.Windows.Forms.TextBox();
             this.delete = new System.Windows.Forms.Button();
-            this.textBox_ZipCode = new System.Windows.Forms.TextBox();
             this.clear = new System.Windows.Forms.Button();
-            this.label_ZipCode = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.save = new System.Windows.Forms.Button();
             this.groupBox_Filter = new System.Windows.Forms.GroupBox();
@@ -89,9 +87,7 @@ namespace RecordStore_CarmellWasserman
             this.groupBox2.Controls.Add(this.label_PhoneNumber);
             this.groupBox2.Controls.Add(this.textBox_LastName);
             this.groupBox2.Controls.Add(this.delete);
-            this.groupBox2.Controls.Add(this.textBox_ZipCode);
             this.groupBox2.Controls.Add(this.clear);
-            this.groupBox2.Controls.Add(this.label_ZipCode);
             this.groupBox2.Controls.Add(this.label_Id);
             this.groupBox2.Controls.Add(this.save);
             this.groupBox2.Location = new System.Drawing.Point(37, 494);
@@ -131,7 +127,7 @@ namespace RecordStore_CarmellWasserman
             // 
             // button_AddCity
             // 
-            this.button_AddCity.Location = new System.Drawing.Point(444, 314);
+            this.button_AddCity.Location = new System.Drawing.Point(444, 262);
             this.button_AddCity.Name = "button_AddCity";
             this.button_AddCity.Size = new System.Drawing.Size(45, 45);
             this.button_AddCity.TabIndex = 11;
@@ -153,7 +149,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.comboBox_City.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_City.FormattingEnabled = true;
-            this.comboBox_City.Location = new System.Drawing.Point(267, 316);
+            this.comboBox_City.Location = new System.Drawing.Point(267, 264);
             this.comboBox_City.Name = "comboBox_City";
             this.comboBox_City.Size = new System.Drawing.Size(171, 33);
             this.comboBox_City.TabIndex = 10;
@@ -172,7 +168,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_City.AutoSize = true;
             this.label_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_City.Location = new System.Drawing.Point(8, 316);
+            this.label_City.Location = new System.Drawing.Point(8, 264);
             this.label_City.Name = "label_City";
             this.label_City.Size = new System.Drawing.Size(80, 37);
             this.label_City.TabIndex = 16;
@@ -206,15 +202,6 @@ namespace RecordStore_CarmellWasserman
             this.delete.UseVisualStyleBackColor = true;
             this.delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
-            // textBox_ZipCode
-            // 
-            this.textBox_ZipCode.Location = new System.Drawing.Point(267, 264);
-            this.textBox_ZipCode.MaxLength = 7;
-            this.textBox_ZipCode.Name = "textBox_ZipCode";
-            this.textBox_ZipCode.Size = new System.Drawing.Size(214, 31);
-            this.textBox_ZipCode.TabIndex = 9;
-            this.textBox_ZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
-            // 
             // clear
             // 
             this.clear.Location = new System.Drawing.Point(287, 412);
@@ -224,16 +211,6 @@ namespace RecordStore_CarmellWasserman
             this.clear.Text = "clear";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
-            // 
-            // label_ZipCode
-            // 
-            this.label_ZipCode.AutoSize = true;
-            this.label_ZipCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_ZipCode.Location = new System.Drawing.Point(18, 258);
-            this.label_ZipCode.Name = "label_ZipCode";
-            this.label_ZipCode.Size = new System.Drawing.Size(147, 37);
-            this.label_ZipCode.TabIndex = 8;
-            this.label_ZipCode.Text = "Zip Code";
             // 
             // label_Id
             // 
@@ -435,9 +412,7 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Label label_PhoneNumber;
         private System.Windows.Forms.TextBox textBox_LastName;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.TextBox textBox_ZipCode;
         private System.Windows.Forms.Button clear;
-        private System.Windows.Forms.Label label_ZipCode;
         private System.Windows.Forms.Label label_Id;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.GroupBox groupBox_Filter;

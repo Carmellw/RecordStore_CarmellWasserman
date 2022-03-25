@@ -113,6 +113,14 @@ namespace RecordStore_CarmellWasserman
                         MessageBox.Show("Error");
                 }
                 OrderArrToForm();
+                label_Id.Text = "0";
+                richTextBox_Note.Text = "";
+                dateTimePicker_Date.Value = DateTime.Now;
+                ClientArrToForm(comboBox_Client, true);
+                listBox_InOrderProducts.DataSource = null;
+                listBox_InOrderProductsCount.Items.Clear();
+                ProductArrToForm(listBox_Products);
+
 
             }
         }
@@ -288,6 +296,7 @@ namespace RecordStore_CarmellWasserman
         {
             Product product = listBox_Products.SelectedItem as Product;
             MoveSelectedProductBetweenListBox(listBox_Products, listBox_InOrderProducts, true);
+            PaymentToForm();
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -298,8 +307,9 @@ namespace RecordStore_CarmellWasserman
             dateTimePicker_Date.Value = DateTime.Now;
             ClientArrToForm(comboBox_Client, true);
             listBox_InOrderProducts.DataSource = null;
-            listBox_InOrderProductsCount.DataSource = null;
+            listBox_InOrderProductsCount.Items.Clear();
             ProductArrToForm(listBox_Products);
+
         }
 
         private void clearFilter_Click(object sender, EventArgs e)
@@ -436,10 +446,12 @@ namespace RecordStore_CarmellWasserman
                 productArr.Fill();
             }
             listBox.DataSource = productArr;
-        }
-        private OrderProductArr FormToOrderProductArr(Order curOrder)
-        {
 
+            PaymentToForm();
+        }
+        private OrderProductArr FormToOrderProductArr(Order curOrder = null)
+        {
+            
             // יצירת אוסף המוצרים להזמנה מהטופס
             // מייצרים זוגות של הזמנה-מוצר , ההזמנה - תמיד אותה הזמנה )הרי מדובר על הזמנה אחת(, המוצר - מגיע מרשימת המוצרים שנבחרו
             OrderProductArr orderProductArr = new OrderProductArr();
@@ -576,7 +588,6 @@ namespace RecordStore_CarmellWasserman
                 {
                     label_PhoneNumberClient.Text = "0" + client.PhoneNumber.ToString();
                 }
-                label_ZipCodeCilent.Text = client.ZipCode.ToString();
 
                 label_CityClient.Text = client.City.Name.ToString();
 
@@ -588,7 +599,6 @@ namespace RecordStore_CarmellWasserman
                 label_FirstNameClient.Text = "";
                 label_LastNameClient.Text = "";
                 label_PhoneNumberClient.Text = "";
-                label_ZipCodeCilent.Text = "";
                 label_CityClient.Text = "";
 
             }
@@ -649,6 +659,7 @@ namespace RecordStore_CarmellWasserman
                     product.Count--;
                     productArr.UpdateProduct(product);
                     ProductArrToForm(listBox_InOrderProducts, productArr);
+                    PaymentToForm();
                 }
             }
             //אם לא הודעה מתאימה
@@ -686,6 +697,8 @@ namespace RecordStore_CarmellWasserman
                     product.Count++;
                     productArr.UpdateProduct(product);
                     ProductArrToForm(listBox_InOrderProducts, productArr);
+
+                    PaymentToForm();
                 }
 
                 else
@@ -699,6 +712,7 @@ namespace RecordStore_CarmellWasserman
             {
                 MessageBox.Show("choose an item");
             }
+
         }
         private void ProductArrCountToForm(OrderProductArr curOrderproductArr)
         {
@@ -836,6 +850,25 @@ namespace RecordStore_CarmellWasserman
             listBox_Clients.DataSource = clientArr;
 
 
+        }
+
+        private void PaymentToForm()
+        {
+            OrderArr orderArr = new OrderArr();
+            orderArr.Fill();
+            OrderProductArr inOrderProductArr = new OrderProductArr();
+            inOrderProductArr = FormToOrderProductArr();
+            int payment = 0;
+            if (inOrderProductArr != null)
+            {
+                for (int i = 0; i < inOrderProductArr.Count; i++)
+                {
+                    payment += (inOrderProductArr[i] as OrderProduct).Product.Price * (inOrderProductArr[i] as OrderProduct).Count;
+                }
+            }
+
+            label_Payment.Text = payment.ToString()+ "₪";
+            
         }
     }
 }

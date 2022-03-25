@@ -41,5 +41,11 @@ namespace RecordStore_CarmellWasserman.UI
             Form_Product form_Product = new Form_Product();
             form_Product.ShowDialog();
         }
+
+        private void label_Employees_Click(object sender, EventArgs e)
+        {
+            Form_Employee form_Employee = new Form_Employee();
+            form_Employee.ShowDialog();
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace RecordStore_CarmellWasserman.DAL
 {
     public class Client_Dal
     {
-        public static bool Insert(string firstName, string lastName, int phoneNumber, int zipCode, int city)
+        public static bool Insert(string firstName, string lastName, int phoneNumber, int city)
         {
 
             //מוסיפה את הלקוח למסד הנתונים
@@ -18,11 +18,11 @@ namespace RecordStore_CarmellWasserman.DAL
 
             string str = "INSERT INTO Table_Client"
             + "("
-            + "[FirstName],[LastName],[PhoneNumber],[ZipCode],[City]"
+            + "[FirstName],[LastName],[PhoneNumber],[City]"
             + ")"
             + " VALUES "
             + "("
-            + $"'{firstName}','{lastName}',{phoneNumber},{zipCode},{city}"
+            + $"'{firstName}','{lastName}',{phoneNumber},{city}"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -64,7 +64,7 @@ namespace RecordStore_CarmellWasserman.DAL
 
         }
 
-        public static bool Update(int Id, string firstName, string lastName, int phoneNumber, int zipCode, int city)
+        public static bool Update(int Id, string firstName, string lastName, int phoneNumber, int city)
         {
 
             //מעדכנת את הלקוח במסד הנתונים
@@ -74,7 +74,6 @@ namespace RecordStore_CarmellWasserman.DAL
             + $" [FirstName] = N'{firstName}'"
             + $",[LastName] = N'{lastName}'"
             + $",[PhoneNumber] = {phoneNumber}"
-            + $",[ZipCode] = {zipCode}"
             + $",[City] = {city}"
             + $" WHERE [Id] = {Id}";
 

@@ -124,6 +124,12 @@ namespace RecordStore_CarmellWasserman.UI
             label_Thursday.Text = sunday.AddDays(4).Day.ToString();
             label_Friday.Text = sunday.AddDays(5).Day.ToString();
             label_Saturday.Text = sunday.AddDays(6).Day.ToString();
+
+            label_StoreName.Text = "SHIFTS- " + sunday.Month.ToString();
+            if(sunday.Month != sunday.AddDays(6).Month)
+            {
+                label_StoreName.Text += "/" + sunday.AddDays(6).Month.ToString();
+            }
         }
 
         private void EmployeeArrToForm(Label label, EmployeeArr employeeArr)

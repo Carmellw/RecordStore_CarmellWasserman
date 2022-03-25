@@ -67,6 +67,11 @@ namespace RecordStore_CarmellWasserman
                 }
                 ClientArrToForm();
 
+                label_Id.Text = "0";
+                textBox_FirstName.Text = "";
+                textBox_LastName.Text = "";
+                textBox_PhoneNumber.Text = "";
+                CityArrToForm();
             }
         }
 
@@ -110,15 +115,7 @@ namespace RecordStore_CarmellWasserman
 
             //בדיקת מיקוד //
 
-            if (textBox_ZipCode.Text.Length != 7)
-            {
-                flag = false;
-                label_ZipCode.ForeColor = Color.Red;
-            }
-            else
-            {
-                label_ZipCode.ForeColor = Color.Black;
-            }
+            
 
             if ((comboBox_City.SelectedItem as City).Id < 0)
             {
@@ -143,10 +140,7 @@ namespace RecordStore_CarmellWasserman
             client.City = comboBox_City.SelectedItem as City;
             //בדיקה האם יש ערך בשדה להמרה
 
-            if (textBox_ZipCode.Text != "")
-            {
-                client.ZipCode = int.Parse(textBox_ZipCode.Text);
-            }
+           
             if (textBox_PhoneNumber.Text != "")
             {
                 client.PhoneNumber = int.Parse(textBox_PhoneNumber.Text);
@@ -180,7 +174,7 @@ namespace RecordStore_CarmellWasserman
 
             City cityDefault = new City();
             cityDefault.Id = -1;
-            cityDefault.Name = "בחר ישוב";
+            cityDefault.Name = "Choose a city";
             //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
 
             cityArr.Add(cityDefault);
@@ -220,7 +214,7 @@ namespace RecordStore_CarmellWasserman
                 {
                     textBox_PhoneNumber.Text = "0" + client.PhoneNumber.ToString();
                 }
-                textBox_ZipCode.Text = client.ZipCode.ToString();
+                
                 if (client.City != null)
                 {
                     comboBox_City.SelectedValue = client.City.Id;
@@ -233,7 +227,6 @@ namespace RecordStore_CarmellWasserman
                 textBox_FirstName.Text = "";
                 textBox_LastName.Text = "";
                 textBox_PhoneNumber.Text = "";
-                textBox_ZipCode.Text = "";
                 CityArrToForm();
             }
         }
@@ -251,7 +244,6 @@ namespace RecordStore_CarmellWasserman
             textBox_FirstName.Text = "";
             textBox_LastName.Text = "";
             textBox_PhoneNumber.Text = "";
-            textBox_ZipCode.Text = "";
             CityArrToForm();
         }
 

@@ -134,31 +134,31 @@ namespace RecordStore_CarmellWasserman
             if (textBox_Email.Text.Length <4)
             {
                 flag = false;
-                label_HourlyWage.ForeColor = Color.Red;
+                label_Email.ForeColor = Color.Red;
             }
             else
             {
-                label_HourlyWage.ForeColor = Color.Black;
+                label_Email.ForeColor = Color.Black;
             }
 
             if (textBox_Password.Text == "")
             {
                 flag = false;
-                label_HourlyWage.ForeColor = Color.Red;
+                label_Password.ForeColor = Color.Red;
             }
             else
             {
-                label_HourlyWage.ForeColor = Color.Black;
+                label_Password.ForeColor = Color.Black;
             }
 
             if (textBox_Username.Text == "")
             {
                 flag = false;
-                label_HourlyWage.ForeColor = Color.Red;
+                label_Username.ForeColor = Color.Red;
             }
             else
             {
-                label_HourlyWage.ForeColor = Color.Black;
+                label_Username.ForeColor = Color.Black;
             }
 
 

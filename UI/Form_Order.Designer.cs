@@ -72,9 +72,7 @@ namespace RecordStore_CarmellWasserman
             this.label_LastNameClient = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label_CityClient = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label_PhoneNumberClient = new System.Windows.Forms.Label();
-            this.label_ZipCodeCilent = new System.Windows.Forms.Label();
             this.label_IdClient = new System.Windows.Forms.Label();
             this.listBox_Clients = new System.Windows.Forms.ListBox();
             this.tabPage_OrderItems = new System.Windows.Forms.TabPage();
@@ -99,6 +97,7 @@ namespace RecordStore_CarmellWasserman
             this.button_Clear = new System.Windows.Forms.Button();
             this.button_Delete = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label_Payment = new System.Windows.Forms.Label();
             this.tabControl_Order.SuspendLayout();
             this.tabPage_OrderDetails.SuspendLayout();
             this.groupBox_Filter.SuspendLayout();
@@ -485,16 +484,14 @@ namespace RecordStore_CarmellWasserman
             this.groupBox4.Controls.Add(this.label_LastNameClient);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label_CityClient);
-            this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label_PhoneNumberClient);
-            this.groupBox4.Controls.Add(this.label_ZipCodeCilent);
             this.groupBox4.Controls.Add(this.label_IdClient);
             this.groupBox4.Location = new System.Drawing.Point(45, 415);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(513, 486);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Add/Update";
+            this.groupBox4.Text = "Client Details";
             // 
             // label2
             // 
@@ -539,7 +536,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(10, 316);
+            this.label7.Location = new System.Drawing.Point(10, 256);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 37);
             this.label7.TabIndex = 16;
@@ -568,20 +565,10 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_CityClient.AutoSize = true;
             this.label_CityClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_CityClient.Location = new System.Drawing.Point(260, 316);
+            this.label_CityClient.Location = new System.Drawing.Point(260, 256);
             this.label_CityClient.Name = "label_CityClient";
             this.label_CityClient.Size = new System.Drawing.Size(0, 37);
             this.label_CityClient.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(20, 258);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(147, 37);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Zip Code";
             // 
             // label_PhoneNumberClient
             // 
@@ -591,15 +578,6 @@ namespace RecordStore_CarmellWasserman
             this.label_PhoneNumberClient.Name = "label_PhoneNumberClient";
             this.label_PhoneNumberClient.Size = new System.Drawing.Size(0, 37);
             this.label_PhoneNumberClient.TabIndex = 3;
-            // 
-            // label_ZipCodeCilent
-            // 
-            this.label_ZipCodeCilent.AutoSize = true;
-            this.label_ZipCodeCilent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_ZipCodeCilent.Location = new System.Drawing.Point(260, 258);
-            this.label_ZipCodeCilent.Name = "label_ZipCodeCilent";
-            this.label_ZipCodeCilent.Size = new System.Drawing.Size(0, 37);
-            this.label_ZipCodeCilent.TabIndex = 8;
             // 
             // label_IdClient
             // 
@@ -623,6 +601,7 @@ namespace RecordStore_CarmellWasserman
             // tabPage_OrderItems
             // 
             this.tabPage_OrderItems.BackColor = System.Drawing.Color.Firebrick;
+            this.tabPage_OrderItems.Controls.Add(this.label_Payment);
             this.tabPage_OrderItems.Controls.Add(this.listBox_InOrderProductsCount);
             this.tabPage_OrderItems.Controls.Add(this.button_Minus);
             this.tabPage_OrderItems.Controls.Add(this.button_Plus);
@@ -860,6 +839,14 @@ namespace RecordStore_CarmellWasserman
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
+            // label_Payment
+            // 
+            this.label_Payment.BackColor = System.Drawing.Color.White;
+            this.label_Payment.Location = new System.Drawing.Point(590, 847);
+            this.label_Payment.Name = "label_Payment";
+            this.label_Payment.Size = new System.Drawing.Size(437, 60);
+            this.label_Payment.TabIndex = 35;
+            // 
             // Form_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -961,13 +948,12 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Label label_LastNameClient;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label_CityClient;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label_PhoneNumberClient;
-        private System.Windows.Forms.Label label_ZipCodeCilent;
         private System.Windows.Forms.Label label_IdClient;
         private System.Windows.Forms.ListBox listBox_Clients;
         private System.Windows.Forms.Button button_Minus;
         private System.Windows.Forms.Button button_Plus;
         private System.Windows.Forms.ListBox listBox_InOrderProductsCount;
+        private System.Windows.Forms.Label label_Payment;
     }
 }

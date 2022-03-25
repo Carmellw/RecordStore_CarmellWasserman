@@ -32,7 +32,6 @@ namespace RecordStore_CarmellWasserman.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Shift));
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_Sunday = new System.Windows.Forms.Label();
             this.label_Friday = new System.Windows.Forms.Label();
             this.label_Saturday = new System.Windows.Forms.Label();
@@ -59,6 +58,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_Print = new System.Windows.Forms.Button();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Cursor = System.Windows.Forms.Cursors.Default;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(394, 54);
+            this.label_DateToday.Location = new System.Drawing.Point(1028, 54);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -84,16 +84,6 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Size = new System.Drawing.Size(287, 79);
             this.label_StoreName.TabIndex = 31;
             this.label_StoreName.Text = "SHIFTS";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::RecordStore_CarmellWasserman.Properties.Resources.recordplayer;
-            this.pictureBox1.Location = new System.Drawing.Point(-12, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 30;
-            this.pictureBox1.TabStop = false;
             // 
             // label_Sunday
             // 
@@ -364,6 +354,16 @@ namespace RecordStore_CarmellWasserman.UI
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.document_PrintPage);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::RecordStore_CarmellWasserman.Properties.Resources.recordplayer;
+            this.pictureBox1.Location = new System.Drawing.Point(-12, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(153, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 30;
+            this.pictureBox1.TabStop = false;
             // 
             // Form_Shift
             // 

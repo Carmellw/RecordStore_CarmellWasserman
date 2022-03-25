@@ -60,7 +60,27 @@ namespace RecordStore_CarmellWasserman.BL
             return employeeArr;
         }
 
-        
+        public bool IsLogIn(string username, string password)
+        {
+            EmployeeArr employeeArr = new EmployeeArr();
+            Employee employee;
+            for (int i = 0; i < this.Count; i++)
+            {
+
+                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+
+                employee = (this[i] as Employee);
+                if(username == employee.Username && password == employee.Password)
+                {
+                    return true;
+                }
+                
+                
+
+
+            }
+            return false;
+        }
 
 
 

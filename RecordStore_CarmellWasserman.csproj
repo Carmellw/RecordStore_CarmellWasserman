@@ -163,6 +163,12 @@
     <Compile Include="UI\Form_OrderReport.Designer.cs">
       <DependentUpon>Form_OrderReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Password.Designer.cs">
+      <DependentUpon>Form_Password.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_OrderReport.resx">
       <DependentUpon>Form_OrderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Password.resx">
+      <DependentUpon>Form_Password.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Product.resx">
       <DependentUpon>Form_Product.cs</DependentUpon>

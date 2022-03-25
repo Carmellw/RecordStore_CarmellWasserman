@@ -147,7 +147,10 @@ namespace RecordStore_CarmellWasserman
             {
                 client.ZipCode = int.Parse(textBox_ZipCode.Text);
             }
-            client.PhoneNumber = int.Parse(textBox_PhoneNumber.Text);
+            if (textBox_PhoneNumber.Text != "")
+            {
+                client.PhoneNumber = int.Parse(textBox_PhoneNumber.Text);
+            }
             return client;
         }
 
@@ -258,6 +261,7 @@ namespace RecordStore_CarmellWasserman
             textBox_FirstNameFilter.Text = "";
             textBox_LastNameFilter.Text = "";
             textBox_PhoneNumberFilter.Text = "";
+            ClientArrToForm();
         }
 
 
@@ -312,7 +316,9 @@ namespace RecordStore_CarmellWasserman
             //אם המשתמש רשם ערך בשדה המזהה
 
             if (textBox_IdFilter.Text != "")
+            {
                 id = int.Parse(textBox_IdFilter.Text);
+            }
 
             //מייצרים אוסף של כלל הלקוחות
 
@@ -320,18 +326,18 @@ namespace RecordStore_CarmellWasserman
             clientArr.Fill();
 
             //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
-
-            clientArr = clientArr.Filter(id, textBox_FirstName.Text, textBox_LastNameFilter.Text,
+            clientArr = clientArr.Filter(id, textBox_FirstNameFilter.Text, textBox_LastNameFilter.Text,
             textBox_PhoneNumberFilter.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
             listBox_Clients.DataSource = clientArr;
 
+
         }
 
         private void button_AddCity_Click(object sender, EventArgs e)
         {
-            Form_City form_City = new Form_City(comboBox_City.SelectedItem as City);
+            Form_City form_City = new Form_City();
             form_City.ShowDialog();
             CityArrToForm(form_City.SelectedCity);
         }

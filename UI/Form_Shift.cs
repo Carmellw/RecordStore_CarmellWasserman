@@ -62,16 +62,20 @@ namespace RecordStore_CarmellWasserman.UI
 
             if(shiftArr.DoesExist(dateTime, time))
             {
-                //update
+                Shift shift = shiftArr.GetShiftId(dateTime, time);
+                Form_ShiftAdd form_ShiftAdd = new Form_ShiftAdd(shift, false);
+                form_ShiftAdd.ShowDialog();
             }
             else
             {
                 Shift shift = new Shift();
                 shift.Date = dateTime;
                 shift.IsMorning = Convert.ToBoolean(time);
-                Form_ShiftAdd form_ShiftAdd = new Form_ShiftAdd(shift);
+                Form_ShiftAdd form_ShiftAdd = new Form_ShiftAdd(shift, true);
                 form_ShiftAdd.ShowDialog();
             }
+
+            ShiftArrToForm(m_Sunday);
         }
 
 
@@ -88,11 +92,12 @@ namespace RecordStore_CarmellWasserman.UI
           
                     if(shiftArr.DoesExist(m_Sunday.AddDays(i),Convert.ToBoolean(j)))
                     {
-                        shift.Date = sunday.AddDays(i);
-                        shift.IsMorning = Convert.ToBoolean(j);
+                        
                         EmployeeArr employeeArrInShift = new EmployeeArr();
                         ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
                         shiftEmployeeArr.Fill();
+
+                        
                         shift = shiftArr.GetShiftId(m_Sunday.AddDays(i), Convert.ToBoolean(j));
                         shiftEmployeeArr = shiftEmployeeArr.FilterShift(shift);
                         employeeArrInShift = shiftEmployeeArr.GetEmployeeArr();
@@ -121,7 +126,7 @@ namespace RecordStore_CarmellWasserman.UI
             for (int i = 0; i < employeeArr.Count; i++)
             {
                 employees += (employeeArr[i] as Employee).FirstName + " " +
-                    (employeeArr[i] as Employee).LastName + Environment.NewLine;
+                    (employeeArr[i] as Employee).LastName + Environment.NewLine + Environment.NewLine;
 
             }
 

@@ -43,6 +43,7 @@ namespace RecordStore_CarmellWasserman
             this.button_ClearFilter = new System.Windows.Forms.Button();
             this.textBox_IdFilter = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_Count = new System.Windows.Forms.NumericUpDown();
             this.label_IdName = new System.Windows.Forms.Label();
             this.button_AddCategory = new System.Windows.Forms.Button();
             this.button_AddGenre = new System.Windows.Forms.Button();
@@ -68,7 +69,7 @@ namespace RecordStore_CarmellWasserman
             this.save = new System.Windows.Forms.Button();
             this.checkBox_IsNew = new System.Windows.Forms.CheckBox();
             this.listBox_Products = new System.Windows.Forms.ListBox();
-            this.numericUpDown_Count = new System.Windows.Forms.NumericUpDown();
+            this.button_ProductReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_Filter.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,7 +80,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(822, 69);
+            this.label_DateToday.Location = new System.Drawing.Point(679, 69);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -248,6 +249,13 @@ namespace RecordStore_CarmellWasserman
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add/Update";
+            // 
+            // numericUpDown_Count
+            // 
+            this.numericUpDown_Count.Location = new System.Drawing.Point(267, 488);
+            this.numericUpDown_Count.Name = "numericUpDown_Count";
+            this.numericUpDown_Count.Size = new System.Drawing.Size(214, 31);
+            this.numericUpDown_Count.TabIndex = 22;
             // 
             // label_IdName
             // 
@@ -491,12 +499,15 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Products.TabIndex = 27;
             this.listBox_Products.DoubleClick += new System.EventHandler(this.listBox_Products_DoubleClick);
             // 
-            // numericUpDown_Count
+            // button_ProductReport
             // 
-            this.numericUpDown_Count.Location = new System.Drawing.Point(267, 488);
-            this.numericUpDown_Count.Name = "numericUpDown_Count";
-            this.numericUpDown_Count.Size = new System.Drawing.Size(214, 31);
-            this.numericUpDown_Count.TabIndex = 22;
+            this.button_ProductReport.Location = new System.Drawing.Point(1073, 36);
+            this.button_ProductReport.Name = "button_ProductReport";
+            this.button_ProductReport.Size = new System.Drawing.Size(78, 78);
+            this.button_ProductReport.TabIndex = 33;
+            this.button_ProductReport.Text = "report";
+            this.button_ProductReport.UseVisualStyleBackColor = true;
+            this.button_ProductReport.Click += new System.EventHandler(this.button_ProductReport_Click);
             // 
             // Form_Product
             // 
@@ -505,6 +516,7 @@ namespace RecordStore_CarmellWasserman
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1194, 1144);
+            this.Controls.Add(this.button_ProductReport);
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
@@ -567,5 +579,6 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.ComboBox comboBox_ArtistFilter;
         private System.Windows.Forms.ComboBox comboBox_CategoryFilter;
         private System.Windows.Forms.NumericUpDown numericUpDown_Count;
+        private System.Windows.Forms.Button button_ProductReport;
     }
 }

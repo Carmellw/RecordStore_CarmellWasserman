@@ -106,6 +106,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_Stock.TabIndex = 42;
             this.label_Stock.Text = "Stock";
             this.label_Stock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Stock.Click += new System.EventHandler(this.label_Stock_Click);
             // 
             // label_Shifts
             // 

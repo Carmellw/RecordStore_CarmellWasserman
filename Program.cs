@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecordStore_CarmellWasserman.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace RecordStore_CarmellWasserman
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI.Form_ProductReport());
+            Application.Run(new Form_Main());
         }
     }
 }

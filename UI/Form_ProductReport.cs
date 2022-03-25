@@ -58,24 +58,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             e.Graphics.DrawImage(m_bitmap, 0, 0, listView_Products.Width*2, listView_Products.Height*2);
         }
-
-        /*/private void CaptureScreen()
-        {
-
-            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
-
-            int addAboveListView = 30;
-            int moveLeft = 150;
-            Graphics graphics = listView_Products.CreateGraphics();
-            Size curSize = new Size(listView_Products.Width*3,listView_Products.Height*2);
-            curSize.Height += addAboveListView;
-            curSize.Width += moveLeft;
-            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
-            graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(listView_Products.Location);
-            graphics.CopyFromScreen(2*panelLocation.X, 2*(panelLocation.Y - addAboveListView),
-            moveLeft, 0, curSize);
-        }/*/
         private void CaptureScreen()
         {
 

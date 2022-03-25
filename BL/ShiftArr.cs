@@ -88,7 +88,6 @@ namespace RecordStore_CarmellWasserman.BL
                     (this[i] as Shift).IsMorning == isMorning)
                 {
                     shift = this[i] as Shift;
-                    return shift;
                 }
             }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
+using RecordStore_CarmellWasserman.UI;
 
 namespace RecordStore_CarmellWasserman
 {
@@ -523,10 +524,10 @@ namespace RecordStore_CarmellWasserman
             CompanyArrToForm(comboBox_Company, true, form_Company.SelectedCompany);
         }
 
-        public Product SelectedProduct
+        private void button_ProductReport_Click(object sender, EventArgs e)
         {
-            get => listBox_Products.SelectedItem as Product;
+            Form_ProductReport form_ProductReport = new Form_ProductReport();
+            form_ProductReport.ShowDialog();
         }
-
     }
 }

@@ -13,7 +13,7 @@ namespace RecordStore_CarmellWasserman.BL
     {   
         private DateTime m_Date;
         private bool m_IsMorning;
-        private int m_Id;
+        private int m_Id ;
 
         public DateTime Date { get => m_Date; set => m_Date = value; }
         public bool IsMorning { get => m_IsMorning; set => m_IsMorning = value; }

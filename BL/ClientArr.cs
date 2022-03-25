@@ -42,6 +42,12 @@ namespace RecordStore_CarmellWasserman.BL
                 //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
 
                 client = (this[i] as Client);
+                string phoneNumber = client.PhoneNumber.ToString();
+                if (!(phoneNumber.Length > 999999999))
+                {
+                    phoneNumber = "0" + phoneNumber;
+                }
+                
                 if
                 (
 
@@ -50,7 +56,7 @@ namespace RecordStore_CarmellWasserman.BL
                 (id == 0 || client.Id == id)
                 && client.FirstName.ToLower().StartsWith(firstName.ToLower())
                 && client.LastName.ToLower().StartsWith(lastName.ToLower())
-                && client.PhoneNumber.ToString().Contains(cellNumber)
+                && phoneNumber.StartsWith(cellNumber)
                 )
 
                     //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר

@@ -35,5 +35,11 @@ namespace RecordStore_CarmellWasserman.UI
             Form_Shift form_Shift = new Form_Shift();
             form_Shift.ShowDialog();
         }
+
+        private void label_Stock_Click(object sender, EventArgs e)
+        {
+            Form_Product form_Product = new Form_Product();
+            form_Product.ShowDialog();
+        }
     }
 }

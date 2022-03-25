@@ -14,11 +14,15 @@ namespace RecordStore_CarmellWasserman.UI
     public partial class Form_ShiftAdd : Form
     {
         private Shift m_Shift;
-        public Form_ShiftAdd(Shift shift)
+        public Form_ShiftAdd(Shift shift, bool isNew)
         {
             InitializeComponent();
             EmployeeArrToForm(listBox_Employees);
             m_Shift = shift;
+            if(!isNew)
+            {
+                label_Id.Text = shift.Id.ToString();
+            }
             ShiftToForm(shift);
         }
 
@@ -110,6 +114,33 @@ namespace RecordStore_CarmellWasserman.UI
                 time = "Evening";
             }
             label_Shift.Text = shift.Date.ToLongDateString() + ", "+ time;
+
+            EmployeeArr employeeArrInShift = new EmployeeArr();
+            ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
+            shiftEmployeeArr.Fill();
+
+            shiftEmployeeArr = shiftEmployeeArr.FilterShift(shift);
+            employeeArrInShift = shiftEmployeeArr.GetEmployeeArr();
+            EmployeeArrToForm(listBox_InShiftEmployees, employeeArrInShift);
+
+            EmployeeArr employeeArrNotInShift = new EmployeeArr();
+            employeeArrNotInShift.Fill();
+
+            int y = employeeArrNotInShift.Count;
+            for (int i = 0; i < employeeArrInShift.Count; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+
+                    if ((employeeArrNotInShift[j] as Employee).Id == (employeeArrInShift[i] as Employee).Id)
+                    {
+                        employeeArrNotInShift.Remove(employeeArrNotInShift[j] as Employee);
+                        y--;
+                    }
+                }
+            }
+            //employeeArrNotInShift.Remove(employeeArrInShift);
+            EmployeeArrToForm(listBox_Employees, employeeArrNotInShift);
         }
 
         private void save_Click(object sender, EventArgs e)

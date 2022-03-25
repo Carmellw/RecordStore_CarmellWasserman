@@ -53,6 +53,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_SundayEvening00 = new System.Windows.Forms.Label();
             this.label_TuesdayEvening20 = new System.Windows.Forms.Label();
             this.label_MondayEvening10 = new System.Windows.Forms.Label();
+            this.button_Past = new System.Windows.Forms.Button();
+            this.button_Future = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -313,6 +315,28 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_MondayEvening10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_MondayEvening10.Click += new System.EventHandler(this.label_Shift_Click);
             // 
+            // button_Past
+            // 
+            this.button_Past.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Past.Location = new System.Drawing.Point(471, 920);
+            this.button_Past.Name = "button_Past";
+            this.button_Past.Size = new System.Drawing.Size(100, 70);
+            this.button_Past.TabIndex = 40;
+            this.button_Past.Text = "<";
+            this.button_Past.UseVisualStyleBackColor = true;
+            this.button_Past.Click += new System.EventHandler(this.button_Past_Click);
+            // 
+            // button_Future
+            // 
+            this.button_Future.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Future.Location = new System.Drawing.Point(878, 920);
+            this.button_Future.Name = "button_Future";
+            this.button_Future.Size = new System.Drawing.Size(100, 70);
+            this.button_Future.TabIndex = 40;
+            this.button_Future.Text = ">";
+            this.button_Future.UseVisualStyleBackColor = true;
+            this.button_Future.Click += new System.EventHandler(this.button_Future_Click);
+            // 
             // Form_Shift
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -320,6 +344,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1460, 1019);
+            this.Controls.Add(this.button_Future);
+            this.Controls.Add(this.button_Past);
             this.Controls.Add(this.label_MondayEvening10);
             this.Controls.Add(this.label_FridayMorning51);
             this.Controls.Add(this.label_Monday);
@@ -379,5 +405,7 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.Label label_SundayEvening00;
         private System.Windows.Forms.Label label_TuesdayEvening20;
         private System.Windows.Forms.Label label_MondayEvening10;
+        private System.Windows.Forms.Button button_Past;
+        private System.Windows.Forms.Button button_Future;
     }
 }

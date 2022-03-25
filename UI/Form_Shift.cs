@@ -104,6 +104,11 @@ namespace RecordStore_CarmellWasserman.UI
                         EmployeeArrToForm(shifts[i,j],employeeArrInShift);
                     }
 
+                    else
+                    {
+                        shifts[i, j].Text = "";
+                    }
+
                 }
 
             }
@@ -133,18 +138,17 @@ namespace RecordStore_CarmellWasserman.UI
             label.Text = employees;
         }
 
-   
+        private void button_Future_Click(object sender, EventArgs e)
+        {
+            m_Sunday = m_Sunday.AddDays(7);
+            ShiftArrToForm(m_Sunday);
+        }
 
-
-        /*/
-         צריך לעשות את המספרים למעלה והכנסה של משמרות קיימות 
-        ShiftArrToForm
-
-         
-         
-        /*/
-
-
+        private void button_Past_Click(object sender, EventArgs e)
+        {
+            m_Sunday = m_Sunday.AddDays(-7);
+            ShiftArrToForm(m_Sunday);
+        }
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     partial class Form_Artist
     {

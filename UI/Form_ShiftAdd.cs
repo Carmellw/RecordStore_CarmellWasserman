@@ -263,7 +263,37 @@ namespace RecordStore_CarmellWasserman.UI
             return shiftEmployeeArr;
         }
 
+        private void clear_Click(object sender, EventArgs e)
+        {
+            listBox_InShiftEmployees.DataSource = null;
+            EmployeeArrToForm(listBox_Employees);
+        }
 
+        private void delete_Click(object sender, EventArgs e)
+        {
+           
+            if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
+            MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
+            System.Windows.Forms.DialogResult.Yes)
+            {
+                ShiftEmployeeArr shiftEmployeeArr_Old = new ShiftEmployeeArr();
+                shiftEmployeeArr_Old.Fill();
 
+                //סינון לפי ההזמנה הנוכחית
+
+                shiftEmployeeArr_Old = shiftEmployeeArr_Old.FilterShift(m_Shift);
+
+                //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+
+                shiftEmployeeArr_Old.Delete();
+                MessageBox.Show("Deleted");
+
+                this.Close();
+            }
+            
+        }
+
+        
     }
 }

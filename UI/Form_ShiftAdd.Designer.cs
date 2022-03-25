@@ -31,7 +31,6 @@ namespace RecordStore_CarmellWasserman.UI
         {
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox_Filter = new System.Windows.Forms.GroupBox();
             this.textBox_PhoneNumberFilter = new System.Windows.Forms.TextBox();
             this.label_IdFilter = new System.Windows.Forms.Label();
@@ -51,9 +50,10 @@ namespace RecordStore_CarmellWasserman.UI
             this.clear = new System.Windows.Forms.Button();
             this.save = new System.Windows.Forms.Button();
             this.listBox_Employees = new System.Windows.Forms.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox_Filter.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_DateToday
@@ -77,16 +77,6 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Size = new System.Drawing.Size(556, 79);
             this.label_StoreName.TabIndex = 37;
             this.label_StoreName.Text = "RECORDLAND";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::RecordStore_CarmellWasserman.Properties.Resources.recordplayer;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox_Filter
             // 
@@ -250,6 +240,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.delete.TabIndex = 14;
             this.delete.Text = "delete";
             this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // clear
             // 
@@ -259,6 +250,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.clear.TabIndex = 13;
             this.clear.Text = "clear";
             this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // save
             // 
@@ -280,6 +272,16 @@ namespace RecordStore_CarmellWasserman.UI
             this.listBox_Employees.TabIndex = 33;
             this.listBox_Employees.DoubleClick += new System.EventHandler(this.listBox_Employees_DoubleClick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::RecordStore_CarmellWasserman.Properties.Resources.recordplayer;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(153, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form_ShiftAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -296,11 +298,11 @@ namespace RecordStore_CarmellWasserman.UI
             this.Name = "Form_ShiftAdd";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             this.Text = "Form_ShiftAdd";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

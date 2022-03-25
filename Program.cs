@@ -17,7 +17,7 @@ namespace RecordStore_CarmellWasserman
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Password());
+            Application.Run(new Form_Main());
         }
     }
 }

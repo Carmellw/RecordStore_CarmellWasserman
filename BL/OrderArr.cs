@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Data;
 using RecordStore_CarmellWasserman.DAL;
+using System.Globalization;
 
 
 namespace RecordStore_CarmellWasserman.BL
@@ -101,7 +102,32 @@ namespace RecordStore_CarmellWasserman.BL
             return maxOrder;
         }
 
+        public OrderArr Filter(int year, int month)
+        {
 
+            //מחזירה את אוסף ההזמנות מאותה שנה ואותו חודש
+
+            OrderArr returnArr = new OrderArr();
+            foreach (Order item in this)
+                if (item.Date.Year == year && item.Date.Month == month)
+                    returnArr.Add(item);
+            return returnArr;
+        }
+        public Dictionary<string, int> GetDictionary(int year)
+        {
+
+            //מחזירה משתנה מסוג מילון הכולל עבור כל חודש בשנה מסוימת, כמות ההזמנות לאותו חודש
+
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            for (int i = 1; i <= 12; i++)
+            {
+
+                //אם רוצים את שם החודש בהתאם לשפת מערכת ההפעלה
+                string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i);
+                dictionary.Add(monthName, this.Filter(year, i).Count);
+            }
+            return dictionary;
+        }
 
 
     }

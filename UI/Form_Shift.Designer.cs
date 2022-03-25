@@ -29,6 +29,7 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Shift));
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -55,6 +56,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_MondayEvening10 = new System.Windows.Forms.Label();
             this.button_Past = new System.Windows.Forms.Button();
             this.button_Future = new System.Windows.Forms.Button();
+            this.button_Print = new System.Windows.Forms.Button();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +67,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Cursor = System.Windows.Forms.Cursors.Default;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(1081, 54);
+            this.label_DateToday.Location = new System.Drawing.Point(394, 54);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -77,9 +81,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(113, 21);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(287, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "SHIFTS";
             // 
             // pictureBox1
             // 
@@ -337,6 +341,30 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_Future.UseVisualStyleBackColor = true;
             this.button_Future.Click += new System.EventHandler(this.button_Future_Click);
             // 
+            // button_Print
+            // 
+            this.button_Print.Location = new System.Drawing.Point(1324, 920);
+            this.button_Print.Name = "button_Print";
+            this.button_Print.Size = new System.Drawing.Size(123, 70);
+            this.button_Print.TabIndex = 41;
+            this.button_Print.Text = "print";
+            this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.document_PrintPage);
+            // 
             // Form_Shift
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -344,6 +372,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1460, 1019);
+            this.Controls.Add(this.button_Print);
             this.Controls.Add(this.button_Future);
             this.Controls.Add(this.button_Past);
             this.Controls.Add(this.label_MondayEvening10);
@@ -372,7 +401,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form_Shift";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 10, 10);
-            this.Text = "Form_Shift";
+            this.Text = "Shifts";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -407,5 +436,8 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.Label label_MondayEvening10;
         private System.Windows.Forms.Button button_Past;
         private System.Windows.Forms.Button button_Future;
+        private System.Windows.Forms.Button button_Print;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

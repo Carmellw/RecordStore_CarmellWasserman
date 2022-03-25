@@ -271,7 +271,7 @@ namespace RecordStore_CarmellWasserman
                 genreDefault.Name = "Choose a genre";
             }
             else
-                genreDefault.Name = "All categories";
+                genreDefault.Name = "All genres";
             genreArr.Add(genreDefault);
             genreArr.Fill();
             comboBox.DataSource = genreArr;
@@ -306,7 +306,7 @@ namespace RecordStore_CarmellWasserman
                 artistDefault.Name = "Choose a artist";
             }
             else
-                artistDefault.Name = "All categories";
+                artistDefault.Name = "All artist";
             artistArr.Add(artistDefault);
             artistArr.Fill();
             comboBox.DataSource = artistArr;
@@ -341,7 +341,7 @@ namespace RecordStore_CarmellWasserman
                 companyDefault.Name = "Choose a company";
             }
             else
-                companyDefault.Name = "All categories";
+                companyDefault.Name = "All companies";
             companyArr.Add(companyDefault);
             companyArr.Fill();
             comboBox.DataSource = companyArr;

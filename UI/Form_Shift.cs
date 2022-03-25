@@ -15,6 +15,7 @@ namespace RecordStore_CarmellWasserman.UI
     {
         private Label[,] shifts = new Label[7, 2];
         private DateTime m_Sunday = new DateTime();
+        private Bitmap m_bitmap;
         public Form_Shift()
         {
             InitializeComponent();
@@ -150,5 +151,37 @@ namespace RecordStore_CarmellWasserman.UI
             ShiftArrToForm(m_Sunday);
         }
 
+        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
+
+            e.Graphics.DrawImage(m_bitmap, 10, 10, this.Width+75, this.Height+50 );
+        }
+        private void CaptureScreen()
+        {
+
+            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
+
+            int addAboveListView = 30;
+            int moveLeft = 0;
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width*2-40, this.Height*2-190);
+            curSize.Height += addAboveListView;
+            curSize.Width += moveLeft;
+            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
+            graphics = Graphics.FromImage(m_bitmap);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X+10, panelLocation.Y+25,
+            moveLeft, 0, curSize);
+        }
+
+        private void button_Print_Click(object sender, EventArgs e)
+        {
+            CaptureScreen();
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
+            printPreviewDialog1.ShowDialog();
+        }
     }
 }

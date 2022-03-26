@@ -444,17 +444,30 @@ namespace RecordStore_CarmellWasserman
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
                 System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (product.Delete())
-                    {
-                        MessageBox.Show("Deleted");
-                    }
+                    product = FormToProduct();
+
+                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
+                    //בדיקה עבור לקוחות
+
+                    OrderProductArr orderProductArr = new OrderProductArr();
+                    orderProductArr.Fill();
+                    if (orderProductArr.DoesExist(product))
+                        MessageBox.Show("You can’t delete a product that is related to an order");
 
                     else
                     {
-                        MessageBox.Show("Not Deleted");
+                        if (product.Delete())
+                        {
+                            MessageBox.Show("Deleted");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Not Deleted");
+                        }
+                        ProductToForm(null);
+                        ProductArrToForm();
                     }
-                    ProductToForm(null);
-                    ProductArrToForm();
                 }
             }
         }

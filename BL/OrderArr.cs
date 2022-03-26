@@ -129,6 +129,22 @@ namespace RecordStore_CarmellWasserman.BL
             return dictionary;
         }
 
+        public Dictionary<string, int> GetDictionaryClient(int year)
+        {
+
+            //מחזירה משתנה מסוג מילון הכולל עבור כל חודש בשנה מסוימת, כמות ההזמנות לאותו חודש
+
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            for (int i = 1; i <= 12; i++)
+            {
+
+                //אם רוצים את שם החודש בהתאם לשפת מערכת ההפעלה
+                string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i);
+                dictionary.Add(monthName, this.Filter(year, i).Count);
+            }
+            return dictionary;
+        }
+
 
     }
 }

@@ -286,17 +286,24 @@ namespace RecordStore_CarmellWasserman
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
                 System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (employee.Delete())
-                    {
-                        MessageBox.Show("Deleted");
-                    }
-
+                    ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
+                    shiftEmployeeArr.Fill();
+                    if (shiftEmployeeArr.DoesExist(employee))
+                        MessageBox.Show("You can’t delete a employee that is related to a shift");
                     else
                     {
-                        MessageBox.Show("Not Deleted");
+                        if (employee.Delete())
+                        {
+                            MessageBox.Show("Deleted");
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Not Deleted");
+                        }
+                        EmployeeToForm(null);
+                        EmployeeArrToForm();
                     }
-                    EmployeeToForm(null);
-                    EmployeeArrToForm();
                 }
             }
         }

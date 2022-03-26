@@ -120,6 +120,7 @@ namespace RecordStore_CarmellWasserman
                 listBox_InOrderProducts.DataSource = null;
                 listBox_InOrderProductsCount.Items.Clear();
                 ProductArrToForm(listBox_Products);
+                PaymentToForm();
 
 
             }
@@ -198,7 +199,7 @@ namespace RecordStore_CarmellWasserman
             }
             else
             {
-                clientDefault.FirstName = "All categories";
+                clientDefault.FirstName = "All clients";
                 clientDefault.LastName = "";
             }
 
@@ -290,6 +291,7 @@ namespace RecordStore_CarmellWasserman
             //productArrNotInOrder.Remove(productArrInOrder);
             ProductArrToForm(listBox_Products, productArrNotInOrder);
             ProductArrCountToForm(orderProductArr);
+            PaymentToForm();
         }
 
         private void listBox_Products_DoubleClick(object sender, EventArgs e)
@@ -309,6 +311,7 @@ namespace RecordStore_CarmellWasserman
             listBox_InOrderProducts.DataSource = null;
             listBox_InOrderProductsCount.Items.Clear();
             ProductArrToForm(listBox_Products);
+            PaymentToForm();
 
         }
 
@@ -447,7 +450,6 @@ namespace RecordStore_CarmellWasserman
             }
             listBox.DataSource = productArr;
 
-            PaymentToForm();
         }
         private OrderProductArr FormToOrderProductArr(Order curOrder = null)
         {

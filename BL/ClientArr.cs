@@ -78,7 +78,50 @@ namespace RecordStore_CarmellWasserman.BL
             return false;
         }
 
+        public SortedDictionary<string, int> GetSortedDictionary()
+        {
 
-        
+            // מחזירה משתנה מסוג מילון ממוין עם ערכים רלוונטיים לדוח
+            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
+            CityArr clientsCityArr = this.GetCityArr();
+            foreach (City curCity in clientsCityArr)
+                dictionary.Add(curCity.Name, this.Filter(curCity).Count);
+            return dictionary;
+        }
+
+        public CityArr GetCityArr()
+        {
+            CityArr cityArr = new CityArr();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if(!(cityArr.IsContains((this[i] as Client).City.Name)))
+                {
+                    cityArr.Add((this[i] as Client).City);
+                }
+            }
+            return cityArr;
+        }
+        public ClientArr Filter(City city)
+        {
+            ClientArr clientArr = new ClientArr();
+            Client client;
+            for (int i = 0; i < this.Count; i++)
+            {
+
+                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+
+                client = (this[i] as Client);
+
+
+                if (client.City.Name == city.Name)
+                {
+
+                    clientArr.Add(client);
+                }
+            }
+
+            return clientArr;
+        }
+
     }
 }

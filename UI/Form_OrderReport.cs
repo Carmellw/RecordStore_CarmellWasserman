@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
+using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace RecordStore_CarmellWasserman.UI
 {
@@ -19,8 +21,10 @@ namespace RecordStore_CarmellWasserman.UI
         public Form_OrderReport()
         {
             InitializeComponent();
-            //FillListView();
-            idk();
+            FillListView();
+            DataToChart(0, chart1);
+            DataToChart(1, chart2);
+
 
         }
 
@@ -30,16 +34,16 @@ namespace RecordStore_CarmellWasserman.UI
             //מוסיף נתונים לפקד תיבת התצוגה
             //יצירת מקור הנתונים
 
-            OrderArr productArr = new OrderArr();
-            productArr.Fill();
+            OrderArr orderArr = new OrderArr();
+            orderArr.Fill();
             Order p;
             ListViewItem listViewItem;
 
             //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
 
-            for (int i = 0; i < productArr.Count; i++)
+            for (int i = 0; i < orderArr.Count; i++)
             {
-                p = productArr[i] as Order;
+                p = orderArr[i] as Order;
 
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.Client.ToString(),
@@ -98,12 +102,12 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            OrderArr productArr = new OrderArr();
-            productArr.Fill();
+            OrderArr orderArr = new OrderArr();
+            orderArr.Fill();
 
             //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
 
-            //productArr = productArr.Filter(id,
+            //orderArr = orderArr.Filter(id,
             //textBox_NameFilter.Text,
             //comboBox_CategoryFilter.SelectedItem as Category,
             //comboBox_ArtistFilter.SelectedItem as Artist
@@ -115,9 +119,9 @@ namespace RecordStore_CarmellWasserman.UI
 
             //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
 
-            for (int i = 0; i < productArr.Count; i++)
+            for (int i = 0; i < orderArr.Count; i++)
             {
-                p = productArr[i] as Order;
+                p = orderArr[i] as Order;
 
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.Client.ToString(),
@@ -177,26 +181,60 @@ namespace RecordStore_CarmellWasserman.UI
             m_LastSortOrder = sorter.SortOrder;
         }
 
-        private void idk()
+        public void DataToChart(int i, Chart chart)
         {
+            chart.Palette = ChartColorPalette.Fire;
+            chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+            chart.Titles.Clear();
+            
+
             OrderArr curOrderArr = new OrderArr();
             curOrderArr.Fill();
-            Dictionary<string, int> dictionary = curOrderArr.GetDictionary(2020);
+            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
 
-            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
-
-            ListViewItem listViewItem;
-            foreach (KeyValuePair<string, int> item in dictionary)
+            if (i == 0)
             {
+                chart.Titles.Add("Distribution of Order by Month");
+                dictionary = curOrderArr.GetSortedDictionary(DateTime.Now.Year);
 
-                //יצירת פריט-תיבת-תצוגה
-                listViewItem = new ListViewItem(new[] { item.Key, item.Value.ToString() });
-                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-
-                listView_Orders.Items.Add(listViewItem);
             }
+            else if (i == 1)
+            {
+                chart.Titles.Add("Distribution of Order by Day");
+                dictionary = curOrderArr.GetSortedDictionary();
+
+            }
+
+            //הגדרת סדרה וערכיה - שם הסדרה מועבר למקרא - 2
+
+            Series series = new Series("Distribution");
+
+            //סוג הגרף
+
+            series.ChartType = SeriesChartType.Column;
+
+            //המידע שיוצג לכל רכיב ערך בגרף - 3
+
+            Font SmallFont = new Font("Arial", 7);
+            series.Font = SmallFont;
+            series.Label = "#VALX [#VAL = #PERCENT{P0}]";
+            series.Points.DataBindXY(dictionary.Keys, dictionary.Values);
+            //מחיקת סדרות קיימות - אם יש ולא בכוונה
+
+            chart.Series.Clear();
+
+            //הוספת הסדרה לפקד הגרף
+
+            chart.Series.Add(series);
         }
 
+
+
+
+        private void button_ClearFilter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

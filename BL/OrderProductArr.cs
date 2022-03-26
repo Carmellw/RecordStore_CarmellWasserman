@@ -167,5 +167,56 @@ namespace RecordStore_CarmellWasserman.BL
                 (this[i] as OrderProduct).Delete();
             return true;
         }
+
+        public Dictionary<string, int> GetDictionaryRecord()
+        {
+
+            //מחזירה משתנה מסוג מילון הכולל עבור כל חודש בשנה מסוימת, כמות ההזמנות לאותו חודש
+            Category category = new Category();
+            category.Id = 1;
+
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            ProductArr productArr = GetProductArr(category);
+            Product product = new Product();
+            for (int i = 0; i < productArr.Count; i++)
+            {
+                product = productArr[i] as Product;
+                dictionary.Add(product.ToString(), this.Filter(product).Count);
+            }
+            return dictionary;
+        }
+
+        public ProductArr GetProductArr(Category category)
+        {
+            ProductArr productArr = new ProductArr();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if (!(productArr.DoesExist((this[i] as OrderProduct).Product))
+                    && (this[i] as OrderProduct).Product.Category.Id == category.Id)
+                {
+                    productArr.Add((this[i] as OrderProduct).Product);
+                }
+
+
+            }
+
+            return productArr;
+        }
+
+        public OrderProductArr Filter(Product product)
+        {
+
+            //מחזירה את אוסף ההזמנות מאותה שנה ואותו חודש
+
+            OrderProductArr returnProductArr = new OrderProductArr();
+            for (int i = 0; i < this.Count; i++)
+            {
+                if ((this[i] as OrderProduct).Product.Id == product.Id)
+                {
+                    returnProductArr.Add(this[i] as Product);
+                }
+            }
+            return returnProductArr;
+        }
     }
 }

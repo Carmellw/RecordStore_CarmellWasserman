@@ -18,7 +18,7 @@ namespace RecordStore_CarmellWasserman.UI
         {
             InitializeComponent();
             DataToChart();
-            //DateToListView();
+            DateToListView();
         }
 
         public void DataToChart()
@@ -54,11 +54,12 @@ namespace RecordStore_CarmellWasserman.UI
             chart1.Series.Add(series);
          }
 
-        /*/private void DateToListView()
+       
+        private void DateToListView()
         {
             OrderArr curOrderArr = new OrderArr();
             curOrderArr.Fill();
-            Dictionary<string, int> dictionary = curOrderArr.GetDictionary(2020);
+            Dictionary<string, int> dictionary = curOrderArr.GetDictionaryClient();
 
             //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
 
@@ -73,8 +74,8 @@ namespace RecordStore_CarmellWasserman.UI
                 listView1.Items.Add(listViewItem);
             }
         }
-        /*/
+        
 
-       
+
     }
 }

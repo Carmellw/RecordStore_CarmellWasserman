@@ -92,5 +92,7 @@ namespace RecordStore_CarmellWasserman.DAL
 
             return Dal.ExecuteSql(str);
         }
+
+
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
+using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace RecordStore_CarmellWasserman.UI
 {
@@ -22,6 +24,12 @@ namespace RecordStore_CarmellWasserman.UI
             FillListView();
             CategoryArrToForm(comboBox_CategoryFilter, false);
             ArtistArrToForm(comboBox_ArtistFilter, false);
+            DateToListView();
+            DataToChart(0, chart1);
+            DataToChart(1, chart2);
+            DataToChart(2, chart3);
+
+
 
         }
 
@@ -332,6 +340,73 @@ namespace RecordStore_CarmellWasserman.UI
 
             m_LastSortOrder = sorter.SortOrder;
         }
+
+        private void DateToListView()
+        {
+            OrderProductArr curOrderProductArr = new OrderProductArr();
+            curOrderProductArr.Fill();
+            Dictionary<string, int> dictionary = curOrderProductArr.GetDictionaryRecord();
+
+            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
+
+            ListViewItem listViewItem;
+            foreach (KeyValuePair<string, int> item in dictionary)
+            {
+
+                //יצירת פריט-תיבת-תצוגה
+                listViewItem = new ListViewItem(new[] { item.Key, item.Value.ToString() });
+                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
+
+                listView1.Items.Add(listViewItem);
+            }
+        }
+
+        public void DataToChart(int i, Chart chart)
+        {
+            chart.Palette = ChartColorPalette.Fire;
+            chart.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+            chart.Titles.Clear();
+            if (i == 0)
+            {
+                chart.Titles.Add("Distribution of Product Categories");
+            }
+            else if(i==1)
+            {
+                chart.Titles.Add("Distribution of Product Genres");
+
+            }
+            else if(i==2)
+            {
+                chart.Titles.Add("Distribution of Product Condition");
+
+            }
+            ProductArr curProductArr = new ProductArr();
+            curProductArr.Fill();
+            SortedDictionary<string, int> dictionary = curProductArr.GetSortedDictionary(i);
+
+            //הגדרת סדרה וערכיה - שם הסדרה מועבר למקרא - 2
+
+            Series series = new Series("Distribution");
+
+            //סוג הגרף
+
+            series.ChartType = SeriesChartType.Pie;
+
+            //המידע שיוצג לכל רכיב ערך בגרף - 3
+
+            Font SmallFont = new Font("Arial", 7);
+            series.Font = SmallFont;
+            series.Label = "#VALX [#VAL = #PERCENT{P0}]";
+            series.Points.DataBindXY(dictionary.Keys, dictionary.Values);
+            //מחיקת סדרות קיימות - אם יש ולא בכוונה
+
+            chart.Series.Clear();
+
+            //הוספת הסדרה לפקד הגרף
+
+            chart.Series.Add(series);
+        }
+
     }
 }
 

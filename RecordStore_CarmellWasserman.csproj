@@ -146,6 +146,12 @@
     <Compile Include="UI\Form_Employee.Designer.cs">
       <DependentUpon>Form_Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_EmployeeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_EmployeeReport.Designer.cs">
+      <DependentUpon>Form_EmployeeReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Genre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Employee.resx">
       <DependentUpon>Form_Employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_EmployeeReport.resx">
+      <DependentUpon>Form_EmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Genre.resx">
       <DependentUpon>Form_Genre.cs</DependentUpon>

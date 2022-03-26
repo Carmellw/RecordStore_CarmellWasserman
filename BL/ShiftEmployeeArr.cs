@@ -71,6 +71,27 @@ namespace RecordStore_CarmellWasserman.BL
             return shiftEmployeeArr;
         }
 
+        public ShiftEmployeeArr FilterMonth(int month)
+        {
+            ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
+
+            for (int i = 0; i < this.Count; i++)
+            {
+
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
+
+                ShiftEmployee shiftEmployee = (this[i] as ShiftEmployee);
+                if (shiftEmployee.Shift.Date.Month == month)
+                {
+                    //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
+
+                    shiftEmployeeArr.Add(shiftEmployee);
+                }
+            }
+            return shiftEmployeeArr;
+        }
+
+
 
         public bool DoesExist(Shift curShift)
         {
@@ -167,6 +188,44 @@ namespace RecordStore_CarmellWasserman.BL
             return true;
         }
 
-        
+        public SortedDictionary<string, int> GetSortedDictionary(Employee employee)
+        {
+            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
+
+            dictionary.Add("Morning", this.FilterEmployee(employee).Filter(true).Count);
+            dictionary.Add("Evening", this.FilterEmployee(employee).Filter(false).Count);
+            
+            // מחזירה משתנה מסוג מילון ממוין עם ערכים רלוונטיים לדוח
+
+
+            return dictionary;
+        }
+
+        public ShiftEmployeeArr Filter(bool isMorning)
+        {
+            ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
+            ShiftEmployee shiftEmployee;
+            for (int i = 0; i < this.Count; i++)
+            {
+
+                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+
+                shiftEmployee = (this[i] as ShiftEmployee);
+
+
+                if (shiftEmployee.Shift.IsMorning == isMorning)
+                {
+
+                    shiftEmployeeArr.Add(shiftEmployee);
+                }
+            }
+
+            return shiftEmployeeArr;
+        }
+
+
+
+
+
     }
 }

@@ -194,6 +194,12 @@
     <Compile Include="UI\Form_ProductReport.Designer.cs">
       <DependentUpon>Form_ProductReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Form_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Report.Designer.cs">
+      <DependentUpon>Form_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Shift.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_ProductReport.resx">
       <DependentUpon>Form_ProductReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Report.resx">
+      <DependentUpon>Form_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Shift.resx">
       <DependentUpon>Form_Shift.cs</DependentUpon>

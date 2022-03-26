@@ -30,12 +30,12 @@ namespace RecordStore_CarmellWasserman.UI
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_OrderReport));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dateTimePicker_ToDateFilter = new System.Windows.Forms.DateTimePicker();
             this.label_ToDateFilter = new System.Windows.Forms.Label();
             this.dateTimePicker_FromDateFilter = new System.Windows.Forms.DateTimePicker();
@@ -47,28 +47,27 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilter = new System.Windows.Forms.TextBox();
             this.button_Print = new System.Windows.Forms.Button();
             this.listView_Orders = new System.Windows.Forms.ListView();
-            this.columnHeader_Category = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader_Note = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage_Orders = new System.Windows.Forms.TabPage();
+            this.tabPage_OrdersByMonth = new System.Windows.Forms.TabPage();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage_OrdersByDay = new System.Windows.Forms.TabPage();
+            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage_Orders.SuspendLayout();
+            this.tabPage_OrdersByMonth.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabPage_OrdersByDay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker_ToDateFilter
@@ -77,6 +76,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.dateTimePicker_ToDateFilter.Name = "dateTimePicker_ToDateFilter";
             this.dateTimePicker_ToDateFilter.Size = new System.Drawing.Size(213, 31);
             this.dateTimePicker_ToDateFilter.TabIndex = 37;
+            this.dateTimePicker_ToDateFilter.ValueChanged += new System.EventHandler(this.dateTimePicker_DateFilter_ValueChanged);
+            this.dateTimePicker_ToDateFilter.MouseCaptureChanged += new System.EventHandler(this.dateTimePicker_Filter_MouseCaptureChanged);
             // 
             // label_ToDateFilter
             // 
@@ -94,6 +95,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.dateTimePicker_FromDateFilter.Name = "dateTimePicker_FromDateFilter";
             this.dateTimePicker_FromDateFilter.Size = new System.Drawing.Size(189, 31);
             this.dateTimePicker_FromDateFilter.TabIndex = 35;
+            this.dateTimePicker_FromDateFilter.ValueChanged += new System.EventHandler(this.dateTimePicker_DateFilter_ValueChanged);
+            this.dateTimePicker_FromDateFilter.MouseCaptureChanged += new System.EventHandler(this.dateTimePicker_Filter_MouseCaptureChanged);
             // 
             // comboBox_ClientFilter
             // 
@@ -103,6 +106,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.comboBox_ClientFilter.Name = "comboBox_ClientFilter";
             this.comboBox_ClientFilter.Size = new System.Drawing.Size(187, 33);
             this.comboBox_ClientFilter.TabIndex = 34;
+            this.comboBox_ClientFilter.TextChanged += new System.EventHandler(this.comboBoxFilter_TextChanged);
             // 
             // label_ClientFilter
             // 
@@ -142,7 +146,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_ClearFilter.TabIndex = 30;
             this.button_ClearFilter.Text = "clear";
             this.button_ClearFilter.UseVisualStyleBackColor = true;
-            this.button_ClearFilter.Click += new System.EventHandler(this.button_ClearFilter_Click);
+            this.button_ClearFilter.Click += new System.EventHandler(this.clearFilter_Click);
             // 
             // textBox_IdFilter
             // 
@@ -150,6 +154,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilter.Name = "textBox_IdFilter";
             this.textBox_IdFilter.Size = new System.Drawing.Size(100, 31);
             this.textBox_IdFilter.TabIndex = 29;
+            this.textBox_IdFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_IdFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // button_Print
             // 
@@ -164,10 +170,9 @@ namespace RecordStore_CarmellWasserman.UI
             // listView_Orders
             // 
             this.listView_Orders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader_Category,
             this.columnHeader_Name,
-            this.columnHeader_Artist,
-            this.columnHeader_Count});
+            this.columnHeader_Date,
+            this.columnHeader_Note});
             this.listView_Orders.HideSelection = false;
             this.listView_Orders.Location = new System.Drawing.Point(3, 114);
             this.listView_Orders.Name = "listView_Orders";
@@ -175,26 +180,22 @@ namespace RecordStore_CarmellWasserman.UI
             this.listView_Orders.TabIndex = 31;
             this.listView_Orders.UseCompatibleStateImageBehavior = false;
             this.listView_Orders.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader_Category
-            // 
-            this.columnHeader_Category.Text = "Category";
-            this.columnHeader_Category.Width = 112;
+            this.listView_Orders.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_Orders_ColumnClick);
             // 
             // columnHeader_Name
             // 
             this.columnHeader_Name.Text = "Name";
-            this.columnHeader_Name.Width = 139;
+            this.columnHeader_Name.Width = 140;
             // 
-            // columnHeader_Artist
+            // columnHeader_Date
             // 
-            this.columnHeader_Artist.Text = "Artist";
-            this.columnHeader_Artist.Width = 119;
+            this.columnHeader_Date.Text = "Date";
+            this.columnHeader_Date.Width = 140;
             // 
-            // columnHeader_Count
+            // columnHeader_Note
             // 
-            this.columnHeader_Count.Text = "Count";
-            this.columnHeader_Count.Width = 70;
+            this.columnHeader_Note.Text = "Note";
+            this.columnHeader_Note.Width = 270;
             // 
             // printDocument1
             // 
@@ -212,51 +213,94 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage_Orders);
+            this.tabControl1.Controls.Add(this.tabPage_OrdersByMonth);
+            this.tabControl1.Controls.Add(this.tabPage_OrdersByDay);
             this.tabControl1.Location = new System.Drawing.Point(12, 98);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1170, 769);
             this.tabControl1.TabIndex = 34;
             // 
-            // tabPage1
+            // tabPage_Orders
             // 
-            this.tabPage1.Controls.Add(this.button_ClearFilter);
-            this.tabPage1.Controls.Add(this.dateTimePicker_ToDateFilter);
-            this.tabPage1.Controls.Add(this.listView_Orders);
-            this.tabPage1.Controls.Add(this.label_ToDateFilter);
-            this.tabPage1.Controls.Add(this.dateTimePicker_FromDateFilter);
-            this.tabPage1.Controls.Add(this.label_IdFilter);
-            this.tabPage1.Controls.Add(this.label_FromDateFilter);
-            this.tabPage1.Controls.Add(this.comboBox_ClientFilter);
-            this.tabPage1.Controls.Add(this.textBox_IdFilter);
-            this.tabPage1.Controls.Add(this.label_ClientFilter);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1154, 722);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage_Orders.Controls.Add(this.button_ClearFilter);
+            this.tabPage_Orders.Controls.Add(this.dateTimePicker_ToDateFilter);
+            this.tabPage_Orders.Controls.Add(this.listView_Orders);
+            this.tabPage_Orders.Controls.Add(this.label_ToDateFilter);
+            this.tabPage_Orders.Controls.Add(this.dateTimePicker_FromDateFilter);
+            this.tabPage_Orders.Controls.Add(this.label_IdFilter);
+            this.tabPage_Orders.Controls.Add(this.label_FromDateFilter);
+            this.tabPage_Orders.Controls.Add(this.comboBox_ClientFilter);
+            this.tabPage_Orders.Controls.Add(this.textBox_IdFilter);
+            this.tabPage_Orders.Controls.Add(this.label_ClientFilter);
+            this.tabPage_Orders.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_Orders.Name = "tabPage_Orders";
+            this.tabPage_Orders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Orders.Size = new System.Drawing.Size(1154, 722);
+            this.tabPage_Orders.TabIndex = 0;
+            this.tabPage_Orders.Text = "Orders";
+            this.tabPage_Orders.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabPage_OrdersByMonth
             // 
-            this.tabPage2.Controls.Add(this.chart1);
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1154, 722);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage_OrdersByMonth.Controls.Add(this.chart1);
+            this.tabPage_OrdersByMonth.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_OrdersByMonth.Name = "tabPage_OrdersByMonth";
+            this.tabPage_OrdersByMonth.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OrdersByMonth.Size = new System.Drawing.Size(1154, 722);
+            this.tabPage_OrdersByMonth.TabIndex = 1;
+            this.tabPage_OrdersByMonth.Text = "Orders By Month";
+            this.tabPage_OrdersByMonth.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea10.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea10);
+            legend10.Name = "Legend1";
+            this.chart1.Legends.Add(legend10);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
+            this.chart1.Name = "chart1";
+            series10.ChartArea = "ChartArea1";
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.chart1.Series.Add(series10);
+            this.chart1.Size = new System.Drawing.Size(1154, 719);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // tabPage_OrdersByDay
+            // 
+            this.tabPage_OrdersByDay.Controls.Add(this.chart2);
+            this.tabPage_OrdersByDay.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_OrdersByDay.Name = "tabPage_OrdersByDay";
+            this.tabPage_OrdersByDay.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_OrdersByDay.Size = new System.Drawing.Size(1154, 722);
+            this.tabPage_OrdersByDay.TabIndex = 2;
+            this.tabPage_OrdersByDay.Text = "Orders By Day";
+            this.tabPage_OrdersByDay.UseVisualStyleBackColor = true;
+            // 
+            // chart2
+            // 
+            chartArea9.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.chart2.Legends.Add(legend9);
+            this.chart2.Location = new System.Drawing.Point(3, 3);
+            this.chart2.Name = "chart2";
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart2.Series.Add(series9);
+            this.chart2.Size = new System.Drawing.Size(1148, 716);
+            this.chart2.TabIndex = 0;
+            this.chart2.Text = "chart2";
             // 
             // label_DateToday
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(666, 49);
+            this.label_DateToday.Location = new System.Drawing.Point(681, 49);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -270,9 +314,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(113, 16);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(573, 79);
             this.label_StoreName.TabIndex = 40;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "Order Reports";
             // 
             // pictureBox1
             // 
@@ -283,49 +327,6 @@ namespace RecordStore_CarmellWasserman.UI
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
-            // 
-            // chart1
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
-            this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
-            this.chart1.Size = new System.Drawing.Size(1154, 719);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.chart2);
-            this.tabPage3.Location = new System.Drawing.Point(8, 39);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1154, 722);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // chart2
-            // 
-            chartArea5.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart2.Legends.Add(legend5);
-            this.chart2.Location = new System.Drawing.Point(3, 3);
-            this.chart2.Name = "chart2";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart2.Series.Add(series5);
-            this.chart2.Size = new System.Drawing.Size(1148, 716);
-            this.chart2.TabIndex = 0;
-            this.chart2.Text = "chart2";
             // 
             // Form_OrderReport
             // 
@@ -340,15 +341,15 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button_Print);
             this.Name = "Form_OrderReport";
-            this.Text = "Form_OrderReport";
+            this.Text = "Order Reports";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage_Orders.ResumeLayout(false);
+            this.tabPage_Orders.PerformLayout();
+            this.tabPage_OrdersByMonth.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
+            this.tabPage_OrdersByDay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,10 +358,9 @@ namespace RecordStore_CarmellWasserman.UI
         #endregion
         private System.Windows.Forms.Button button_Print;
         private System.Windows.Forms.ListView listView_Orders;
-        private System.Windows.Forms.ColumnHeader columnHeader_Category;
         private System.Windows.Forms.ColumnHeader columnHeader_Name;
-        private System.Windows.Forms.ColumnHeader columnHeader_Artist;
-        private System.Windows.Forms.ColumnHeader columnHeader_Count;
+        private System.Windows.Forms.ColumnHeader columnHeader_Date;
+        private System.Windows.Forms.ColumnHeader columnHeader_Note;
         private System.Windows.Forms.DateTimePicker dateTimePicker_ToDateFilter;
         private System.Windows.Forms.Label label_ToDateFilter;
         private System.Windows.Forms.DateTimePicker dateTimePicker_FromDateFilter;
@@ -373,13 +373,13 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage_Orders;
+        private System.Windows.Forms.TabPage tabPage_OrdersByMonth;
         private System.Windows.Forms.Label label_DateToday;
         private System.Windows.Forms.Label label_StoreName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage_OrdersByDay;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }

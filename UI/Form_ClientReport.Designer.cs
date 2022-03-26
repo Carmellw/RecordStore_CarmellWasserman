@@ -29,23 +29,27 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_ClientReport));
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.tabPage_Citis = new System.Windows.Forms.TabPage();
+            this.tabPage_ClientsOrders = new System.Windows.Forms.TabPage();
+            this.listView_Clients = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_Print = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPage_Citis.SuspendLayout();
+            this.tabPage_ClientsOrders.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_DateToday
@@ -68,7 +72,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Name = "label_StoreName";
             this.label_StoreName.Size = new System.Drawing.Size(556, 79);
             this.label_StoreName.TabIndex = 34;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "Client Reports";
             // 
             // pictureBox1
             // 
@@ -82,68 +86,95 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(157, 0);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(836, 695);
+            this.chart1.Size = new System.Drawing.Size(1154, 701);
             this.chart1.TabIndex = 37;
             this.chart1.Text = "chart1";
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage_Citis);
+            this.tabControl1.Controls.Add(this.tabPage_ClientsOrders);
             this.tabControl1.Location = new System.Drawing.Point(12, 104);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1170, 748);
             this.tabControl1.TabIndex = 38;
             // 
-            // tabPage1
+            // tabPage_Citis
             // 
-            this.tabPage1.Controls.Add(this.chart1);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1154, 701);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage_Citis.Controls.Add(this.chart1);
+            this.tabPage_Citis.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_Citis.Name = "tabPage_Citis";
+            this.tabPage_Citis.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Citis.Size = new System.Drawing.Size(1154, 701);
+            this.tabPage_Citis.TabIndex = 0;
+            this.tabPage_Citis.Text = "Citis";
+            this.tabPage_Citis.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabPage_ClientsOrders
             // 
-            this.tabPage2.Controls.Add(this.listView1);
-            this.tabPage2.Location = new System.Drawing.Point(8, 39);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1154, 701);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage_ClientsOrders.Controls.Add(this.listView_Clients);
+            this.tabPage_ClientsOrders.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_ClientsOrders.Name = "tabPage_ClientsOrders";
+            this.tabPage_ClientsOrders.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_ClientsOrders.Size = new System.Drawing.Size(1154, 701);
+            this.tabPage_ClientsOrders.TabIndex = 1;
+            this.tabPage_ClientsOrders.Text = "Client\'s Orders";
+            this.tabPage_ClientsOrders.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // listView_Clients
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listView_Clients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(174, 6);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(766, 695);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView_Clients.HideSelection = false;
+            this.listView_Clients.Location = new System.Drawing.Point(174, 6);
+            this.listView_Clients.Name = "listView_Clients";
+            this.listView_Clients.Size = new System.Drawing.Size(766, 689);
+            this.listView_Clients.TabIndex = 0;
+            this.listView_Clients.UseCompatibleStateImageBehavior = false;
+            this.listView_Clients.View = System.Windows.Forms.View.Details;
+            this.listView_Clients.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_Clients_ColumnClick);
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Width = 225;
+            this.columnHeader1.Text = "Client";
+            this.columnHeader1.Width = 300;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Width = 178;
+            this.columnHeader2.Text = "Orders";
+            this.columnHeader2.Width = 70;
+            // 
+            // button_Print
+            // 
+            this.button_Print.Location = new System.Drawing.Point(1061, 18);
+            this.button_Print.Name = "button_Print";
+            this.button_Print.Size = new System.Drawing.Size(113, 80);
+            this.button_Print.TabIndex = 39;
+            this.button_Print.Text = "print";
+            this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.document_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Form_ClientReport
             // 
@@ -152,18 +183,19 @@ namespace RecordStore_CarmellWasserman.UI
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1194, 864);
+            this.Controls.Add(this.button_Print);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form_ClientReport";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.Text = "Form_ClientReport";
+            this.Text = "Client Reports";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabPage_Citis.ResumeLayout(false);
+            this.tabPage_ClientsOrders.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,10 +208,13 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TabPage tabPage_Citis;
+        private System.Windows.Forms.TabPage tabPage_ClientsOrders;
+        private System.Windows.Forms.ListView listView_Clients;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button button_Print;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

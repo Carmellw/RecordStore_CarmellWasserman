@@ -14,23 +14,28 @@ public class ListViewSorter : System.Collections.IComparer
     {
         //פעולת ההשוואה - תופעל עם הפעלת פעולת מיון על תיבת תצוגת הרשימה
 
-        //מציאת הטקסט מתוך העמודה שלפיה המיון
-        string text1 = (listViewItem1 as ListViewItem).SubItems[m_ByColumn].Text;
-        string text2 = (listViewItem2 as ListViewItem).SubItems[m_ByColumn].Text;
+        if ((listViewItem1 as ListViewItem).SubItems[m_ByColumn].Text != "" &&
+            (listViewItem2 as ListViewItem).SubItems[m_ByColumn].Text != "") //תוספת שלי כדי שזה לא יתקע בעמודה המאפשר משנה ריק
+        {
+            //מציאת הטקסט מתוך העמודה שלפיה המיון
+            string text1 = (listViewItem1 as ListViewItem).SubItems[m_ByColumn].Text;
+            string text2 = (listViewItem2 as ListViewItem).SubItems[m_ByColumn].Text;
 
 
-        //החזרת ערך השוואה תואם - לפי השוואת מספרים
-        //שימוש בפעולה מוכנה של מחרוזות לבדיקה האם כל התווים במחרוזת עונים לתנאי
-        if (text1.All(char.IsDigit) && text1.All(char.IsDigit))
+            //החזרת ערך השוואה תואם - לפי השוואת מספרים
+            //שימוש בפעולה מוכנה של מחרוזות לבדיקה האם כל התווים במחרוזת עונים לתנאי
+            if (text1.All(char.IsDigit) && text1.All(char.IsDigit))
+                if (m_SortOrder == SortOrder.Ascending)
+                    return int.Parse(text1).CompareTo(int.Parse(text2));
+                else
+                    return int.Parse(text2).CompareTo(int.Parse(text1));
+
+            //החזרת ערך השוואה תואם - לפי השוואת מחרוזות
             if (m_SortOrder == SortOrder.Ascending)
-                return int.Parse(text1).CompareTo(int.Parse(text2));
+                return text1.CompareTo(text2);
             else
-                return int.Parse(text2).CompareTo(int.Parse(text1));
-
-        //החזרת ערך השוואה תואם - לפי השוואת מחרוזות
-        if (m_SortOrder == SortOrder.Ascending)
-            return text1.CompareTo(text2);
-        else
-            return text2.CompareTo(text1);
+                return text2.CompareTo(text1);
+        }
+        return 0;
     }
 }

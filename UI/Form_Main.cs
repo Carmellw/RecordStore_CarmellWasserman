@@ -47,5 +47,11 @@ namespace RecordStore_CarmellWasserman.UI
             Form_Employee form_Employee = new Form_Employee();
             form_Employee.ShowDialog();
         }
+
+        private void label_Reports_Click(object sender, EventArgs e)
+        {
+            Form_Report form_Report = new Form_Report();
+            form_Report.ShowDialog();
+        }
     }
 }

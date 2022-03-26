@@ -122,6 +122,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_Reports.TabIndex = 42;
             this.label_Reports.Text = "Reports";
             this.label_Reports.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Reports.Click += new System.EventHandler(this.label_Reports_Click);
             // 
             // pictureBox2
             // 

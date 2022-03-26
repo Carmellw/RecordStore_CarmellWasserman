@@ -21,6 +21,7 @@ namespace RecordStore_CarmellWasserman.UI
         public Form_ProductReport()
         {
             InitializeComponent();
+            label_DateToday.Text = DateTime.Now.ToLongDateString();
             FillListView();
             CategoryArrToForm(comboBox_CategoryFilter, false);
             ArtistArrToForm(comboBox_ArtistFilter, false);
@@ -46,14 +47,18 @@ namespace RecordStore_CarmellWasserman.UI
 
             //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
 
-            for (int i = 0; i < productArr.Count; i++)
+            //for (int i = 0; i < productArr.Count; i++)
             {
-                p = productArr[i] as Product;
-
+                p = productArr[1] as Product;
+                string condition = "not new";
+                if(p.IsNew)
+                {
+                    condition = "new";
+                }
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.Category.Name,
 
-                p.Name, p.Artist.Name, p.Count.ToString() });
+                p.Name, p.Genre.Name, p.Artist.Name, p.Company.Name, condition, p.Count.ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
                 listView_Products.Items.Add(listViewItem);
             }
@@ -64,26 +69,25 @@ namespace RecordStore_CarmellWasserman.UI
 
             //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
 
-            e.Graphics.DrawImage(m_bitmap, 0, 0, listView_Products.Width*2, listView_Products.Height*2);
+            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2*this.Width/5, this.Height + 2*this.Height/5);
         }
         private void CaptureScreen()
         {
 
             //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
 
-            int addAboveListView = 30;
+            int addAboveListView = 0;
             int moveLeft = 0;
-            Graphics graphics = listView_Products.CreateGraphics();
-            Size curSize = new Size(listView_Products.Width *2, listView_Products.Height *2);
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
             curSize.Height += addAboveListView;
             curSize.Width += moveLeft;
             m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
             graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(listView_Products.Location);
-            graphics.CopyFromScreen(2*panelLocation.X, 2*panelLocation.Y - addAboveListView,
-            moveLeft, 0, curSize);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
+            moveLeft, -150, curSize);
         }
-
         private void button_Print_Click(object sender, EventArgs e)
         {
             CaptureScreen();
@@ -91,6 +95,7 @@ namespace RecordStore_CarmellWasserman.UI
             printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
             printPreviewDialog1.ShowDialog();
         }
+
 
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
@@ -133,17 +138,22 @@ namespace RecordStore_CarmellWasserman.UI
             for (int i = 0; i < productArr.Count; i++)
             {
                 p = productArr[i] as Product;
-
+                string condition = "not new";
+                if (p.IsNew)
+                {
+                    condition = "new";
+                }
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] {  p.Category.Name,
 
-                p.Name, p.Artist.Name, p.Count.ToString() });
+                p.Name, p.Genre.Name, p.Artist.Name, p.Company.Name, condition, p.Count.ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
 
 
                 listView_Products.Items.Add(listViewItem);
             }
         }
+
 
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -165,6 +175,7 @@ namespace RecordStore_CarmellWasserman.UI
             CategoryArrToForm(comboBox_CategoryFilter, false);
             textBox_NameFilter.Text = "";
             ArtistArrToForm(comboBox_ArtistFilter, false);
+            FillListView();
         }
 
         private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
@@ -341,6 +352,37 @@ namespace RecordStore_CarmellWasserman.UI
             m_LastSortOrder = sorter.SortOrder;
         }
 
+        private void listView_Records_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_Records.ListViewItemSorter = sorter;
+            sorter = listView_Records.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
+
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_Records.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+
+
         private void DateToListView()
         {
             OrderProductArr curOrderProductArr = new OrderProductArr();
@@ -357,7 +399,7 @@ namespace RecordStore_CarmellWasserman.UI
                 listViewItem = new ListViewItem(new[] { item.Key, item.Value.ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
 
-                listView1.Items.Add(listViewItem);
+                listView_Records.Items.Add(listViewItem);
             }
         }
 

@@ -324,7 +324,7 @@ namespace RecordStore_CarmellWasserman
 
             //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
 
-            employeeArr = employeeArr.Filter(id, textBox_FirstName.Text, textBox_LastNameFilter.Text,
+            employeeArr = employeeArr.Filter(id, textBox_FirstNameFilter.Text, textBox_LastNameFilter.Text,
             textBox_PhoneNumberFilter.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 

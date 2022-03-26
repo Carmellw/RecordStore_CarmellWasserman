@@ -18,13 +18,15 @@ namespace RecordStore_CarmellWasserman.UI
         private Bitmap m_bitmap;
         private int m_LastColumnSortBy = -1;
         private SortOrder m_LastSortOrder = SortOrder.Ascending;
+        private bool filterDate = false;
         public Form_OrderReport()
         {
             InitializeComponent();
             FillListView();
             DataToChart(0, chart1);
             DataToChart(1, chart2);
-
+            label_DateToday.Text = DateTime.Now.ToLongDateString();
+            ClientArrToForm(comboBox_ClientFilter, false);
 
         }
 
@@ -59,25 +61,28 @@ namespace RecordStore_CarmellWasserman.UI
 
             //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
 
-            e.Graphics.DrawImage(m_bitmap, 0, 0, listView_Orders.Width * 2, listView_Orders.Height * 2);
+            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
         }
         private void CaptureScreen()
         {
 
             //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
 
-            int addAboveListView = 30;
+            int addAboveListView = 0;
             int moveLeft = 0;
-            Graphics graphics = listView_Orders.CreateGraphics();
-            Size curSize = new Size(listView_Orders.Width * 2, listView_Orders.Height * 2);
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
             curSize.Height += addAboveListView;
             curSize.Width += moveLeft;
             m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
             graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(listView_Orders.Location);
-            graphics.CopyFromScreen(2 * panelLocation.X, 2 * panelLocation.Y - addAboveListView,
-            moveLeft, 0, curSize);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
+            moveLeft, -150, curSize);
         }
+
+
+
 
         private void button_Print_Click(object sender, EventArgs e)
         {
@@ -87,52 +92,7 @@ namespace RecordStore_CarmellWasserman.UI
             printPreviewDialog1.ShowDialog();
         }
 
-        private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
-        {
-            SetOrdersByFilter();
-        }
-        private void comboBoxFilter_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void SetOrdersByFilter()
-        {
-            int id = 0;
-            //מייצרים אוסף של כלל המוצרים
-            if (textBox_IdFilter.Text != "")
-                id = int.Parse(textBox_IdFilter.Text);
-
-            OrderArr orderArr = new OrderArr();
-            orderArr.Fill();
-
-            //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
-
-            //orderArr = orderArr.Filter(id,
-            //textBox_NameFilter.Text,
-            //comboBox_CategoryFilter.SelectedItem as Category,
-            //comboBox_ArtistFilter.SelectedItem as Artist
-            //);
-
-            listView_Orders.Items.Clear();
-            Order p;
-            ListViewItem listViewItem;
-
-            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
-
-            for (int i = 0; i < orderArr.Count; i++)
-            {
-                p = orderArr[i] as Order;
-
-                //יצירת פריט-תיבת-תצוגה
-                listViewItem = new ListViewItem(new[] { p.Client.ToString(),
-
-                p.Date.ToString(), p.Note });
-                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-
-
-                listView_Orders.Items.Add(listViewItem);
-            }
-        }
+     
 
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -149,8 +109,14 @@ namespace RecordStore_CarmellWasserman.UI
         }
         private void clearFilter_Click(object sender, EventArgs e)
         {
-
+            textBox_IdFilter.Text = "";
+            ClientArrToForm(comboBox_ClientFilter, false);
+            filterDate = false;
+            dateTimePicker_FromDateFilter.Value = DateTime.Now;
+            dateTimePicker_ToDateFilter.Value = DateTime.Now;
+            FillListView();
         }
+
         private void listView_Orders_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ListViewSorter sorter = new ListViewSorter();
@@ -228,13 +194,124 @@ namespace RecordStore_CarmellWasserman.UI
             chart.Series.Add(series);
         }
 
-
-
-
-        private void button_ClearFilter_Click(object sender, EventArgs e)
+        private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
+            SetOrdersByFilter();
+        }
+        private void comboBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox_ClientFilter.SelectedItem as Client != null &&
+                (comboBox_ClientFilter.SelectedItem as Client).Id > 0)
+            {
+                SetOrdersByFilter();
+            }
 
         }
+
+        private void dateTimePicker_DateFilter_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDate)
+            {
+                SetOrdersByFilter();
+            }
+        }
+
+
+        private void SetOrdersByFilter()
+        {
+            int id = 0;
+            //מייצרים אוסף של כלל המוצרים
+            if (textBox_IdFilter.Text != "")
+                id = int.Parse(textBox_IdFilter.Text);
+
+            DateTime fromDate = DateTime.MinValue;
+            DateTime toDate = DateTime.MaxValue;
+            if (filterDate)
+            {
+                fromDate = dateTimePicker_FromDateFilter.Value;
+                toDate = dateTimePicker_ToDateFilter.Value;
+            }
+
+
+            OrderArr orderArr = new OrderArr();
+            orderArr.Fill();
+
+            //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
+
+            orderArr = orderArr.Filter(id,
+            comboBox_ClientFilter.SelectedItem as Client,
+            fromDate,
+            toDate
+            );
+
+            //מציבים בתיבת הרשימה את אוסף המוצרים
+            listView_Orders.Items.Clear();
+            Order p;
+            ListViewItem listViewItem;
+
+            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
+
+            for (int i = 0; i < orderArr.Count; i++)
+            {
+                p = orderArr[i] as Order;
+
+                //יצירת פריט-תיבת-תצוגה
+                listViewItem = new ListViewItem(new[] { p.Client.ToString(),
+
+                p.Date.ToString(), p.Note });
+                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
+                listView_Orders.Items.Add(listViewItem);
+
+            }
+        }
+
+        private void dateTimePicker_Filter_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            filterDate = true;
+        }
+
+        private void ClientArrToForm(ComboBox comboBox, bool isMustChoose, Client curClient = null)
+        {
+
+            //ממירה את הטנ "מ אוסף לקוחות לטופס
+
+            ClientArr clientArr = new ClientArr();
+
+            //הוספת ישוב ברירת מחדל - בחר ישוב
+            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
+
+            Client clientDefault = new Client();
+            clientDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                clientDefault.FirstName = "Choose a client";
+                clientDefault.LastName = "";
+            }
+            else
+            {
+                clientDefault.FirstName = "All clients";
+                clientDefault.LastName = "";
+            }
+
+            clientArr.Add(clientDefault);
+            clientArr.Fill();
+            comboBox.DataSource = clientArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "";
+
+            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            clientArr.Add(clientDefault);
+
+
+
+        }
+
+
+
+
+
     }
 }
 

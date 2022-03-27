@@ -120,7 +120,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (artist != null || artist.Id == -1)
+            if (artist != null)
             {
                 label_Id.Text = artist.Id.ToString();
                 textBox_Name.Text = artist.Name;

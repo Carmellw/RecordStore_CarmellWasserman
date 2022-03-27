@@ -165,7 +165,7 @@ namespace RecordStore_CarmellWasserman.UI
         }
 
 
-        //המרות לעזמנות מהבי אל
+        //המרות להזמנות מהבי אל
         private Order FormToOrder()
         {
             Order order = new Order();

@@ -163,7 +163,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (client != null || client.Id == -1 )
+            if (client != null )
             {
                 label_Id.Text = client.Id.ToString();
                 textBox_FirstName.Text = client.FirstName;

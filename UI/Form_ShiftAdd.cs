@@ -71,7 +71,7 @@ namespace RecordStore_CarmellWasserman.UI
                         shift = shiftArr.GetShiftWithMaxId();
                         shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
 
-                        //מוסיפים את הפריטים החדשים להזמנה
+                        //מוסיפים את הפריטים החדשים למשמרת
 
                         if (shiftEmployeeArr_New.Insert())
                         {
@@ -89,21 +89,21 @@ namespace RecordStore_CarmellWasserman.UI
                 {
 
 
-                    //מוחקים את הפריטים הקודמים של ההזמנה
-                    //אוסף כלל הזוגות - הזמנה-פריט
+                    //מוחקים את הפריטים הקודמים של המשמרת
+                    //אוסף כלל הזוגות - משמרת-פריט
 
                     ShiftEmployeeArr shiftEmployeeArr_Old = new ShiftEmployeeArr();
                     shiftEmployeeArr_Old.Fill();
 
-                    //סינון לפי ההזמנה הנוכחית
+                    //סינון לפי המשמרת הנוכחית
 
                     shiftEmployeeArr_Old = shiftEmployeeArr_Old.FilterShift(shift);
 
-                    //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+                    //מחיקת כל הפריטים באוסף המשמרת-פריט של המשמרת הנוכחית
 
                     shiftEmployeeArr_Old.Delete();
 
-                    //מוסיפים את הפריטים לפי העדכני להזמנה
+                    //מוסיפים את הפריטים לפי העדכני למשמרת
 
                     shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
                     shiftEmployeeArr_New.Insert();
@@ -179,7 +179,7 @@ namespace RecordStore_CarmellWasserman.UI
             employeeArr = listBox_From.DataSource as EmployeeArr;
             employeeArr.Remove(employee);
             EmployeeArrToForm(listBox_From, employeeArr);
-            //אם זאת הוספה לתיבת המוצרים בהזמנה - סימון שתי השורה האחרונה בה וגם בתיבת הרשימה של הכמויות
+            //אם זאת הוספה לתיבת העובדים במשמרת - סימון שתי השורה האחרונה בה וגם בתיבת הרשימה של הכמויות
             
         }
         private void listBox_Employees_DoubleClick(object sender, EventArgs e)
@@ -232,7 +232,6 @@ namespace RecordStore_CarmellWasserman.UI
                     }
                 }
             }
-            //employeeArrNotInShift.Remove(employeeArrInShift);
             EmployeeArrToForm(listBox_Employees, employeeArrNotInShift);
         }
 
@@ -241,29 +240,29 @@ namespace RecordStore_CarmellWasserman.UI
         private ShiftEmployeeArr FormToShiftEmployeeArr(Shift curShift)
         {
 
-            // יצירת אוסף המוצרים להזמנה מהטופס
-            // מייצרים זוגות של הזמנה-מוצר , ההזמנה - תמיד אותה הזמנה )הרי מדובר על הזמנה אחת(, המוצר - מגיע מרשימת המוצרים שנבחרו
+            // יצירת אוסף העובדים למשמרת מהטופס
+            // מייצרים זוגות של משמרת-עובד , המשמרת - תמיד אותה משמרת )הרי מדובר על משמרת אחת(, העובד - מגיע מרשימת העובדים שנבחרו
             ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
             /*/
-            יצירת אוסף הזוגות הזמנה -מוצר /*/
+            יצירת אוסף הזוגות משמרת -עובד /*/
             ShiftEmployee shiftEmployee;
 
-            //סורקים את כל הערכים בתיבת הרשימה של המוצרים שנבחרו להזמנה
+            //סורקים את כל הערכים בתיבת הרשימה של העובדים שנבחרו למשמרת
             for (int i = 0; i < listBox_InShiftEmployees.Items.Count; i++)
             {
                 shiftEmployee = new ShiftEmployee();
 
-                //ההזמנה הנוכחית היא ההזמנה לכל הזוגות באוסף
+                //המשמרת הנוכחית היא המשמרת לכל הזוגות באוסף
 
                 shiftEmployee.Shift = curShift;
 
-                //מוצר נוכחי לזוג הזמנה-מוצר
+                //עובד נוכחי לזוג משמרת-עובד
 
                 shiftEmployee.Employee = listBox_InShiftEmployees.Items[i] as Employee;
 
-                //כמות מוצר נוכחי לזוג הזמנה-מוצר
+                //כמות עובד נוכחי לזוג משמרת-עובד
 
-                //הוספת הזוג הזמנה -מוצר לאוסף
+                //הוספת הזוג משמרת -עובד לאוסף
 
                 shiftEmployeeArr.Add(shiftEmployee);
             }
@@ -327,11 +326,11 @@ namespace RecordStore_CarmellWasserman.UI
                 ShiftEmployeeArr shiftEmployeeArr_Old = new ShiftEmployeeArr();
                 shiftEmployeeArr_Old.Fill();
 
-                //סינון לפי ההזמנה הנוכחית
+                //סינון לפי המשמרת הנוכחית
 
                 shiftEmployeeArr_Old = shiftEmployeeArr_Old.FilterShift(m_Shift);
 
-                //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+                //מחיקת כל הפריטים באוסף המשמרת-פריט של המשמרת הנוכחית
 
                 shiftEmployeeArr_Old.Delete();
                 MessageBox.Show("Deleted");

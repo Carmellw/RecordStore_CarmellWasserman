@@ -205,7 +205,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (employee != null || employee.Id == -1)
+            if (employee != null)
             {
                 label_Id.Text = employee.Id.ToString();
                 textBox_FirstName.Text = employee.FirstName;

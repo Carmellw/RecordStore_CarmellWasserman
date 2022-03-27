@@ -208,7 +208,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (product != null || product.Id == -1)
+            if (product != null)
             {
                 label_Id.Text = product.Id.ToString();
                 comboBox_Category.SelectedValue = product.Category.Id;

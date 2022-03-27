@@ -128,7 +128,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (company != null || company.Id == -1)
+            if (company != null)
             {
                 label_Id.Text = company.Id.ToString();
                 textBox_Name.Text = company.Name;

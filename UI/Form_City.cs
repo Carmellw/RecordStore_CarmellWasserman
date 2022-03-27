@@ -131,7 +131,7 @@ namespace RecordStore_CarmellWasserman.UI
 
 
 
-            if (city != null || city.Id == -1 )
+            if (city != null )
             {
                 label_Id.Text = city.Id.ToString();
                 textBox_Name.Text = city.Name;

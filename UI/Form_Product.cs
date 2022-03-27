@@ -479,9 +479,7 @@ namespace RecordStore_CarmellWasserman
         private void comboBoxFilter_TextChanged(object sender, EventArgs e)
         {
             if (comboBox_CategoryFilter.SelectedItem as Category != null &&
-                comboBox_ArtistFilter.SelectedItem as Artist != null ||
-                (comboBox_CategoryFilter.SelectedItem as Category).Id > 0 &&
-                (comboBox_ArtistFilter.SelectedItem as Artist).Id > 0)
+                comboBox_ArtistFilter.SelectedItem as Artist != null)
             {
                 SetProductsByFilter();
             }

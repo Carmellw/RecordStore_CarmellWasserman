@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Employee : Form
     {
@@ -77,7 +77,14 @@ namespace RecordStore_CarmellWasserman
                     MessageBox.Show("Updated");
                 }
                 EmployeeArrToForm();
-
+                label_Id.Text = "0";
+                textBox_FirstName.Text = "";
+                textBox_LastName.Text = "";
+                textBox_PhoneNumber.Text = "";
+                textBox_HourlyWage.Text = "";
+                textBox_Email.Text = "";
+                textBox_Username.Text = "";
+                textBox_Password.Text = "";
             }
         }
 
@@ -338,5 +345,10 @@ namespace RecordStore_CarmellWasserman
             get => listBox_Employees.SelectedItem as Employee;
         }
 
+        private void button_EmployeeReport_Click(object sender, EventArgs e)
+        {
+            Form_EmployeeReport form_EmployeeReport = new Form_EmployeeReport();
+            form_EmployeeReport.ShowDialog();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     partial class Form_Client
     {
@@ -58,6 +58,7 @@ namespace RecordStore_CarmellWasserman
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.label_DateToday = new System.Windows.Forms.Label();
+            this.button_ClientReport = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox_Filter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -355,21 +356,32 @@ namespace RecordStore_CarmellWasserman
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(128, 35);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(331, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(280, 79);
             this.label_StoreName.TabIndex = 25;
-            this.label_StoreName.Text = "CLIENTS";
+            this.label_StoreName.Text = "Clients";
             // 
             // label_DateToday
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(465, 68);
+            this.label_DateToday.Location = new System.Drawing.Point(397, 68);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
             this.label_DateToday.TabIndex = 26;
             this.label_DateToday.Text = "label_DateToday";
             this.label_DateToday.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // button_ClientReport
+            // 
+            this.button_ClientReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ClientReport.Location = new System.Drawing.Point(1060, 35);
+            this.button_ClientReport.Name = "button_ClientReport";
+            this.button_ClientReport.Size = new System.Drawing.Size(92, 78);
+            this.button_ClientReport.TabIndex = 34;
+            this.button_ClientReport.Text = "report";
+            this.button_ClientReport.UseVisualStyleBackColor = true;
+            this.button_ClientReport.Click += new System.EventHandler(this.button_ClientReport_Click);
             // 
             // Form_Client
             // 
@@ -378,6 +390,7 @@ namespace RecordStore_CarmellWasserman
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1194, 1019);
+            this.Controls.Add(this.button_ClientReport);
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
@@ -428,6 +441,7 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Label label_StoreName;
         private System.Windows.Forms.Label label_DateToday;
         private System.Windows.Forms.Button button_ClearFilter;
+        private System.Windows.Forms.Button button_ClientReport;
     }
 }
 

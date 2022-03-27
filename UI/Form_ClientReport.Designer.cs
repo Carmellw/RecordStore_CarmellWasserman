@@ -29,15 +29,15 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_ClientReport));
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage_Citis = new System.Windows.Forms.TabPage();
+            this.tabPage_Cities = new System.Windows.Forms.TabPage();
             this.tabPage_ClientsOrders = new System.Windows.Forms.TabPage();
             this.listView_Clients = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,7 +48,7 @@ namespace RecordStore_CarmellWasserman.UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage_Citis.SuspendLayout();
+            this.tabPage_Cities.SuspendLayout();
             this.tabPage_ClientsOrders.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,10 +86,10 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(1154, 701);
@@ -98,7 +98,7 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage_Citis);
+            this.tabControl1.Controls.Add(this.tabPage_Cities);
             this.tabControl1.Controls.Add(this.tabPage_ClientsOrders);
             this.tabControl1.Location = new System.Drawing.Point(12, 104);
             this.tabControl1.Name = "tabControl1";
@@ -106,16 +106,16 @@ namespace RecordStore_CarmellWasserman.UI
             this.tabControl1.Size = new System.Drawing.Size(1170, 748);
             this.tabControl1.TabIndex = 38;
             // 
-            // tabPage_Citis
+            // tabPage_Cities
             // 
-            this.tabPage_Citis.Controls.Add(this.chart1);
-            this.tabPage_Citis.Location = new System.Drawing.Point(8, 39);
-            this.tabPage_Citis.Name = "tabPage_Citis";
-            this.tabPage_Citis.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Citis.Size = new System.Drawing.Size(1154, 701);
-            this.tabPage_Citis.TabIndex = 0;
-            this.tabPage_Citis.Text = "Citis";
-            this.tabPage_Citis.UseVisualStyleBackColor = true;
+            this.tabPage_Cities.Controls.Add(this.chart1);
+            this.tabPage_Cities.Location = new System.Drawing.Point(8, 39);
+            this.tabPage_Cities.Name = "tabPage_Cities";
+            this.tabPage_Cities.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Cities.Size = new System.Drawing.Size(1154, 701);
+            this.tabPage_Cities.TabIndex = 0;
+            this.tabPage_Cities.Text = "Cities";
+            this.tabPage_Cities.UseVisualStyleBackColor = true;
             // 
             // tabPage_ClientsOrders
             // 
@@ -194,7 +194,7 @@ namespace RecordStore_CarmellWasserman.UI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage_Citis.ResumeLayout(false);
+            this.tabPage_Cities.ResumeLayout(false);
             this.tabPage_ClientsOrders.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -208,7 +208,7 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage_Citis;
+        private System.Windows.Forms.TabPage tabPage_Cities;
         private System.Windows.Forms.TabPage tabPage_ClientsOrders;
         private System.Windows.Forms.ListView listView_Clients;
         private System.Windows.Forms.ColumnHeader columnHeader1;

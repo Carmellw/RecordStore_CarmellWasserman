@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Order : Form
     {
@@ -375,8 +375,7 @@ namespace RecordStore_CarmellWasserman
         }
         private void comboBoxFilter_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox_ClientFilter.SelectedItem as Client != null &&
-                (comboBox_ClientFilter.SelectedItem as Client).Id > 0)
+            if (comboBox_ClientFilter.SelectedItem as Client != null)
             {
                 SetOrdersByFilter();
             }
@@ -534,9 +533,7 @@ namespace RecordStore_CarmellWasserman
         private void comboBoxFilterProduct_TextChanged(object sender, EventArgs e)
         {
             if (comboBox_CategoryFilterProduct.SelectedItem as Category != null &&
-                comboBox_ArtistFilterProduct.SelectedItem as Artist != null ||
-                (comboBox_CategoryFilterProduct.SelectedItem as Category).Id > 0 &&
-                (comboBox_ArtistFilterProduct.SelectedItem as Artist).Id > 0)
+                comboBox_ArtistFilterProduct.SelectedItem as Artist != null)
             {
                 SetProductsByFilter();
             }
@@ -871,6 +868,11 @@ namespace RecordStore_CarmellWasserman
 
             label_Payment.Text = payment.ToString()+ "₪";
             
+        }
+        private void button_OrderReport_Click(object sender, EventArgs e)
+        {
+            Form_OrderReport form_OrderReport = new Form_OrderReport();
+            form_OrderReport.ShowDialog();
         }
     }
 }

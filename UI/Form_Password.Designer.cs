@@ -106,7 +106,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox_Filter);
             this.Name = "Form_Password";
-            this.Text = "Form_Password";
+            this.Text = "Log In";
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
             this.ResumeLayout(false);

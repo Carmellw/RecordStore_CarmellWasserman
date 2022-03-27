@@ -74,9 +74,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(129, 29);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(203, 79);
             this.label_StoreName.TabIndex = 37;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "Shift";
             // 
             // groupBox_Filter
             // 
@@ -297,7 +297,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.listBox_Employees);
             this.Name = "Form_ShiftAdd";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            this.Text = "Form_ShiftAdd";
+            this.Text = "Shift";
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
             this.groupBox2.ResumeLayout(false);

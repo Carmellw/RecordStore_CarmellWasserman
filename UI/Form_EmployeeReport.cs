@@ -238,6 +238,7 @@ namespace RecordStore_CarmellWasserman.UI
             textBox_PhoneNumberFilter.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
+            listView_Employees.Items.Clear();
             Employee p;
             ListViewItem listViewItem;
 
@@ -291,6 +292,7 @@ namespace RecordStore_CarmellWasserman.UI
             textBox_PhoneNumberFilterPassword.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
+            listView_EmployeesPassword.Items.Clear();
             Employee p;
             ListViewItem listViewItem;
 
@@ -311,7 +313,7 @@ namespace RecordStore_CarmellWasserman.UI
 
                 p.FirstName,digit+ p.PhoneNumber.ToString(), p.Email });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-                listView_Employees.Items.Add(listViewItem);
+                listView_EmployeesPassword.Items.Add(listViewItem);
             }
         }
 
@@ -344,6 +346,7 @@ namespace RecordStore_CarmellWasserman.UI
             textBox_PhoneNumberFilterPayment.Text);
             //מציבים בתיבת הרשימה את אוסף הלקוחות
 
+            listView_EmployeesPayment.Items.Clear();
             Employee p;
             ListViewItem listViewItem;
 
@@ -364,7 +367,7 @@ namespace RecordStore_CarmellWasserman.UI
 
                 p.FirstName,digit+ p.PhoneNumber.ToString(), p.Email });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-                listView_Employees.Items.Add(listViewItem);
+                listView_EmployeesPayment.Items.Add(listViewItem);
             }
         }
 

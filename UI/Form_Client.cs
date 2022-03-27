@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Client : Form
     {
@@ -21,12 +21,12 @@ namespace RecordStore_CarmellWasserman
             CityArrToForm();
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -34,13 +34,10 @@ namespace RecordStore_CarmellWasserman
                 e.KeyChar = char.MinValue;
             }
 
-
-
-
-
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -74,7 +71,6 @@ namespace RecordStore_CarmellWasserman
                 CityArrToForm();
             }
         }
-
         private bool CheckForm()
         {
 
@@ -131,6 +127,8 @@ namespace RecordStore_CarmellWasserman
             return flag;
         }
 
+
+        //המרות ללקוחות מהבי אל
         private Client FormToClient()
         {
             Client client = new Client();
@@ -147,9 +145,6 @@ namespace RecordStore_CarmellWasserman
             }
             return client;
         }
-
-
-
         private void ClientArrToForm()
         {
 
@@ -161,7 +156,45 @@ namespace RecordStore_CarmellWasserman
             listBox_Clients.ValueMember = "Id";
             listBox_Clients.DisplayMember = "";
         }
+        private void ClientToForm(Client client)
+        {
 
+            //ממירה את המידע בטנ "מ לקוח לטופס
+
+
+
+            if (client != null || client.Id == -1 )
+            {
+                label_Id.Text = client.Id.ToString();
+                textBox_FirstName.Text = client.FirstName;
+                textBox_LastName.Text = client.LastName;
+                if (client.PhoneNumber > 999999999)
+                {
+                    textBox_PhoneNumber.Text = client.PhoneNumber.ToString();
+                }
+                else
+                {
+                    textBox_PhoneNumber.Text = "0" + client.PhoneNumber.ToString();
+                }
+
+                if (client.City != null)
+                {
+                    comboBox_City.SelectedValue = client.City.Id;
+                }
+            }
+
+            else
+            {
+                label_Id.Text = "0";
+                textBox_FirstName.Text = "";
+                textBox_LastName.Text = "";
+                textBox_PhoneNumber.Text = "";
+                CityArrToForm();
+            }
+        }
+
+
+        //המרות לערים מהבי אל
         private void CityArrToForm(City curCity = null)
         {
 
@@ -194,49 +227,16 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
-        private void ClientToForm(Client client)
-        {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
-
-
-
-            if (client != null)
-            {
-                label_Id.Text = client.Id.ToString();
-                textBox_FirstName.Text = client.FirstName;
-                textBox_LastName.Text = client.LastName;
-                if (client.PhoneNumber > 999999999)
-                {
-                    textBox_PhoneNumber.Text = client.PhoneNumber.ToString();
-                }
-                else
-                {
-                    textBox_PhoneNumber.Text = "0" + client.PhoneNumber.ToString();
-                }
-                
-                if (client.City != null)
-                {
-                    comboBox_City.SelectedValue = client.City.Id;
-                }
-            }
-
-            else
-            {
-                label_Id.Text = "0";
-                textBox_FirstName.Text = "";
-                textBox_LastName.Text = "";
-                textBox_PhoneNumber.Text = "";
-                CityArrToForm();
-            }
-        }
-
+        //ליסט בוקס
         private void listBox_Clients_DoubleClick(object sender, EventArgs e)
         {
             Client client = listBox_Clients.SelectedItem as Client;
             ClientToForm(client);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
 
@@ -246,7 +246,6 @@ namespace RecordStore_CarmellWasserman
             textBox_PhoneNumber.Text = "";
             CityArrToForm();
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -257,6 +256,7 @@ namespace RecordStore_CarmellWasserman
         }
 
 
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Client client = FormToClient();
@@ -301,6 +301,8 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -327,13 +329,22 @@ namespace RecordStore_CarmellWasserman
 
         }
 
+
+        //פיתחת טפסים אחרים
         private void button_AddCity_Click(object sender, EventArgs e)
         {
             Form_City form_City = new Form_City();
             form_City.ShowDialog();
             CityArrToForm(form_City.SelectedCity);
         }
+        private void button_ClientReport_Click(object sender, EventArgs e)
+        {
+            Form_ClientReport form_ClientReport = new Form_ClientReport();
+            form_ClientReport.ShowDialog();
+        }
 
+
+        //לקוח להזמנה
         public Client SelectedClient
         {
             get => listBox_Clients.SelectedItem as Client;

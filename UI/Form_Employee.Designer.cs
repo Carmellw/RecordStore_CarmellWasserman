@@ -1,5 +1,5 @@
 ﻿
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     partial class Form_Employee
     {
@@ -63,6 +63,7 @@ namespace RecordStore_CarmellWasserman
             this.label_Id = new System.Windows.Forms.Label();
             this.save = new System.Windows.Forms.Button();
             this.listBox_Employees = new System.Windows.Forms.ListBox();
+            this.button_EmployeeReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox_Filter.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -72,7 +73,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(825, 73);
+            this.label_DateToday.Location = new System.Drawing.Point(566, 73);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -86,9 +87,9 @@ namespace RecordStore_CarmellWasserman
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(129, 40);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(441, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "Employees";
             // 
             // pictureBox1
             // 
@@ -423,6 +424,17 @@ namespace RecordStore_CarmellWasserman
             this.listBox_Employees.TabIndex = 27;
             this.listBox_Employees.DoubleClick += new System.EventHandler(this.listBox_Employees_DoubleClick);
             // 
+            // button_EmployeeReport
+            // 
+            this.button_EmployeeReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_EmployeeReport.Location = new System.Drawing.Point(1061, 40);
+            this.button_EmployeeReport.Name = "button_EmployeeReport";
+            this.button_EmployeeReport.Size = new System.Drawing.Size(92, 78);
+            this.button_EmployeeReport.TabIndex = 34;
+            this.button_EmployeeReport.Text = "report";
+            this.button_EmployeeReport.UseVisualStyleBackColor = true;
+            this.button_EmployeeReport.Click += new System.EventHandler(this.button_EmployeeReport_Click);
+            // 
             // Form_Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -430,6 +442,7 @@ namespace RecordStore_CarmellWasserman
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1194, 1082);
+            this.Controls.Add(this.button_EmployeeReport);
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
@@ -438,7 +451,7 @@ namespace RecordStore_CarmellWasserman
             this.Controls.Add(this.listBox_Employees);
             this.Name = "Form_Employee";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            this.Text = "Form_Employee";
+            this.Text = "Employees";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
@@ -485,5 +498,6 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.TextBox textBox_Username;
         private System.Windows.Forms.TextBox textBox_HourlyWage;
         private System.Windows.Forms.Label label_Password;
+        private System.Windows.Forms.Button button_EmployeeReport;
     }
 }

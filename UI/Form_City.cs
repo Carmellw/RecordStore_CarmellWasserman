@@ -16,27 +16,32 @@ namespace RecordStore_CarmellWasserman
         public Form_City(City city = null)
         {
             InitializeComponent();
-            
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-
-            //טעינת אוסף הישובים לרשימה בטופס
-
             CityArrToForm(city);
             CityToForm(city);
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
+
+
+
+
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -65,7 +70,6 @@ namespace RecordStore_CarmellWasserman
 
             }
         }
-
         private bool CheckForm()
         {
 
@@ -90,6 +94,8 @@ namespace RecordStore_CarmellWasserman
             return flag;
         }
 
+
+        //המרות לערים מהבי אל
         private City FormToCity()
         {
             City city = new City();
@@ -100,11 +106,10 @@ namespace RecordStore_CarmellWasserman
 
             return city;
         }
-
         private void CityArrToForm(City curCity = null)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף ערים לטופס
 
             CityArr cityArr = new CityArr();
             cityArr.Fill();
@@ -119,15 +124,14 @@ namespace RecordStore_CarmellWasserman
                 listBox_Cities.SelectedValue = curCity.Id;
             }
         }
-
         private void CityToForm(City city = null)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ עיר לטופס
 
 
 
-            if (city != null)
+            if (city != null || city.Id == -1 )
             {
                 label_Id.Text = city.Id.ToString();
                 textBox_Name.Text = city.Name;
@@ -142,19 +146,21 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Cities_DoubleClick(object sender, EventArgs e)
         {
             City city = listBox_Cities.SelectedItem as City;
             CityToForm(city);
         }
 
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             label_Id.Text = "0";
             textBox_Name.Text = "";
 
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -163,6 +169,8 @@ namespace RecordStore_CarmellWasserman
 
         }
 
+
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             City city = FormToCity();
@@ -174,7 +182,6 @@ namespace RecordStore_CarmellWasserman
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -207,6 +214,8 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -216,20 +225,21 @@ namespace RecordStore_CarmellWasserman
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל הערים
 
             CityArr cityArr = new CityArr();
             cityArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף הערים לפי שדות הסינון שרשם המשתמש
 
             cityArr = cityArr.Filter(id, textBox_NameFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף הערים
 
             listBox_Cities.DataSource = cityArr;
 
         }
 
+        //עיר ללקוח
         public City SelectedCity
         {
             get => listBox_Cities.SelectedItem as City;

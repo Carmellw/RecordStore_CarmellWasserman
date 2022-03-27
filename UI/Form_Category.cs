@@ -18,13 +18,11 @@ namespace RecordStore_CarmellWasserman
             InitializeComponent();
 
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-
-            //טעינת אוסף הישובים לרשימה בטופס
-
             CategoryArrToForm(category);
             CategoryToForm(category);
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -33,10 +31,15 @@ namespace RecordStore_CarmellWasserman
 
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -49,13 +52,13 @@ namespace RecordStore_CarmellWasserman
             {
                 Category category = FormToCategory();
 
-                if (label_Id.Text == "0")
+                if (label_Id.Text == "0")//שמירת חדש
                 {
                     category.Insert();
                     MessageBox.Show("Saved");
                 }
 
-                else
+                else//עדכון
                 {
                     category.Update();
                     MessageBox.Show("Updated");
@@ -84,13 +87,11 @@ namespace RecordStore_CarmellWasserman
             else
                 label_Name.ForeColor = Color.Black;
 
-
-
-
-
             return flag;
         }
 
+
+        //המרות לקטגוריות מהבי אל
         private Category FormToCategory()
         {
             Category category = new Category();
@@ -105,16 +106,13 @@ namespace RecordStore_CarmellWasserman
         private void CategoryArrToForm(Category curCategory = null)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף קטגוריות לטופס
 
             CategoryArr categoryArr = new CategoryArr();
             categoryArr.Fill();
             listBox_Categories.DataSource = categoryArr;
             listBox_Categories.ValueMember = "Id";
             listBox_Categories.DisplayMember = "Name";
-
-            //אם נשלח לפעולה ישוב ,הצבתו בתיבת הבחירה של ישובים בטופס
-
             if (curCategory != null)
             {
                 listBox_Categories.SelectedValue = curCategory.Id;
@@ -124,11 +122,11 @@ namespace RecordStore_CarmellWasserman
         private void CategoryToForm(Category category = null)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ קטגוריה לטופס
 
 
 
-            if (category != null)
+            if (category != null || category.Id == -1)
             {
                 label_Id.Text = category.Id.ToString();
                 textBox_Name.Text = category.Name;
@@ -143,12 +141,15 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Categories_DoubleClick(object sender, EventArgs e)
         {
             Category category = listBox_Categories.SelectedItem as Category;
             CategoryToForm(category);
         }
 
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             label_Id.Text = "0";
@@ -164,6 +165,7 @@ namespace RecordStore_CarmellWasserman
 
         }
 
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Category category = FormToCategory();
@@ -175,7 +177,6 @@ namespace RecordStore_CarmellWasserman
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -183,8 +184,8 @@ namespace RecordStore_CarmellWasserman
                 {
                     category = FormToCategory();
 
-                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
-                    //בדיקה עבור לקוחות
+                    //לפני המחיקה - בדיקה שהקטגוריה לא בשימוש בישויות אחרות
+                    //בדיקה עבור מוצרים
 
                     ProductArr productArr = new ProductArr();
                     productArr.Fill();
@@ -208,6 +209,7 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -217,15 +219,15 @@ namespace RecordStore_CarmellWasserman
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל הקטגוריות
 
             CategoryArr categoryArr = new CategoryArr();
             categoryArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף הקטגוריות לפי שדות הסינון שרשם המשתמש
 
             categoryArr = categoryArr.Filter(id, textBox_NameFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף הקטגוריות
 
             listBox_Categories.DataSource = categoryArr;
 

@@ -200,8 +200,8 @@ namespace RecordStore_CarmellWasserman.UI
         }
         private void comboBoxFilter_TextChanged(object sender, EventArgs e)
         {
-            if (comboBox_ClientFilter.SelectedItem as Client != null &&
-                (comboBox_ClientFilter.SelectedItem as Client).Id > 0)
+            if (comboBox_ClientFilter.SelectedItem as Client != null)
+                
             {
                 SetOrdersByFilter();
             }

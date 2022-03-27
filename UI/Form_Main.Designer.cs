@@ -162,7 +162,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.label_Order);
             this.Name = "Form_Main";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 60);
-            this.Text = "Form_Main";
+            this.Text = "Main";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

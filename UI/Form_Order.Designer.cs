@@ -1,5 +1,5 @@
 ﻿
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     partial class Form_Order
     {
@@ -76,6 +76,7 @@ namespace RecordStore_CarmellWasserman
             this.label_IdClient = new System.Windows.Forms.Label();
             this.listBox_Clients = new System.Windows.Forms.ListBox();
             this.tabPage_OrderItems = new System.Windows.Forms.TabPage();
+            this.label_Payment = new System.Windows.Forms.Label();
             this.listBox_InOrderProductsCount = new System.Windows.Forms.ListBox();
             this.button_Minus = new System.Windows.Forms.Button();
             this.button_Plus = new System.Windows.Forms.Button();
@@ -97,7 +98,7 @@ namespace RecordStore_CarmellWasserman
             this.button_Clear = new System.Windows.Forms.Button();
             this.button_Delete = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label_Payment = new System.Windows.Forms.Label();
+            this.button_OrderReport = new System.Windows.Forms.Button();
             this.tabControl_Order.SuspendLayout();
             this.tabPage_OrderDetails.SuspendLayout();
             this.groupBox_Filter.SuspendLayout();
@@ -614,6 +615,14 @@ namespace RecordStore_CarmellWasserman
             this.tabPage_OrderItems.TabIndex = 2;
             this.tabPage_OrderItems.Text = "Order Items";
             // 
+            // label_Payment
+            // 
+            this.label_Payment.BackColor = System.Drawing.Color.White;
+            this.label_Payment.Location = new System.Drawing.Point(590, 847);
+            this.label_Payment.Name = "label_Payment";
+            this.label_Payment.Size = new System.Drawing.Size(437, 60);
+            this.label_Payment.TabIndex = 35;
+            // 
             // listBox_InOrderProductsCount
             // 
             this.listBox_InOrderProductsCount.FormattingEnabled = true;
@@ -839,13 +848,16 @@ namespace RecordStore_CarmellWasserman
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // label_Payment
+            // button_OrderReport
             // 
-            this.label_Payment.BackColor = System.Drawing.Color.White;
-            this.label_Payment.Location = new System.Drawing.Point(590, 847);
-            this.label_Payment.Name = "label_Payment";
-            this.label_Payment.Size = new System.Drawing.Size(437, 60);
-            this.label_Payment.TabIndex = 35;
+            this.button_OrderReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_OrderReport.Location = new System.Drawing.Point(1132, 37);
+            this.button_OrderReport.Name = "button_OrderReport";
+            this.button_OrderReport.Size = new System.Drawing.Size(92, 78);
+            this.button_OrderReport.TabIndex = 34;
+            this.button_OrderReport.Text = "report";
+            this.button_OrderReport.UseVisualStyleBackColor = true;
+            this.button_OrderReport.Click += new System.EventHandler(this.button_OrderReport_Click);
             // 
             // Form_Order
             // 
@@ -854,6 +866,7 @@ namespace RecordStore_CarmellWasserman
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1244, 1189);
+            this.Controls.Add(this.button_OrderReport);
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
@@ -955,5 +968,6 @@ namespace RecordStore_CarmellWasserman
         private System.Windows.Forms.Button button_Plus;
         private System.Windows.Forms.ListBox listBox_InOrderProductsCount;
         private System.Windows.Forms.Label label_Payment;
+        private System.Windows.Forms.Button button_OrderReport;
     }
 }

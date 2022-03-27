@@ -119,7 +119,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_Order);
             this.Name = "Form_Report";
-            this.Text = "Form_Report";
+            this.Text = "Reports";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -81,9 +81,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(113, 21);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(287, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(239, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "SHIFTS";
+            this.label_StoreName.Text = "Shifts";
             // 
             // label_Sunday
             // 

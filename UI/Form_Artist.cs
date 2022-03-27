@@ -16,27 +16,28 @@ namespace RecordStore_CarmellWasserman.UI
         public Form_Artist(Artist artist = null)
         {
             InitializeComponent();
-
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-
-            //טעינת אוסף הישובים לרשימה בטופס
-
             ArtistArrToForm(artist);
             ArtistToForm(artist);
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -50,13 +51,13 @@ namespace RecordStore_CarmellWasserman.UI
                 MessageBox.Show("All Fields OK");
                 Artist artist = FormToArtist();
 
-                if (label_Id.Text == "0")
+                if (label_Id.Text == "0")//שמירה חדש
                 {
                     artist.Insert();
                     MessageBox.Show("Saved");
                 }
 
-                else
+                else//עדכון
                 {
                     artist.Update();
                     MessageBox.Show("Updated");
@@ -67,7 +68,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             }
         }
-
         private bool CheckForm()
         {
 
@@ -85,51 +85,42 @@ namespace RecordStore_CarmellWasserman.UI
             else
                 label_Name.ForeColor = Color.Black;
 
-
-
-
-
             return flag;
         }
 
-        private Artist FormToArtist()
+
+        //המרות לאמנים מהבי אל
+        private Artist FormToArtist()//מכניס פרטים של אמן לטופס 
         {
             Artist artist = new Artist();
             artist.Name = textBox_Name.Text;
             artist.Id = int.Parse(label_Id.Text);
             //בדיקה האם יש ערך בשדה להמרה
-
-
             return artist;
         }
-
         private void ArtistArrToForm(Artist curArtist = null)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף אמנים לטופס
 
             ArtistArr artistArr = new ArtistArr();
             artistArr.Fill();
             listBox_Artists.DataSource = artistArr;
             listBox_Artists.ValueMember = "Id";
             listBox_Artists.DisplayMember = "Name";
-
-            //אם נשלח לפעולה ישוב ,הצבתו בתיבת הבחירה של ישובים בטופס
-
             if (curArtist != null)
             {
                 listBox_Artists.SelectedValue = curArtist.Id;
             }
-        }
-
+        } 
         private void ArtistToForm(Artist artist = null)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ אמן לטופס
 
 
 
-            if (artist != null)
+            if (artist != null || artist.Id == -1)
             {
                 label_Id.Text = artist.Id.ToString();
                 textBox_Name.Text = artist.Name;
@@ -144,19 +135,22 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Artists_DoubleClick(object sender, EventArgs e)
         {
             Artist artist = listBox_Artists.SelectedItem as Artist;
             ArtistToForm(artist);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             label_Id.Text = "0";
             textBox_Name.Text = "";
 
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -165,6 +159,8 @@ namespace RecordStore_CarmellWasserman.UI
 
         }
 
+
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Artist artist = FormToArtist();
@@ -176,7 +172,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -184,8 +179,8 @@ namespace RecordStore_CarmellWasserman.UI
                 {
                     artist = FormToArtist();
 
-                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
-                    //בדיקה עבור לקוחות
+                    //לפני המחיקה - בדיקה שהאמן לא בשימוש בישויות אחרות
+                    //בדיקה עבור מוצרים
 
                     ProductArr productArr = new ProductArr();
                     productArr.Fill();
@@ -209,6 +204,8 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -218,20 +215,22 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל האמנים
 
             ArtistArr artistArr = new ArtistArr();
             artistArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף האמנים לפי שדות הסינון שרשם המשתמש
 
             artistArr = artistArr.Filter(id, textBox_NameFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף האמנים
 
             listBox_Artists.DataSource = artistArr;
 
         }
 
+
+        //אמן למוצר
         public Artist SelectedArtist
         {
             get => listBox_Artists.SelectedItem as Artist;

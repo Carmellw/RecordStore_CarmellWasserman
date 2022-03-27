@@ -16,27 +16,28 @@ namespace RecordStore_CarmellWasserman
         public Form_Genre(Genre genre = null)
         {
             InitializeComponent();
-
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-
-            //טעינת אוסף הישובים לרשימה בטופס
-
             GenreArrToForm(genre);
             GenreToForm(genre);
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -66,7 +67,6 @@ namespace RecordStore_CarmellWasserman
                 textBox_Name.Text = "";
             }
         }
-
         private bool CheckForm()
         {
 
@@ -91,6 +91,8 @@ namespace RecordStore_CarmellWasserman
             return flag;
         }
 
+
+        //המרות לגאנרים מהבי אל
         private Genre FormToGenre()
         {
             Genre genre = new Genre();
@@ -101,11 +103,10 @@ namespace RecordStore_CarmellWasserman
 
             return genre;
         }
-
         private void GenreArrToForm(Genre curGenre = null)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף גאנרים לטופס
 
             GenreArr genreArr = new GenreArr();
             genreArr.Fill();
@@ -113,22 +114,21 @@ namespace RecordStore_CarmellWasserman
             listBox_Genres.ValueMember = "Id";
             listBox_Genres.DisplayMember = "Name";
 
-            //אם נשלח לפעולה ישוב ,הצבתו בתיבת הבחירה של ישובים בטופס
+            //אם נשלח לפעולה גאנר ,הצבתו בתיבת הבחירה של גאנרים בטופס
 
             if (curGenre != null)
             {
                 listBox_Genres.SelectedValue = curGenre.Id;
             }
         }
-
         private void GenreToForm(Genre genre = null)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ גאנר לטופס
 
 
 
-            if (genre != null)
+            if (genre != null || genre.Id == -1 )
             {
                 label_Id.Text = genre.Id.ToString();
                 textBox_Name.Text = genre.Name;
@@ -143,19 +143,22 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Genres_DoubleClick(object sender, EventArgs e)
         {
             Genre genre = listBox_Genres.SelectedItem as Genre;
             GenreToForm(genre);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             label_Id.Text = "0";
             textBox_Name.Text = "";
 
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -164,6 +167,8 @@ namespace RecordStore_CarmellWasserman
 
         }
 
+
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Genre genre = FormToGenre();
@@ -175,7 +180,6 @@ namespace RecordStore_CarmellWasserman
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -183,8 +187,8 @@ namespace RecordStore_CarmellWasserman
                 {
                     genre = FormToGenre();
 
-                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
-                    //בדיקה עבור לקוחות
+                    //לפני המחיקה - בדיקה שהגאנר לא בשימוש בישויות אחרות
+                    //בדיקה עבור מוצרים
 
                     ProductArr productArr = new ProductArr();
                     productArr.Fill();
@@ -208,6 +212,8 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -217,20 +223,22 @@ namespace RecordStore_CarmellWasserman
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל הגאנרים
 
             GenreArr genreArr = new GenreArr();
             genreArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף הגאנרים לפי שדות הסינון שרשם המשתמש
 
             genreArr = genreArr.Filter(id, textBox_NameFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף הגאנרים
 
             listBox_Genres.DataSource = genreArr;
 
         }
 
+
+        //גאנר למוצר
         public Genre SelectedGenre
         {
             get => listBox_Genres.SelectedItem as Genre;

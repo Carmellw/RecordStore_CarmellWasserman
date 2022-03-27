@@ -80,7 +80,7 @@ namespace RecordStore_CarmellWasserman
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(679, 69);
+            this.label_DateToday.Location = new System.Drawing.Point(371, 69);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -94,9 +94,9 @@ namespace RecordStore_CarmellWasserman
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(126, 36);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(556, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(239, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "RECORDLAND";
+            this.label_StoreName.Text = "Stock";
             // 
             // groupBox_Filter
             // 
@@ -526,7 +526,7 @@ namespace RecordStore_CarmellWasserman
             this.Controls.Add(this.listBox_Products);
             this.Name = "Form_Product";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            this.Text = "Form_Product";
+            this.Text = "Stock";
             this.groupBox_Filter.ResumeLayout(false);
             this.groupBox_Filter.PerformLayout();
             this.groupBox2.ResumeLayout(false);

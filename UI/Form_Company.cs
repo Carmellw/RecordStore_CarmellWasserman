@@ -16,27 +16,28 @@ namespace RecordStore_CarmellWasserman
         public Form_Company(Company company = null)
         {
             InitializeComponent();
-
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-
-            //טעינת אוסף הישובים לרשימה בטופס
-
             CompanyArrToForm(company);
             CompanyToForm(company);
         }
 
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -67,7 +68,6 @@ namespace RecordStore_CarmellWasserman
 
             }
         }
-
         private bool CheckForm()
         {
 
@@ -92,6 +92,7 @@ namespace RecordStore_CarmellWasserman
             return flag;
         }
 
+        //המרות לחברות מהבי אל
         private Company FormToCompany()
         {
             Company company = new Company();
@@ -102,11 +103,10 @@ namespace RecordStore_CarmellWasserman
 
             return company;
         }
-
         private void CompanyArrToForm(Company curCompany = null)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף חברות לטופס
 
             CompanyArr companyArr = new CompanyArr();
             companyArr.Fill();
@@ -114,22 +114,21 @@ namespace RecordStore_CarmellWasserman
             listBox_Companies.ValueMember = "Id";
             listBox_Companies.DisplayMember = "Name";
 
-            //אם נשלח לפעולה ישוב ,הצבתו בתיבת הבחירה של ישובים בטופס
+            //אם נשלח לפעולה חברה ,הצבתו בתיבת הבחירה של חברהים בטופס
 
             if (curCompany != null)
             {
                 listBox_Companies.SelectedValue = curCompany.Id;
             }
         }
-
         private void CompanyToForm(Company company = null)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ חברה לטופס
 
 
 
-            if (company != null)
+            if (company != null || company.Id == -1)
             {
                 label_Id.Text = company.Id.ToString();
                 textBox_Name.Text = company.Name;
@@ -144,19 +143,22 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Companies_DoubleClick(object sender, EventArgs e)
         {
             Company company = listBox_Companies.SelectedItem as Company;
             CompanyToForm(company);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             label_Id.Text = "0";
             textBox_Name.Text = "";
 
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -165,6 +167,8 @@ namespace RecordStore_CarmellWasserman
 
         }
 
+
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Company company = FormToCompany();
@@ -176,7 +180,6 @@ namespace RecordStore_CarmellWasserman
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -184,8 +187,8 @@ namespace RecordStore_CarmellWasserman
                 {
                     company = FormToCompany();
 
-                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
-                    //בדיקה עבור לקוחות
+                    //לפני המחיקה - בדיקה שהחברה לא בשימוש בישויות אחרות
+                    //בדיקה עבור מוצרים
 
                     ProductArr productArr = new ProductArr();
                     productArr.Fill();
@@ -209,6 +212,8 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -218,20 +223,21 @@ namespace RecordStore_CarmellWasserman
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל החברות
 
             CompanyArr companyArr = new CompanyArr();
             companyArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף החברות לפי שדות הסינון שרשם המשתמש
 
             companyArr = companyArr.Filter(id, textBox_NameFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף החברות
 
             listBox_Companies.DataSource = companyArr;
 
         }
 
+        //חברה למוצר
         public Company SelectedCompany
         {
             get => listBox_Companies.SelectedItem as Company;

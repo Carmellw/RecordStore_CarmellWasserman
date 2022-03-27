@@ -70,9 +70,9 @@ namespace RecordStore_CarmellWasserman
             this.label_StoreName.Font = new System.Drawing.Font("Aharoni", 30F, System.Drawing.FontStyle.Bold);
             this.label_StoreName.Location = new System.Drawing.Point(126, 27);
             this.label_StoreName.Name = "label_StoreName";
-            this.label_StoreName.Size = new System.Drawing.Size(254, 79);
+            this.label_StoreName.Size = new System.Drawing.Size(233, 79);
             this.label_StoreName.TabIndex = 31;
-            this.label_StoreName.Text = "CITIES";
+            this.label_StoreName.Text = "Cities";
             // 
             // groupBox_Filter
             // 

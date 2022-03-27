@@ -18,6 +18,8 @@ namespace RecordStore_CarmellWasserman.UI
         {
             InitializeComponent();
             label_DateToday.Text = DateTime.Now.ToLongDateString();
+
+            //הכנסה לטופס פרטים
             OrderArrToForm();
             ClientArrToForm(comboBox_Client, true);
             ClientArrToForm(comboBox_ClientFilter, false);
@@ -25,6 +27,8 @@ namespace RecordStore_CarmellWasserman.UI
             filterDate = false;
             dateTimePicker_FromDateFilter.Value = DateTime.Now;
             dateTimePicker_ToDateFilter.Value = DateTime.Now;
+
+            //הכנסה לטופס מוצרים
             ProductArrToForm(listBox_Products);
             ClientArrToForm();
             CategoryArrToForm(comboBox_CategoryFilterProduct, false);
@@ -32,18 +36,24 @@ namespace RecordStore_CarmellWasserman.UI
 
         }
 
+
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
 
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -125,7 +135,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             }
         }
-
         private bool CheckForm()
         {
 
@@ -155,6 +164,8 @@ namespace RecordStore_CarmellWasserman.UI
             return flag;
         }
 
+
+        //המרות לעזמנות מהבי אל
         private Order FormToOrder()
         {
             Order order = new Order();
@@ -166,11 +177,10 @@ namespace RecordStore_CarmellWasserman.UI
 
             return order;
         }
-
         private void OrderArrToForm()
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף הזמנות לטופס
 
             OrderArr orderArr = new OrderArr();
             orderArr.Fill();
@@ -178,52 +188,10 @@ namespace RecordStore_CarmellWasserman.UI
             listBox_Orders.ValueMember = "Id";
             listBox_Orders.DisplayMember = "";
         }
-
-        private void ClientArrToForm(ComboBox comboBox, bool isMustChoose, Client curClient = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            ClientArr clientArr = new ClientArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Client clientDefault = new Client();
-            clientDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                clientDefault.FirstName = "Choose a client";
-                clientDefault.LastName = "";
-            }
-            else
-            {
-                clientDefault.FirstName = "All clients";
-                clientDefault.LastName = "";
-            }
-
-            clientArr.Add(clientDefault);
-            clientArr.Fill();
-            comboBox.DataSource = clientArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "";
-
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            clientArr.Add(clientDefault);
-
-
-            if (curClient != null)
-            {
-                comboBox_Client.SelectedValue = curClient.Id;
-            }
-        }
-
         private void OrderToForm(Order order)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ הזמנה לטופס
 
 
 
@@ -247,6 +215,238 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //המרות מוצרים מהבי אל
+        private void ProductArrToForm(ListBox listBox, ProductArr productArr = null)
+        {
+
+            //מקבלת אוסף פריטים ותיבת רשימה לפריטים ומציבה את האוסף בתוך התיבה
+            //אם האוסף ריק - מייצרת אוסף חדש מלא בכל הערכים מהטבלה
+
+            listBox.DataSource = null;
+            if (productArr == null)
+            {
+                productArr = new ProductArr();
+                productArr.Fill();
+            }
+            listBox.DataSource = productArr;
+
+        }
+        private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
+        {
+
+            //ממירה את הטנ "מ אוסף קטגוריות לטופס
+
+            CategoryArr categoryArr = new CategoryArr();
+
+            //הוספת קטגוריה ברירת מחדל - בחר קטגוריה
+            //יצירת מופע חדש של קטגוריה עם מזהה מינוס 1 ושם מתאים
+
+            Category categoryDefault = new Category();
+            categoryDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                categoryDefault.Name = "Choose a category";
+            }
+            else
+            {
+                categoryDefault.Name = "All categories";
+            }
+
+            categoryArr.Add(categoryDefault);
+            categoryArr.Fill();
+            comboBox.DataSource = categoryArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+
+            //הוספת הקטגוריה לאוסף הקטגוריות - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            categoryArr.Add(categoryDefault);
+
+
+            if (curCategory != null)
+            {
+                comboBox_CategoryFilterProduct.SelectedValue = curCategory.Id;
+            }
+        }
+        private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
+        {
+
+            //ממירה את הטנ "מ אוסף אמנים לטופס
+
+            ArtistArr artistArr = new ArtistArr();
+
+            //הוספת אמן ברירת מחדל - בחר אמן
+            //יצירת מופע חדש של אמן עם מזהה מינוס 1 ושם מתאים
+
+            Artist artistDefault = new Artist();
+            artistDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                artistDefault.Name = "Choose a artist";
+            }
+            else
+                artistDefault.Name = "All artists";
+            artistArr.Add(artistDefault);
+            artistArr.Fill();
+            comboBox.DataSource = artistArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+            //הוספת האמן לאוסף האמנים - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            artistArr.Add(artistDefault);
+
+
+            if (curArtist != null)
+            {
+                comboBox_ArtistFilterProduct.SelectedValue = curArtist.Id;
+            }
+
+
+        }
+
+
+        //המרות הזמנה-מוצר מהבי אל
+        private OrderProductArr FormToOrderProductArr(Order curOrder = null)
+        {
+
+            // יצירת אוסף המוצרים להזמנה מהטופס
+            // מייצרים זוגות של הזמנה-מוצר , ההזמנה - תמיד אותה הזמנה )הרי מדובר על הזמנה אחת(, המוצר - מגיע מרשימת המוצרים שנבחרו
+            OrderProductArr orderProductArr = new OrderProductArr();
+            /*/
+            יצירת אוסף הזוגות הזמנה -מוצר /*/
+            OrderProduct orderProduct;
+
+            //סורקים את כל הערכים בתיבת הרשימה של המוצרים שנבחרו להזמנה
+            for (int i = 0; i < listBox_InOrderProducts.Items.Count; i++)
+            {
+                orderProduct = new OrderProduct();
+
+                //ההזמנה הנוכחית היא ההזמנה לכל הזוגות באוסף
+
+                orderProduct.Order = curOrder;
+
+                //מוצר נוכחי לזוג הזמנה-מוצר
+
+                orderProduct.Product = listBox_InOrderProducts.Items[i] as Product;
+
+                //כמות מוצר נוכחי לזוג הזמנה-מוצר
+                orderProduct.Count = (int)listBox_InOrderProductsCount.Items[i];
+
+                //הוספת הזוג הזמנה -מוצר לאוסף
+
+                orderProductArr.Add(orderProduct);
+            }
+            return orderProductArr;
+        }
+        private void ProductArrCountToForm(OrderProductArr curOrderproductArr)
+        {
+            listBox_InOrderProductsCount.Items.Clear();
+            for (int i = 0; i < curOrderproductArr.Count; i++)
+            {
+                listBox_InOrderProductsCount.Items.Add(
+                (curOrderproductArr[i] as OrderProduct).Count);
+            }
+
+            //כדי לסמן את השורה הראשונה ישר בהתחלה )אם יש כזאת(
+
+            if (listBox_InOrderProductsCount.Items.Count > 0)
+                listBox_InOrderProductsCount.SelectedIndex = 0;
+        }
+
+
+        //המרות לקוחות מהבי אל
+
+        private void ClientArrToForm(ComboBox comboBox, bool isMustChoose, Client curClient = null)
+        {
+
+            //ממירה את הטנ "מ אוסף לקוחות לטופס
+
+            ClientArr clientArr = new ClientArr();
+
+            //הוספת לקוח ברירת מחדל - בחר לקוח
+            //יצירת מופע חדש של לקוח עם מזהה מינוס 1 ושם מתאים
+
+            Client clientDefault = new Client();
+            clientDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                clientDefault.FirstName = "Choose a client";
+                clientDefault.LastName = "";
+            }
+            else
+            {
+                clientDefault.FirstName = "All clients";
+                clientDefault.LastName = "";
+            }
+
+            clientArr.Add(clientDefault);
+            clientArr.Fill();
+            comboBox.DataSource = clientArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "";
+
+            //הוספת הלקוח לאוסף הלקוחות - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            clientArr.Add(clientDefault);
+
+
+            if (curClient != null)
+            {
+                comboBox_Client.SelectedValue = curClient.Id;
+            }
+        }
+        private void ClientToForm(Client client)
+        {
+
+            //ממירה את המידע בטנ "מ לקוח לטופס
+
+
+
+            if (client != null)
+            {
+                label_IdClient.Text = client.Id.ToString();
+                label_FirstNameClient.Text = client.FirstName;
+                label_LastNameClient.Text = client.LastName;
+                if (client.PhoneNumber > 999999999)
+                {
+                    label_PhoneNumberClient.Text = client.PhoneNumber.ToString();
+                }
+                else
+                {
+                    label_PhoneNumberClient.Text = "0" + client.PhoneNumber.ToString();
+                }
+
+                label_CityClient.Text = client.City.Name.ToString();
+
+            }
+
+            else
+            {
+                label_Id.Text = "";
+                label_FirstNameClient.Text = "";
+                label_LastNameClient.Text = "";
+                label_PhoneNumberClient.Text = "";
+                label_CityClient.Text = "";
+
+            }
+        }
+        private void ClientArrToForm()
+        {
+
+            //ממירה את הטנ "מ אוסף לקוחות לטופס
+
+            ClientArr clientArr = new ClientArr();
+            clientArr.Fill();
+            listBox_Clients.DataSource = clientArr;
+            listBox_Clients.ValueMember = "Id";
+            listBox_Clients.DisplayMember = "";
+        }
+
+        //ליסט בוקס
         private void listBox_Orders_DoubleClick(object sender, EventArgs e)
         {
             Order order = listBox_Orders.SelectedItem as Order;
@@ -293,194 +493,24 @@ namespace RecordStore_CarmellWasserman.UI
             ProductArrCountToForm(orderProductArr);
             PaymentToForm();
         }
-
         private void listBox_Products_DoubleClick(object sender, EventArgs e)
         {
             Product product = listBox_Products.SelectedItem as Product;
             MoveSelectedProductBetweenListBox(listBox_Products, listBox_InOrderProducts, true);
             PaymentToForm();
-        }
-
-        private void clear_Click(object sender, EventArgs e)
+        }        
+        private void listBox_Clients_DoubleClick(object sender, EventArgs e)
         {
-
-            label_Id.Text = "0";
-            richTextBox_Note.Text = "";
-            dateTimePicker_Date.Value = DateTime.Now;
-            ClientArrToForm(comboBox_Client, true);
-            listBox_InOrderProducts.DataSource = null;
-            listBox_InOrderProductsCount.Items.Clear();
-            ProductArrToForm(listBox_Products);
-            PaymentToForm();
-
+            Client client = listBox_Clients.SelectedItem as Client;
+            ClientToForm(client);
         }
-
-        private void clearFilter_Click(object sender, EventArgs e)
+        private void listBox_InOrderProducts_Click(object sender, EventArgs e)
         {
-            textBox_IdFilter.Text = "";
-            ClientArrToForm(comboBox_ClientFilter, false);
-            filterDate = false;
-            dateTimePicker_FromDateFilter.Value = DateTime.Now;
-            dateTimePicker_ToDateFilter.Value = DateTime.Now;
-            OrderArrToForm();
-
+            listBox_InOrderProductsCount.SelectedIndex = listBox_InOrderProducts.SelectedIndex;
         }
-
-
-        private void button_Delete_Click(object sender, EventArgs e)
+        private void listBox_InOrderProductsCount_Click(object sender, EventArgs e)
         {
-            Order order = FormToOrder();
-            if (order.Id == 0)
-            {
-                MessageBox.Show("You need to choose a order");
-            }
-            else
-
-            {
-
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
-                if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
-                MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
-                System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (order.Delete())
-                    {
-                        OrderProductArr orderProductArr_Old = new OrderProductArr();
-                        orderProductArr_Old.Fill();
-
-                        //סינון לפי ההזמנה הנוכחית
-
-                        orderProductArr_Old = orderProductArr_Old.FilterOrder(order);
-
-                        //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
-
-                        orderProductArr_Old.Delete();
-                        MessageBox.Show("Deleted");
-                    }
-
-                    else
-                    {
-                        MessageBox.Show("Not Deleted");
-                    }
-                    OrderToForm(null);
-                    OrderArrToForm();
-                }
-            }
-        }
-
-        private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
-        {
-            SetOrdersByFilter();
-        }
-        private void comboBoxFilter_TextChanged(object sender, EventArgs e)
-        {
-            if (comboBox_ClientFilter.SelectedItem as Client != null)
-            {
-                SetOrdersByFilter();
-            }
-
-        }
-
-        private void dateTimePicker_DateFilter_ValueChanged(object sender, EventArgs e)
-        {
-            if (filterDate)
-            {
-                SetOrdersByFilter();
-            }
-        }
-
-
-        private void SetOrdersByFilter()
-        {
-            int id = 0;
-            //מייצרים אוסף של כלל המוצרים
-            if (textBox_IdFilter.Text != "")
-                id = int.Parse(textBox_IdFilter.Text);
-
-            DateTime fromDate = DateTime.MinValue;
-            DateTime toDate = DateTime.MaxValue;
-            if (filterDate)
-            {
-                fromDate = dateTimePicker_FromDateFilter.Value;
-                toDate = dateTimePicker_ToDateFilter.Value;
-            }
-
-
-            OrderArr orderArr = new OrderArr();
-            orderArr.Fill();
-
-            //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
-
-            orderArr = orderArr.Filter(id,
-            comboBox_ClientFilter.SelectedItem as Client,
-            fromDate,
-            toDate
-            );
-
-            //מציבים בתיבת הרשימה את אוסף המוצרים
-
-            listBox_Orders.DataSource = orderArr;
-        }
-
-        private void button_AddClient_Click(object sender, EventArgs e)
-        {
-            Form_Client form_Client = new Form_Client();
-            form_Client.ShowDialog();
-            ClientArrToForm(comboBox_Client, true, form_Client.SelectedClient);
-        }
-
-        public Order SelectedOrder
-        {
-            get => listBox_Orders.SelectedItem as Order;
-        }
-
-        private void ProductArrToForm(ListBox listBox, ProductArr productArr = null)
-        {
-
-            //מקבלת אוסף פריטים ותיבת רשימה לפריטים ומציבה את האוסף בתוך התיבה
-            //אם האוסף ריק - מייצרת אוסף חדש מלא בכל הערכים מהטבלה
-
-            listBox.DataSource = null;
-            if (productArr == null)
-            {
-                productArr = new ProductArr();
-                productArr.Fill();
-            }
-            listBox.DataSource = productArr;
-
-        }
-        private OrderProductArr FormToOrderProductArr(Order curOrder = null)
-        {
-            
-            // יצירת אוסף המוצרים להזמנה מהטופס
-            // מייצרים זוגות של הזמנה-מוצר , ההזמנה - תמיד אותה הזמנה )הרי מדובר על הזמנה אחת(, המוצר - מגיע מרשימת המוצרים שנבחרו
-            OrderProductArr orderProductArr = new OrderProductArr();
-            /*/
-            יצירת אוסף הזוגות הזמנה -מוצר /*/
-            OrderProduct orderProduct;
-
-            //סורקים את כל הערכים בתיבת הרשימה של המוצרים שנבחרו להזמנה
-            for (int i = 0; i < listBox_InOrderProducts.Items.Count; i++)
-            {
-                orderProduct = new OrderProduct();
-
-                //ההזמנה הנוכחית היא ההזמנה לכל הזוגות באוסף
-
-                orderProduct.Order = curOrder;
-
-                //מוצר נוכחי לזוג הזמנה-מוצר
-
-                orderProduct.Product = listBox_InOrderProducts.Items[i] as Product;
-
-                //כמות מוצר נוכחי לזוג הזמנה-מוצר
-                orderProduct.Count = (int)listBox_InOrderProductsCount.Items[i];
-
-                //הוספת הזוג הזמנה -מוצר לאוסף
-
-                orderProductArr.Add(orderProduct);
-            }
-            return orderProductArr;
+            listBox_InOrderProducts.SelectedIndex = listBox_InOrderProductsCount.SelectedIndex;
         }
         private void MoveSelectedProductBetweenListBox(ListBox listBox_From, ListBox listBox_To, bool isToOrder)
         {
@@ -526,6 +556,152 @@ namespace RecordStore_CarmellWasserman.UI
                 listBox_InOrderProductsCount.SelectedIndex = k;
             }
         }
+
+
+        //ניקוי טופס
+        private void clear_Click(object sender, EventArgs e)
+        {
+
+            label_Id.Text = "0";
+            richTextBox_Note.Text = "";
+            dateTimePicker_Date.Value = DateTime.Now;
+            ClientArrToForm(comboBox_Client, true);
+            listBox_InOrderProducts.DataSource = null;
+            listBox_InOrderProductsCount.Items.Clear();
+            ProductArrToForm(listBox_Products);
+            PaymentToForm();
+
+        }
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilter.Text = "";
+            ClientArrToForm(comboBox_ClientFilter, false);
+            filterDate = false;
+            dateTimePicker_FromDateFilter.Value = DateTime.Now;
+            dateTimePicker_ToDateFilter.Value = DateTime.Now;
+            OrderArrToForm();
+
+        }
+        private void button_ClearFilterClient_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilterClient.Text = "";
+            textBox_FirstNameFilterClient.Text = "";
+            textBox_LastNameFilterClient.Text = "";
+            textBox_PhoneNumberFilterClient.Text = "";
+            ClientArrToForm();
+        }
+        private void button_ClearFilterProduct_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilterProduct.Text = "";
+            CategoryArrToForm(comboBox_CategoryFilterProduct, false);
+            textBox_NameFilterProduct.Text = "";
+            ArtistArrToForm(comboBox_ArtistFilterProduct, false);
+        }
+
+
+
+
+        //מחיקה
+        private void button_Delete_Click(object sender, EventArgs e)
+        {
+            Order order = FormToOrder();
+            if (order.Id == 0)
+            {
+                MessageBox.Show("You need to choose a order");
+            }
+            else
+
+            {
+
+                if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
+                MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
+                System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (order.Delete())
+                    {
+                        OrderProductArr orderProductArr_Old = new OrderProductArr();
+                        orderProductArr_Old.Fill();
+
+                        //סינון לפי ההזמנה הנוכחית
+
+                        orderProductArr_Old = orderProductArr_Old.FilterOrder(order);
+
+                        //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+
+                        orderProductArr_Old.Delete();
+                        MessageBox.Show("Deleted");
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Not Deleted");
+                    }
+                    OrderToForm(null);
+                    OrderArrToForm();
+                }
+            }
+        }
+
+
+
+        //פילטר הזמנות
+        private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
+        {
+            SetOrdersByFilter();
+        }
+        private void comboBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBox_ClientFilter.SelectedItem as Client != null)
+            {
+                SetOrdersByFilter();
+            }
+
+        }
+        private void dateTimePicker_Filter_MouseCaptureChanged(object sender, EventArgs e)
+        {
+            filterDate = true;
+        }
+        private void dateTimePicker_DateFilter_ValueChanged(object sender, EventArgs e)
+        {
+            if (filterDate)
+            {
+                SetOrdersByFilter();
+            }
+        }
+        private void SetOrdersByFilter()
+        {
+            int id = 0;
+            //מייצרים אוסף של כלל המוצרים
+            if (textBox_IdFilter.Text != "")
+                id = int.Parse(textBox_IdFilter.Text);
+
+            DateTime fromDate = DateTime.MinValue;
+            DateTime toDate = DateTime.MaxValue;
+            if (filterDate)
+            {
+                fromDate = dateTimePicker_FromDateFilter.Value;
+                toDate = dateTimePicker_ToDateFilter.Value;
+            }
+
+
+            OrderArr orderArr = new OrderArr();
+            orderArr.Fill();
+
+            //מסננים את אוסף המוצרים לפי שדות הסינון שרשם המשתמש
+
+            orderArr = orderArr.Filter(id,
+            comboBox_ClientFilter.SelectedItem as Client,
+            fromDate,
+            toDate
+            );
+
+            //מציבים בתיבת הרשימה את אוסף המוצרים
+
+            listBox_Orders.DataSource = orderArr;
+        }
+
+        //פילטר מוצרים
         private void textBox_FilterProduct_KeyUp(object sender, KeyEventArgs e)
         {
             SetProductsByFilter();
@@ -567,69 +743,49 @@ namespace RecordStore_CarmellWasserman.UI
             filterDate = false;
         }
 
-        private void ClientToForm(Client client)
+        //פילטר לקוחות
+        private void textBox_FilterClient_KeyUp(object sender, KeyEventArgs e)
         {
+            int id = 0;
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //אם המשתמש רשם ערך בשדה המזהה
 
-
-
-            if (client != null)
+            if (textBox_IdFilterClient.Text != "")
             {
-                label_IdClient.Text = client.Id.ToString();
-                label_FirstNameClient.Text = client.FirstName;
-                label_LastNameClient.Text = client.LastName;
-                if (client.PhoneNumber > 999999999)
-                {
-                    label_PhoneNumberClient.Text = client.PhoneNumber.ToString();
-                }
-                else
-                {
-                    label_PhoneNumberClient.Text = "0" + client.PhoneNumber.ToString();
-                }
-
-                label_CityClient.Text = client.City.Name.ToString();
-
+                id = int.Parse(textBox_IdFilterClient.Text);
             }
 
-            else
-            {
-                label_Id.Text = "";
-                label_FirstNameClient.Text = "";
-                label_LastNameClient.Text = "";
-                label_PhoneNumberClient.Text = "";
-                label_CityClient.Text = "";
-
-            }
-        }
-
-        private void listBox_Clients_DoubleClick(object sender, EventArgs e)
-        {
-            Client client = listBox_Clients.SelectedItem as Client;
-            ClientToForm(client);
-        }
-
-        private void ClientArrToForm()
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //מייצרים אוסף של כלל הלקוחות
 
             ClientArr clientArr = new ClientArr();
             clientArr.Fill();
+
+            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            clientArr = clientArr.Filter(id, textBox_FirstNameFilterClient.Text, textBox_LastNameFilterClient.Text,
+            textBox_PhoneNumberFilterClient.Text);
+            //מציבים בתיבת הרשימה את אוסף הלקוחות
+
             listBox_Clients.DataSource = clientArr;
-            listBox_Clients.ValueMember = "Id";
-            listBox_Clients.DisplayMember = "";
+
+
         }
 
-        private void listBox_InOrderProducts_Click(object sender, EventArgs e)
+
+        //פתיחת טפסים אחרים
+        private void button_AddClient_Click(object sender, EventArgs e)
         {
-            listBox_InOrderProductsCount.SelectedIndex = listBox_InOrderProducts.SelectedIndex;
+            Form_Client form_Client = new Form_Client();
+            form_Client.ShowDialog();
+            ClientArrToForm(comboBox_Client, true, form_Client.SelectedClient);
         }
-        private void listBox_InOrderProductsCount_Click(object sender, EventArgs e)
+        private void button_OrderReport_Click(object sender, EventArgs e)
         {
-            listBox_InOrderProducts.SelectedIndex = listBox_InOrderProductsCount.SelectedIndex;
+            Form_OrderReport form_OrderReport = new Form_OrderReport();
+            form_OrderReport.ShowDialog();
         }
 
+
+        //הוספה והפחתה של מוצרים
         private void button_Plus_Click(object sender, EventArgs e)
         {
 
@@ -713,144 +869,8 @@ namespace RecordStore_CarmellWasserman.UI
             }
 
         }
-        private void ProductArrCountToForm(OrderProductArr curOrderproductArr)
-        {
-            listBox_InOrderProductsCount.Items.Clear();
-            for (int i = 0; i < curOrderproductArr.Count; i++)
-            {
-                listBox_InOrderProductsCount.Items.Add(
-                (curOrderproductArr[i] as OrderProduct).Count);
-            }
 
-            //כדי לסמן את השורה הראשונה ישר בהתחלה )אם יש כזאת(
-
-            if (listBox_InOrderProductsCount.Items.Count > 0)
-                listBox_InOrderProductsCount.SelectedIndex = 0;
-        }
-
-        private void button_ClearFilterProduct_Click(object sender, EventArgs e)
-        {
-            textBox_IdFilterProduct.Text = "";
-            CategoryArrToForm(comboBox_CategoryFilterProduct, false);
-            textBox_NameFilterProduct.Text = "";
-            ArtistArrToForm(comboBox_ArtistFilterProduct, false);
-        }
-
-        private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            CategoryArr categoryArr = new CategoryArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Category categoryDefault = new Category();
-            categoryDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                categoryDefault.Name = "Choose a category";
-            }
-            else
-            {
-                categoryDefault.Name = "All categories";
-            }
-
-            categoryArr.Add(categoryDefault);
-            categoryArr.Fill();
-            comboBox.DataSource = categoryArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            categoryArr.Add(categoryDefault);
-
-
-            if (curCategory != null)
-            {
-                comboBox_CategoryFilterProduct.SelectedValue = curCategory.Id;
-            }
-        }
-        private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            ArtistArr artistArr = new ArtistArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Artist artistDefault = new Artist();
-            artistDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                artistDefault.Name = "Choose a artist";
-            }
-            else
-                artistDefault.Name = "All artists";
-            artistArr.Add(artistDefault);
-            artistArr.Fill();
-            comboBox.DataSource = artistArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            artistArr.Add(artistDefault);
-
-
-            if (curArtist != null)
-            {
-                comboBox_ArtistFilterProduct.SelectedValue = curArtist.Id;
-            }
-
-
-        }
-
-        private void dateTimePicker_Filter_MouseCaptureChanged(object sender, EventArgs e)
-        {
-            filterDate = true;
-        }
-
-        private void button_ClearFilterClient_Click(object sender, EventArgs e)
-        {
-            textBox_IdFilterClient.Text = "";
-            textBox_FirstNameFilterClient.Text = "";
-            textBox_LastNameFilterClient.Text = "";
-            textBox_PhoneNumberFilterClient.Text = "";
-            ClientArrToForm();
-        }
-
-        private void textBox_FilterClient_KeyUp(object sender, KeyEventArgs e)
-        {
-            int id = 0;
-
-            //אם המשתמש רשם ערך בשדה המזהה
-
-            if (textBox_IdFilterClient.Text != "")
-            {
-                id = int.Parse(textBox_IdFilterClient.Text);
-            }
-
-            //מייצרים אוסף של כלל הלקוחות
-
-            ClientArr clientArr = new ClientArr();
-            clientArr.Fill();
-
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
-            clientArr = clientArr.Filter(id, textBox_FirstNameFilterClient.Text, textBox_LastNameFilterClient.Text,
-            textBox_PhoneNumberFilterClient.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
-
-            listBox_Clients.DataSource = clientArr;
-
-
-        }
-
+        //חישוב תשלום
         private void PaymentToForm()
         {
             OrderArr orderArr = new OrderArr();
@@ -868,11 +888,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             label_Payment.Text = payment.ToString()+ "₪";
             
-        }
-        private void button_OrderReport_Click(object sender, EventArgs e)
-        {
-            Form_OrderReport form_OrderReport = new Form_OrderReport();
-            form_OrderReport.ShowDialog();
         }
     }
 }

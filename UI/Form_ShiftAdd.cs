@@ -19,19 +19,20 @@ namespace RecordStore_CarmellWasserman.UI
             InitializeComponent();
             EmployeeArrToForm(listBox_Employees);
             m_Shift = shift;
-            if(!isNew)
+            if(!isNew) //אם זו לא משמרת חדשה
             {
                 label_Id.Text = shift.Id.ToString();
             }
             ShiftToForm(shift);
         }
 
+
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -45,6 +46,97 @@ namespace RecordStore_CarmellWasserman.UI
 
         }
 
+
+        //שמירה
+        private void save_Click(object sender, EventArgs e)
+        {
+            if (!CheckForm())
+            {
+                MessageBox.Show("Fill all the mandatory fields!", "Error", MessageBoxButtons.OK,
+                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading |
+                MessageBoxOptions.RightAlign);
+            }
+            else
+            {
+                MessageBox.Show("All Fields OK");
+                Shift shift = m_Shift;
+                ShiftEmployeeArr shiftEmployeeArr_New;
+
+                if (label_Id.Text == "0")
+                {
+                    if (shift.Insert())
+                    {
+                        ShiftArr shiftArr = new ShiftArr();
+                        shiftArr.Fill();
+                        shift = shiftArr.GetShiftWithMaxId();
+                        shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
+
+                        //מוסיפים את הפריטים החדשים להזמנה
+
+                        if (shiftEmployeeArr_New.Insert())
+                        {
+                            MessageBox.Show("Successfully saved");
+                            //מעדכנים את מלאי הפריטים שהוזמנו
+
+                            ;
+                        }
+                        else
+                            MessageBox.Show("Error in insert");
+                    }
+                }
+
+                else
+                {
+
+
+                    //מוחקים את הפריטים הקודמים של ההזמנה
+                    //אוסף כלל הזוגות - הזמנה-פריט
+
+                    ShiftEmployeeArr shiftEmployeeArr_Old = new ShiftEmployeeArr();
+                    shiftEmployeeArr_Old.Fill();
+
+                    //סינון לפי ההזמנה הנוכחית
+
+                    shiftEmployeeArr_Old = shiftEmployeeArr_Old.FilterShift(shift);
+
+                    //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+
+                    shiftEmployeeArr_Old.Delete();
+
+                    //מוסיפים את הפריטים לפי העדכני להזמנה
+
+                    shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
+                    shiftEmployeeArr_New.Insert();
+                    //מעדכנים את מלאי הפריטים, אלו שהוזמנו ואלו שבפוטנציאל
+
+
+
+                }
+
+            }
+        }
+        private bool CheckForm()
+        {
+
+            //מחזירה האם הטופס תקין - שדות חובה ורשות
+
+            bool flag = true;
+
+            if (listBox_InShiftEmployees.Items.Count == 0)
+            {
+                flag = false;
+                MessageBox.Show("choose items");
+            }
+
+
+
+
+
+            return flag;
+        }
+
+
+        //המרות עובדים מהבי אל
         private void EmployeeArrToForm(ListBox listBox, EmployeeArr employeeArr = null)
         {
 
@@ -61,6 +153,7 @@ namespace RecordStore_CarmellWasserman.UI
         }
 
 
+        //ליסט בוקס
         private void MoveSelectedEmployeeBetweenListBox(ListBox listBox_From, ListBox listBox_To, bool isToShift)
         {
             EmployeeArr employeeArr = null;
@@ -89,19 +182,19 @@ namespace RecordStore_CarmellWasserman.UI
             //אם זאת הוספה לתיבת המוצרים בהזמנה - סימון שתי השורה האחרונה בה וגם בתיבת הרשימה של הכמויות
             
         }
-
         private void listBox_Employees_DoubleClick(object sender, EventArgs e)
         {
             Employee employee = listBox_Employees.SelectedItem as Employee;
             MoveSelectedEmployeeBetweenListBox(listBox_Employees, listBox_InShiftEmployees, true);
         }
-
         private void listBox_EmployeesInShift_DoubleClick(object sender, EventArgs e)
         {
             Employee employee = listBox_Employees.SelectedItem as Employee;
             MoveSelectedEmployeeBetweenListBox(listBox_InShiftEmployees, listBox_Employees, true);
         }
 
+
+        //המרות משמרות מהבי אל
         private void ShiftToForm(Shift shift)
         {
             string time;
@@ -143,94 +236,8 @@ namespace RecordStore_CarmellWasserman.UI
             EmployeeArrToForm(listBox_Employees, employeeArrNotInShift);
         }
 
-        private void save_Click(object sender, EventArgs e)
-        {
-            if (!CheckForm())
-            {
-                MessageBox.Show("Fill all the mandatory fields!", "Error", MessageBoxButtons.OK,
-                MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading |
-                MessageBoxOptions.RightAlign);
-            }
-            else
-            {
-                MessageBox.Show("All Fields OK");
-                Shift shift = m_Shift;
-                ShiftEmployeeArr shiftEmployeeArr_New;
 
-                if (label_Id.Text == "0")
-                {
-                    if (shift.Insert())
-                    {
-                        ShiftArr shiftArr = new ShiftArr();
-                        shiftArr.Fill();
-                        shift = shiftArr.GetShiftWithMaxId();
-                        shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
-
-                        //מוסיפים את הפריטים החדשים להזמנה
-
-                        if (shiftEmployeeArr_New.Insert())
-                        {
-                            MessageBox.Show("Successfully saved");
-                            //מעדכנים את מלאי הפריטים שהוזמנו
-
-                            ;
-                        }
-                        else
-                            MessageBox.Show("Error in insert");
-                    }
-                }
-
-                else
-                {
-                    
-
-                    //מוחקים את הפריטים הקודמים של ההזמנה
-                    //אוסף כלל הזוגות - הזמנה-פריט
-
-                    ShiftEmployeeArr shiftEmployeeArr_Old = new ShiftEmployeeArr();
-                    shiftEmployeeArr_Old.Fill();
-
-                    //סינון לפי ההזמנה הנוכחית
-
-                    shiftEmployeeArr_Old = shiftEmployeeArr_Old.FilterShift(shift);
-
-                    //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
-
-                    shiftEmployeeArr_Old.Delete();
-
-                    //מוסיפים את הפריטים לפי העדכני להזמנה
-
-                    shiftEmployeeArr_New = FormToShiftEmployeeArr(shift);
-                    shiftEmployeeArr_New.Insert();
-                    //מעדכנים את מלאי הפריטים, אלו שהוזמנו ואלו שבפוטנציאל
-
-                    
-                    
-                }
-
-            }
-        }
-
-        private bool CheckForm()
-        {
-
-            //מחזירה האם הטופס תקין - שדות חובה ורשות
-
-            bool flag = true;
-
-            if (listBox_InShiftEmployees.Items.Count == 0)
-            {
-                flag = false;
-                MessageBox.Show("choose items");
-            }
-            
-
-
-
-
-            return flag;
-        }
-
+        //המרות משמרות-עובדים מהבי אל
         private ShiftEmployeeArr FormToShiftEmployeeArr(Shift curShift)
         {
 
@@ -263,12 +270,52 @@ namespace RecordStore_CarmellWasserman.UI
             return shiftEmployeeArr;
         }
 
+
+        //פילטר
+        private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
+        {
+            int id = 0;
+
+            //אם המשתמש רשם ערך בשדה המזהה
+
+            if (textBox_IdFilter.Text != "")
+            {
+                id = int.Parse(textBox_IdFilter.Text);
+            }
+
+            //מייצרים אוסף של כלל המשמרות
+
+            EmployeeArr employeeArr = new EmployeeArr();
+            employeeArr.Fill();
+
+            //מסננים את אוסף המשמרות לפי שדות הסינון שרשם המשתמש
+            employeeArr = employeeArr.Filter(id, textBox_FirstNameFilter.Text, textBox_LastNameFilter.Text,
+            textBox_PhoneNumberFilter.Text);
+            //מציבים בתיבת הרשימה את אוסף המשמרות
+
+            listBox_Employees.DataSource = employeeArr;
+
+
+        }
+
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
             listBox_InShiftEmployees.DataSource = null;
             EmployeeArrToForm(listBox_Employees);
         }
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilter.Text = "";
+            textBox_FirstNameFilter.Text = "";
+            textBox_LastNameFilter.Text = "";
+            textBox_PhoneNumberFilter.Text = "";
+            EmployeeArrToForm(listBox_Employees);
+        }
 
+
+        //מחיקה
         private void delete_Click(object sender, EventArgs e)
         {
            

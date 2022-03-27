@@ -30,6 +30,50 @@ namespace RecordStore_CarmellWasserman.UI
 
         }
 
+
+        //הגבלות להכנסת פרטים
+        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.KeyChar = char.MinValue;
+        }
+
+
+        //הדפסה
+        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
+
+            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
+        }
+        private void CaptureScreen()
+        {
+
+            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
+
+            int addAboveListView = 0;
+            int moveLeft = 0;
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
+            curSize.Height += addAboveListView;
+            curSize.Width += moveLeft;
+            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
+            graphics = Graphics.FromImage(m_bitmap);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
+            moveLeft, -150, curSize);
+        }
+        private void button_Print_Click(object sender, EventArgs e)
+        {
+            CaptureScreen();
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
+            printPreviewDialog1.ShowDialog();
+        }
+
+
+        //דוחות רשימה
         private void FillListView()
         {
 
@@ -55,68 +99,6 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_Orders.Items.Add(listViewItem);
             }
         }
-
-        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-
-            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
-
-            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
-        }
-        private void CaptureScreen()
-        {
-
-            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
-
-            int addAboveListView = 0;
-            int moveLeft = 0;
-            Graphics graphics = this.CreateGraphics();
-            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
-            curSize.Height += addAboveListView;
-            curSize.Width += moveLeft;
-            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
-            graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(this.Location);
-            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
-            moveLeft, -150, curSize);
-        }
-
-
-
-
-        private void button_Print_Click(object sender, EventArgs e)
-        {
-            CaptureScreen();
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
-            printPreviewDialog1.ShowDialog();
-        }
-
-     
-
-        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                e.KeyChar = char.MinValue;
-            }
-
-        }
-        private void clearFilter_Click(object sender, EventArgs e)
-        {
-            textBox_IdFilter.Text = "";
-            ClientArrToForm(comboBox_ClientFilter, false);
-            filterDate = false;
-            dateTimePicker_FromDateFilter.Value = DateTime.Now;
-            dateTimePicker_ToDateFilter.Value = DateTime.Now;
-            FillListView();
-        }
-
         private void listView_Orders_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ListViewSorter sorter = new ListViewSorter();
@@ -147,6 +129,8 @@ namespace RecordStore_CarmellWasserman.UI
             m_LastSortOrder = sorter.SortOrder;
         }
 
+        
+        //דוחות גרף
         public void DataToChart(int i, Chart chart)
         {
             chart.Palette = ChartColorPalette.Fire;
@@ -194,6 +178,20 @@ namespace RecordStore_CarmellWasserman.UI
             chart.Series.Add(series);
         }
 
+
+        //ניקוי טופס
+        private void clearFilter_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilter.Text = "";
+            ClientArrToForm(comboBox_ClientFilter, false);
+            filterDate = false;
+            dateTimePicker_FromDateFilter.Value = DateTime.Now;
+            dateTimePicker_ToDateFilter.Value = DateTime.Now;
+            FillListView();
+        }
+
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             SetOrdersByFilter();
@@ -207,7 +205,6 @@ namespace RecordStore_CarmellWasserman.UI
             }
 
         }
-
         private void dateTimePicker_DateFilter_ValueChanged(object sender, EventArgs e)
         {
             if (filterDate)
@@ -215,8 +212,6 @@ namespace RecordStore_CarmellWasserman.UI
                 SetOrdersByFilter();
             }
         }
-
-
         private void SetOrdersByFilter()
         {
             int id = 0;
@@ -264,12 +259,13 @@ namespace RecordStore_CarmellWasserman.UI
 
             }
         }
-
         private void dateTimePicker_Filter_MouseCaptureChanged(object sender, EventArgs e)
         {
             filterDate = true;
         }
 
+
+        //המרות של לקוחות מהבי אל
         private void ClientArrToForm(ComboBox comboBox, bool isMustChoose, Client curClient = null)
         {
 
@@ -277,8 +273,8 @@ namespace RecordStore_CarmellWasserman.UI
 
             ClientArr clientArr = new ClientArr();
 
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
+            //הוספת לקוח ברירת מחדל - בחר לקוח
+            //יצירת מופע חדש של לקוח עם מזהה מינוס 1 ושם מתאים
 
             Client clientDefault = new Client();
             clientDefault.Id = -1;
@@ -300,7 +296,7 @@ namespace RecordStore_CarmellWasserman.UI
             comboBox.ValueMember = "Id";
             comboBox.DisplayMember = "";
 
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
+            //הוספת הלקוח לאוסף הלקוחות - אותו נציב במקור הנתונים של תיבת הבחירה
 
             clientArr.Add(clientDefault);
 

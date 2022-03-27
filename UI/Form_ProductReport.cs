@@ -34,36 +34,25 @@ namespace RecordStore_CarmellWasserman.UI
 
         }
 
-        private void FillListView()
+
+        //הגבלת בכנסת פרטים
+        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            //מוסיף נתונים לפקד תיבת התצוגה
-            //יצירת מקור הנתונים
-
-            ProductArr productArr = new ProductArr();
-            productArr.Fill();
-            Product p;
-            ListViewItem listViewItem;
-
-            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
-
-            //for (int i = 0; i < productArr.Count; i++)
-            {
-                p = productArr[1] as Product;
-                string condition = "not new";
-                if(p.IsNew)
-                {
-                    condition = "new";
-                }
-                //יצירת פריט-תיבת-תצוגה
-                listViewItem = new ListViewItem(new[] { p.Category.Name,
-
-                p.Name, p.Genre.Name, p.Artist.Name, p.Company.Name, condition, p.Count.ToString() });
-                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-                listView_Products.Items.Add(listViewItem);
-            }
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.KeyChar = char.MinValue;
         }
 
+        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
+
+        }
+
+
+        //הדפסה
         private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
 
@@ -97,6 +86,116 @@ namespace RecordStore_CarmellWasserman.UI
         }
 
 
+        //דוחות רשימה
+        private void FillListView()
+        {
+
+            //מוסיף נתונים לפקד תיבת התצוגה
+            //יצירת מקור הנתונים
+
+            ProductArr productArr = new ProductArr();
+            productArr.Fill();
+            Product p;
+            ListViewItem listViewItem;
+
+            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
+
+            //for (int i = 0; i < productArr.Count; i++)
+            {
+                p = productArr[1] as Product;
+                string condition = "not new";
+                if(p.IsNew)
+                {
+                    condition = "new";
+                }
+                //יצירת פריט-תיבת-תצוגה
+                listViewItem = new ListViewItem(new[] { p.Category.Name,
+
+                p.Name, p.Genre.Name, p.Artist.Name, p.Company.Name, condition, p.Count.ToString() });
+                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
+                listView_Products.Items.Add(listViewItem);
+            }
+        }
+        private void listView_Products_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_Products.ListViewItemSorter = sorter;
+            sorter = listView_Products.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
+
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_Products.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+        private void listView_Records_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_Records.ListViewItemSorter = sorter;
+            sorter = listView_Records.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
+
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_Records.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+        private void DateToListView()
+        {
+            OrderProductArr curOrderProductArr = new OrderProductArr();
+            curOrderProductArr.Fill();
+            Dictionary<string, int> dictionary = curOrderProductArr.GetDictionaryRecord();
+
+            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
+
+            ListViewItem listViewItem;
+            foreach (KeyValuePair<string, int> item in dictionary)
+            {
+
+                //יצירת פריט-תיבת-תצוגה
+                listViewItem = new ListViewItem(new[] { item.Key, item.Value.ToString() });
+                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
+
+                listView_Records.Items.Add(listViewItem);
+            }
+        }
+
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             SetProductsByFilter();
@@ -153,20 +252,7 @@ namespace RecordStore_CarmellWasserman.UI
         }
 
 
-        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.KeyChar = char.MinValue;
-        }
-
-        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                e.KeyChar = char.MinValue;
-            }
-
-        }
+        //ניקוי טופס
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -176,6 +262,9 @@ namespace RecordStore_CarmellWasserman.UI
             FillListView();
         }
 
+
+
+        //המרות של תכונות של מוצר מהבי אל
         private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
         {
 
@@ -214,42 +303,6 @@ namespace RecordStore_CarmellWasserman.UI
                 comboBox.SelectedValue = curCategory.Id;
             }
         }
-
-        /*/private void GenreArrToForm(ComboBox comboBox, bool isMustChoose, Genre curGenre = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            GenreArr genreArr = new GenreArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Genre genreDefault = new Genre();
-            genreDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                genreDefault.Name = "Choose a genre";
-            }
-            else
-                genreDefault.Name = "All categories";
-            genreArr.Add(genreDefault);
-            genreArr.Fill();
-            comboBox.DataSource = genreArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            genreArr.Add(genreDefault);
-
-
-            if (curGenre != null)
-            {
-                comboBox_Genre.SelectedValue = curGenre.Id;
-            }
-        }/*/
-
         private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
         {
 
@@ -285,122 +338,8 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
-        /*/private void CompanyArrToForm(ComboBox comboBox, bool isMustChoose, Company curCompany = null)
-        {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            CompanyArr companyArr = new CompanyArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Company companyDefault = new Company();
-            companyDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                companyDefault.Name = "Choose a company";
-            }
-            else
-                companyDefault.Name = "All categories";
-            companyArr.Add(companyDefault);
-            companyArr.Fill();
-            comboBox.DataSource = companyArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            companyArr.Add(companyDefault);
-
-
-            if (curCompany != null)
-            {
-                comboBox_Company.SelectedValue = curCompany.Id;
-            }
-        }/*/
-
-        private void listView_Products_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_Products.ListViewItemSorter = sorter;
-            sorter = listView_Products.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
-
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
-
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
-
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_Products.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-        private void listView_Records_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_Records.ListViewItemSorter = sorter;
-            sorter = listView_Records.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
-
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
-
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
-
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_Records.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-
-        private void DateToListView()
-        {
-            OrderProductArr curOrderProductArr = new OrderProductArr();
-            curOrderProductArr.Fill();
-            Dictionary<string, int> dictionary = curOrderProductArr.GetDictionaryRecord();
-
-            //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
-
-            ListViewItem listViewItem;
-            foreach (KeyValuePair<string, int> item in dictionary)
-            {
-
-                //יצירת פריט-תיבת-תצוגה
-                listViewItem = new ListViewItem(new[] { item.Key, item.Value.ToString() });
-                //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
-
-                listView_Records.Items.Add(listViewItem);
-            }
-        }
-
+        //דוחות גרף
         public void DataToChart(int i, Chart chart)
         {
             chart.Palette = ChartColorPalette.Fire;

@@ -13,9 +13,9 @@ namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Shift : Form
     {
-        private Label[,] shifts = new Label[7, 2];
-        private DateTime m_Sunday = new DateTime();
-        private Bitmap m_bitmap;
+        private Label[,] shifts = new Label[7, 2]; //מערך של כל המשמרות בטבלה
+        private DateTime m_Sunday = new DateTime();//יום ראשון בשבוע המוצג בטבלה
+        private Bitmap m_bitmap; 
         public Form_Shift()
         {
             InitializeComponent();
@@ -25,6 +25,8 @@ namespace RecordStore_CarmellWasserman.UI
             m_Sunday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
             ShiftArrToForm(m_Sunday);
         }
+
+        //מערך של כל המשמרות בטבלה
         public void Setarr()
         {
             shifts[0,0] = label_SundayEvening00;
@@ -44,30 +46,29 @@ namespace RecordStore_CarmellWasserman.UI
            
         }
 
+
+        //לחיצה על משמרת
         private void label_Shift_Click(object sender, EventArgs e)
         {
             Label label = sender as Label;
 
-
+            //איזו משמרת נלחצה
             string labelName = label.Name;
-
-
-
             bool time = Convert.ToBoolean(int.Parse(labelName.Substring(labelName.Length - 1)));
             int day = int.Parse(Char.ToString(labelName[labelName.Length - 2]));
-
             DateTime dateTime = m_Sunday.AddDays(day);
 
+            //האם המשמרת קיימת כבר
             ShiftArr shiftArr = new ShiftArr();
             shiftArr.Fill();
 
-            if(shiftArr.DoesExist(dateTime, time))
+            if(shiftArr.DoesExist(dateTime, time)) //כן- לעדכן
             {
                 Shift shift = shiftArr.GetShiftId(dateTime, time);
                 Form_ShiftAdd form_ShiftAdd = new Form_ShiftAdd(shift, false);
                 form_ShiftAdd.ShowDialog();
             }
-            else
+            else// לא- ליצור אחת חדשה
             {
                 Shift shift = new Shift();
                 shift.Date = dateTime;
@@ -76,10 +77,11 @@ namespace RecordStore_CarmellWasserman.UI
                 form_ShiftAdd.ShowDialog();
             }
 
-            ShiftArrToForm(m_Sunday);
+            ShiftArrToForm(m_Sunday);//עדכן משמרות
         }
 
 
+        //הכנסת משמרות לטופס
         private void ShiftArrToForm(DateTime sunday)
         {
             DateToForm(sunday);
@@ -113,8 +115,7 @@ namespace RecordStore_CarmellWasserman.UI
                 }
 
             }
-        }
-
+        } 
         private void DateToForm(DateTime sunday)
         {
             label_Sunday.Text = sunday.Day.ToString();
@@ -130,8 +131,7 @@ namespace RecordStore_CarmellWasserman.UI
             {
                 label_StoreName.Text += "/" + sunday.AddDays(6).Month.ToString();
             }
-        }
-
+        } //הכנס תאריכים לטבלה
         private void EmployeeArrToForm(Label label, EmployeeArr employeeArr)
         {
             string employees = "";
@@ -143,20 +143,23 @@ namespace RecordStore_CarmellWasserman.UI
             }
 
             label.Text = employees;
-        }
+        } //הכנסת עובדים למשמרת בטבלה
 
+
+        //כפתורי קדימה ואחורה
         private void button_Future_Click(object sender, EventArgs e)
         {
             m_Sunday = m_Sunday.AddDays(7);
             ShiftArrToForm(m_Sunday);
         }
-
         private void button_Past_Click(object sender, EventArgs e)
         {
             m_Sunday = m_Sunday.AddDays(-7);
             ShiftArrToForm(m_Sunday);
         }
 
+
+        //הדפסה
         private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
 
@@ -181,7 +184,6 @@ namespace RecordStore_CarmellWasserman.UI
             graphics.CopyFromScreen(panelLocation.X+10, panelLocation.Y+25,
             moveLeft, 0, curSize);
         }
-
         private void button_Print_Click(object sender, EventArgs e)
         {
             CaptureScreen();

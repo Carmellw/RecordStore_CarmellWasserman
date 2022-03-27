@@ -28,6 +28,57 @@ namespace RecordStore_CarmellWasserman.UI
             EmployeeArrToForm(comboBox_Employees, true);
         }
 
+        //הגבלות להכנסת פרטים
+        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.KeyChar = char.MinValue;
+        }
+        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.KeyChar = char.MinValue;
+            }
+
+        }
+
+
+        //הדפסה
+        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
+
+            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
+        }
+        private void CaptureScreen()
+        {
+
+            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
+
+            int addAboveListView = 0;
+            int moveLeft = 0;
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
+            curSize.Height += addAboveListView;
+            curSize.Width += moveLeft;
+            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
+            graphics = Graphics.FromImage(m_bitmap);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
+            moveLeft, -150, curSize);
+        }
+        private void button_Print_Click(object sender, EventArgs e)
+        {
+            CaptureScreen();
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
+            printPreviewDialog1.ShowDialog();
+        }
+
+
+        //דוחות רשימה
         private void FillListView()
         {
 
@@ -59,7 +110,6 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_Employees.Items.Add(listViewItem);
             }
         }
-
         private void FillListViewPassword()
         {
 
@@ -85,7 +135,6 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_EmployeesPassword.Items.Add(listViewItem);
             }
         }
-
         private void FillListViewPayment()
         {
 
@@ -117,7 +166,95 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_EmployeesPayment.Items.Add(listViewItem);
             }
         }
+        private void listView_EmployeesPassword_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_EmployeesPassword.ListViewItemSorter = sorter;
+            sorter = listView_EmployeesPassword.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
 
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_EmployeesPassword.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+        private void listView_EmployeesPayment_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_EmployeesPayment.ListViewItemSorter = sorter;
+            sorter = listView_EmployeesPayment.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
+
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_EmployeesPayment.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+        private void listView_Employees_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_Employees.ListViewItemSorter = sorter;
+            sorter = listView_Employees.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
+
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_Employees.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+
+        //דוחות גרף
         public void DataToChart(Employee employee, Chart chart)
         {
             if (employee.Id != -1)
@@ -157,10 +294,12 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //המרות עובדים מהבי אל
         private void EmployeeArrToForm(ComboBox comboBox, bool isMustChoose)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף עובדים לטופס
 
             EmployeeArr employeeArr = new EmployeeArr();
 
@@ -197,27 +336,13 @@ namespace RecordStore_CarmellWasserman.UI
 
 
         }
-
         private void comboBox_Employees_TextChanged(object sender, EventArgs e)
         {
             DataToChart(comboBox_Employees.SelectedItem as Employee, chart1);
         }
 
-        private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
-                e.KeyChar = char.MinValue;
-        }
 
-        private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
-            {
-                e.KeyChar = char.MinValue;
-            }
-
-        }
-
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -227,16 +352,16 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל העובדים
 
             EmployeeArr employeeArr = new EmployeeArr();
             employeeArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף העובדים לפי שדות הסינון שרשם המשתמש
 
             employeeArr = employeeArr.Filter(id, textBox_FirstNameFilter.Text, textBox_LastNameFilter.Text,
             textBox_PhoneNumberFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף העובדים
 
             listView_Employees.Items.Clear();
             Employee p;
@@ -262,16 +387,6 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_Employees.Items.Add(listViewItem);
             }
         }
-
-        private void button_ClearFilter_Click(object sender, EventArgs e)
-        {
-            textBox_IdFilter.Text = "";
-            textBox_FirstNameFilter.Text = "";
-            textBox_LastNameFilter.Text = "";
-            textBox_PhoneNumberFilter.Text = "";
-            FillListView();
-        }
-
         private void textBox_FilterPassword_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -281,16 +396,16 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilterPassword.Text != "")
                 id = int.Parse(textBox_IdFilterPassword.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל העובדים
 
             EmployeeArr employeeArr = new EmployeeArr();
             employeeArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף העובדים לפי שדות הסינון שרשם המשתמש
 
             employeeArr = employeeArr.Filter(id, textBox_FirstNameFilterPassword.Text, textBox_LastNameFilterPassword.Text,
             textBox_PhoneNumberFilterPassword.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף העובדים
 
             listView_EmployeesPassword.Items.Clear();
             Employee p;
@@ -316,16 +431,6 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_EmployeesPassword.Items.Add(listViewItem);
             }
         }
-
-        private void button_ClearFilterPassword_Click(object sender, EventArgs e)
-        {
-            textBox_IdFilterPassword.Text = "";
-            textBox_FirstNameFilterPassword.Text = "";
-            textBox_LastNameFilterPassword.Text = "";
-            textBox_PhoneNumberFilterPassword.Text = "";
-            FillListViewPassword();
-        }
-
         private void textBox_FilterPayment_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -335,16 +440,16 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilterPayment.Text != "")
                 id = int.Parse(textBox_IdFilterPayment.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל העובדים
 
             EmployeeArr employeeArr = new EmployeeArr();
             employeeArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף העובדים לפי שדות הסינון שרשם המשתמש
 
             employeeArr = employeeArr.Filter(id, textBox_FirstNameFilterPayment.Text, textBox_LastNameFilterPayment.Text,
             textBox_PhoneNumberFilterPayment.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף העובדים
 
             listView_EmployeesPayment.Items.Clear();
             Employee p;
@@ -371,6 +476,25 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+
+        //ניקוי טופס
+        private void button_ClearFilter_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilter.Text = "";
+            textBox_FirstNameFilter.Text = "";
+            textBox_LastNameFilter.Text = "";
+            textBox_PhoneNumberFilter.Text = "";
+            FillListView();
+        }
+        private void button_ClearFilterPassword_Click(object sender, EventArgs e)
+        {
+            textBox_IdFilterPassword.Text = "";
+            textBox_FirstNameFilterPassword.Text = "";
+            textBox_LastNameFilterPassword.Text = "";
+            textBox_PhoneNumberFilterPassword.Text = "";
+            FillListViewPassword();
+        }
         private void button_ClearFilterPayment_Click(object sender, EventArgs e)
         {
             textBox_IdFilterPayment.Text = "";
@@ -380,127 +504,10 @@ namespace RecordStore_CarmellWasserman.UI
             FillListViewPayment();
         }
 
-        private void listView_Employees_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_Employees.ListViewItemSorter = sorter;
-            sorter = listView_Employees.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
 
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+ 
 
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
 
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_Employees.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-        private void listView_EmployeesPassword_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_EmployeesPassword.ListViewItemSorter = sorter;
-            sorter = listView_EmployeesPassword.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
-
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
-
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
-
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_EmployeesPassword.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-        private void listView_EmployeesPayment_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_EmployeesPayment.ListViewItemSorter = sorter;
-            sorter = listView_EmployeesPayment.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
-
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
-
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
-
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_EmployeesPayment.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-
-            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
-
-            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
-        }
-        private void CaptureScreen()
-        {
-
-            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
-
-            int addAboveListView = 0;
-            int moveLeft = 0;
-            Graphics graphics = this.CreateGraphics();
-            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
-            curSize.Height += addAboveListView;
-            curSize.Width += moveLeft;
-            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
-            graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(this.Location);
-            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
-            moveLeft, -150, curSize);
-        }
-        private void button_Print_Click(object sender, EventArgs e)
-        {
-            CaptureScreen();
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
-            printPreviewDialog1.ShowDialog();
-        }
 
     }
 

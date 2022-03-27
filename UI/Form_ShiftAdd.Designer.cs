@@ -60,7 +60,7 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             this.label_DateToday.AutoSize = true;
             this.label_DateToday.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_DateToday.Location = new System.Drawing.Point(825, 62);
+            this.label_DateToday.Location = new System.Drawing.Point(331, 62);
             this.label_DateToday.Name = "label_DateToday";
             this.label_DateToday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_DateToday.Size = new System.Drawing.Size(220, 31);
@@ -104,6 +104,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_PhoneNumberFilter.Name = "textBox_PhoneNumberFilter";
             this.textBox_PhoneNumberFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_PhoneNumberFilter.TabIndex = 4;
+            this.textBox_PhoneNumberFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_PhoneNumberFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // label_IdFilter
             // 
@@ -122,6 +124,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_FirstNameFilter.Name = "textBox_FirstNameFilter";
             this.textBox_FirstNameFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_FirstNameFilter.TabIndex = 2;
+            this.textBox_FirstNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
+            this.textBox_FirstNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // label_FirstNameFilter
             // 
@@ -159,6 +163,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_LastNameFilter.Name = "textBox_LastNameFilter";
             this.textBox_LastNameFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_LastNameFilter.TabIndex = 3;
+            this.textBox_LastNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
+            this.textBox_LastNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // button_ClearFilter
             // 
@@ -168,6 +174,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.button_ClearFilter.TabIndex = 5;
             this.button_ClearFilter.Text = "clear";
             this.button_ClearFilter.UseVisualStyleBackColor = true;
+            this.button_ClearFilter.Click += new System.EventHandler(this.clearFilter_Click);
             // 
             // textBox_IdFilter
             // 
@@ -175,6 +182,8 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilter.Name = "textBox_IdFilter";
             this.textBox_IdFilter.Size = new System.Drawing.Size(214, 31);
             this.textBox_IdFilter.TabIndex = 1;
+            this.textBox_IdFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_IdFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // groupBox2
             // 

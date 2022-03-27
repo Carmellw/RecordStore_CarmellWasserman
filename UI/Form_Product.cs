@@ -30,12 +30,13 @@ namespace RecordStore_CarmellWasserman
             CompanyArrToForm(comboBox_Company, true);
         }
 
+
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -46,6 +47,7 @@ namespace RecordStore_CarmellWasserman
         }
 
 
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -84,8 +86,6 @@ namespace RecordStore_CarmellWasserman
 
             }
         }
-
-        
         private bool CheckForm()
         {
 
@@ -174,7 +174,7 @@ namespace RecordStore_CarmellWasserman
         }
 
         
-
+        //המרות מוצרים מהבי אל
         private Product FormToProduct()
         {
             Product product = new Product();
@@ -199,13 +199,10 @@ namespace RecordStore_CarmellWasserman
 
             return product;
         }
-
-
-
         private void ProductArrToForm()
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף מוצרים לטופס
 
             ProductArr productArr = new ProductArr();
             productArr.Fill();
@@ -213,159 +210,14 @@ namespace RecordStore_CarmellWasserman
             listBox_Products.ValueMember = "Id";
             listBox_Products.DisplayMember = "";
         }
-
-        private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            CategoryArr categoryArr = new CategoryArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Category categoryDefault = new Category();
-            categoryDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                categoryDefault.Name = "Choose a category";
-            }
-            else
-            {
-                categoryDefault.Name = "All categories";
-            }
-
-            categoryArr.Add(categoryDefault);
-            categoryArr.Fill();
-            comboBox.DataSource = categoryArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            categoryArr.Add(categoryDefault);
-
-
-            if (curCategory != null)
-            {
-                comboBox_Category.SelectedValue = curCategory.Id;
-            }
-        }
-
-        private void GenreArrToForm(ComboBox comboBox, bool isMustChoose, Genre curGenre = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            GenreArr genreArr = new GenreArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Genre genreDefault = new Genre();
-            genreDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                genreDefault.Name = "Choose a genre";
-            }
-            else
-                genreDefault.Name = "All genres";
-            genreArr.Add(genreDefault);
-            genreArr.Fill();
-            comboBox.DataSource = genreArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            genreArr.Add(genreDefault);
-
-
-            if (curGenre != null)
-            {
-                comboBox_Genre.SelectedValue = curGenre.Id;
-            }
-        }
-
-        private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            ArtistArr artistArr = new ArtistArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Artist artistDefault = new Artist();
-            artistDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                artistDefault.Name = "Choose a artist";
-            }
-            else
-                artistDefault.Name = "All artist";
-            artistArr.Add(artistDefault);
-            artistArr.Fill();
-            comboBox.DataSource = artistArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            artistArr.Add(artistDefault);
-
-
-            if (curArtist != null)
-            {
-                comboBox_Artist.SelectedValue = curArtist.Id;
-            }
-        }
-
-        private void CompanyArrToForm(ComboBox comboBox, bool isMustChoose, Company curCompany = null)
-        {
-
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
-
-            CompanyArr companyArr = new CompanyArr();
-
-            //הוספת ישוב ברירת מחדל - בחר ישוב
-            //יצירת מופע חדש של ישוב עם מזהה מינוס 1 ושם מתאים
-
-            Company companyDefault = new Company();
-            companyDefault.Id = -1;
-
-            if (isMustChoose)
-            {
-                companyDefault.Name = "Choose a company";
-            }
-            else
-                companyDefault.Name = "All companies";
-            companyArr.Add(companyDefault);
-            companyArr.Fill();
-            comboBox.DataSource = companyArr;
-            comboBox.ValueMember = "Id";
-            comboBox.DisplayMember = "Name";
-            //הוספת הישוב לאוסף הישובים - אותו נציב במקור הנתונים של תיבת הבחירה
-
-            companyArr.Add(companyDefault);
-
-
-            if (curCompany != null)
-            {
-                comboBox_Company.SelectedValue = curCompany.Id;
-            }
-        }
-
         private void ProductToForm(Product product)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ מוצר לטופס
 
 
 
-            if (product != null)
+            if (product != null || product.Id == -1)
             {
                 label_Id.Text = product.Id.ToString();
                 comboBox_Category.SelectedValue = product.Category.Id;
@@ -398,12 +250,159 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //המרות של תכונות של מוצרים מהבי אל
+        private void CategoryArrToForm(ComboBox comboBox, bool isMustChoose, Category curCategory = null)
+        {
+
+            //ממירה את הטנ "מ אוסף קטגוריות לטופס
+
+            CategoryArr categoryArr = new CategoryArr();
+
+            //הוספת קטגוריה ברירת מחדל - בחר קטגוריה
+            //יצירת מופע חדש של קטגוריה עם מזהה מינוס 1 ושם מתאים
+
+            Category categoryDefault = new Category();
+            categoryDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                categoryDefault.Name = "Choose a category";
+            }
+            else
+            {
+                categoryDefault.Name = "All categories";
+            }
+
+            categoryArr.Add(categoryDefault);
+            categoryArr.Fill();
+            comboBox.DataSource = categoryArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+
+            //הוספת הקטגוריה לאוסף הקטגוריות - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            categoryArr.Add(categoryDefault);
+
+
+            if (curCategory != null)
+            {
+                comboBox_Category.SelectedValue = curCategory.Id;
+            }
+        }
+        private void GenreArrToForm(ComboBox comboBox, bool isMustChoose, Genre curGenre = null)
+        {
+
+            //ממירה את הטנ "מ אוסף גאנרים לטופס
+
+            GenreArr genreArr = new GenreArr();
+
+            //הוספת גאנר ברירת מחדל - בחר גאנר
+            //יצירת מופע חדש של גאנר עם מזהה מינוס 1 ושם מתאים
+
+            Genre genreDefault = new Genre();
+            genreDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                genreDefault.Name = "Choose a genre";
+            }
+            else
+                genreDefault.Name = "All genres";
+            genreArr.Add(genreDefault);
+            genreArr.Fill();
+            comboBox.DataSource = genreArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+            //הוספת הגאנר לאוסף הגאנרים - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            genreArr.Add(genreDefault);
+
+
+            if (curGenre != null)
+            {
+                comboBox_Genre.SelectedValue = curGenre.Id;
+            }
+        }
+        private void ArtistArrToForm(ComboBox comboBox, bool isMustChoose, Artist curArtist = null)
+        {
+
+            //ממירה את הטנ "מ אוסף אמנים לטופס
+
+            ArtistArr artistArr = new ArtistArr();
+
+            //הוספת אמן ברירת מחדל - בחר אמן
+            //יצירת מופע חדש של אמן עם מזהה מינוס 1 ושם מתאים
+
+            Artist artistDefault = new Artist();
+            artistDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                artistDefault.Name = "Choose a artist";
+            }
+            else
+                artistDefault.Name = "All artist";
+            artistArr.Add(artistDefault);
+            artistArr.Fill();
+            comboBox.DataSource = artistArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+            //הוספת האמן לאוסף האמנים - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            artistArr.Add(artistDefault);
+
+
+            if (curArtist != null)
+            {
+                comboBox_Artist.SelectedValue = curArtist.Id;
+            }
+        }
+        private void CompanyArrToForm(ComboBox comboBox, bool isMustChoose, Company curCompany = null)
+        {
+
+            //ממירה את הטנ "מ אוסף חברות לטופס
+
+            CompanyArr companyArr = new CompanyArr();
+
+            //הוספת חברה ברירת מחדל - בחר חברה
+            //יצירת מופע חדש של חברה עם מזהה מינוס 1 ושם מתאים
+
+            Company companyDefault = new Company();
+            companyDefault.Id = -1;
+
+            if (isMustChoose)
+            {
+                companyDefault.Name = "Choose a company";
+            }
+            else
+                companyDefault.Name = "All companies";
+            companyArr.Add(companyDefault);
+            companyArr.Fill();
+            comboBox.DataSource = companyArr;
+            comboBox.ValueMember = "Id";
+            comboBox.DisplayMember = "Name";
+            //הוספת החברה לאוסף החברות - אותו נציב במקור הנתונים של תיבת הבחירה
+
+            companyArr.Add(companyDefault);
+
+
+            if (curCompany != null)
+            {
+                comboBox_Company.SelectedValue = curCompany.Id;
+            }
+        }
+
+
+        //ליסט בוקס
         private void listBox_Products_DoubleClick(object sender, EventArgs e)
         {
             Product product = listBox_Products.SelectedItem as Product;
             ProductToForm(product);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
 
@@ -417,7 +416,6 @@ namespace RecordStore_CarmellWasserman
             textBox_Price.Text = "";
             numericUpDown_Count.Value = 0;
         }
-        
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -427,6 +425,7 @@ namespace RecordStore_CarmellWasserman
         }
 
 
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Product product = FormToProduct();
@@ -438,7 +437,6 @@ namespace RecordStore_CarmellWasserman
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -446,8 +444,8 @@ namespace RecordStore_CarmellWasserman
                 {
                     product = FormToProduct();
 
-                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
-                    //בדיקה עבור לקוחות
+                    //לפני המחיקה - בדיקה שהמוצר לא בשימוש בישויות אחרות
+                    //בדיקה עבור הזמנות
 
                     OrderProductArr orderProductArr = new OrderProductArr();
                     orderProductArr.Fill();
@@ -472,6 +470,8 @@ namespace RecordStore_CarmellWasserman
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             SetProductsByFilter();
@@ -507,34 +507,32 @@ namespace RecordStore_CarmellWasserman
             listBox_Products.DataSource = productArr;
         }
 
+
+        //פתיחת טפסי אחרים
         private void button_AddCategory_Click(object sender, EventArgs e)
         {
             Form_Category form_Category = new Form_Category();
             form_Category.ShowDialog();
             CategoryArrToForm(comboBox_Category, true, form_Category.SelectedCategory);
         }
-
         private void button_AddGenre_Click(object sender, EventArgs e)
         {
             Form_Genre form_Genre = new Form_Genre();
             form_Genre.ShowDialog();
             GenreArrToForm(comboBox_Genre, true, form_Genre.SelectedGenre);
         }
-
         private void button_AddArtist_Click(object sender, EventArgs e)
         {
             Form_Artist form_Artist = new Form_Artist();
             form_Artist.ShowDialog();
             ArtistArrToForm(comboBox_Artist, true, form_Artist.SelectedArtist);
         }
-
         private void button_AddCompany_Click(object sender, EventArgs e)
         {
             Form_Company form_Company = new Form_Company();
             form_Company.ShowDialog();
             CompanyArrToForm(comboBox_Company, true, form_Company.SelectedCompany);
         }
-
         private void button_ProductReport_Click(object sender, EventArgs e)
         {
             Form_ProductReport form_ProductReport = new Form_ProductReport();

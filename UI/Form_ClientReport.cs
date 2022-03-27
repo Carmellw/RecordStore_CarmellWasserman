@@ -25,6 +25,42 @@ namespace RecordStore_CarmellWasserman.UI
             DateToListView();
         }
 
+
+        //הדפסה
+        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
+            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
+
+            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
+        }
+        private void CaptureScreen()
+        {
+
+            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
+
+            int addAboveListView = 0;
+            int moveLeft = 0;
+            Graphics graphics = this.CreateGraphics();
+            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
+            curSize.Height += addAboveListView;
+            curSize.Width += moveLeft;
+            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
+            graphics = Graphics.FromImage(m_bitmap);
+            Point panelLocation = PointToScreen(this.Location);
+            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
+            moveLeft, -150, curSize);
+        }
+        private void button_Print_Click(object sender, EventArgs e)
+        {
+            CaptureScreen();
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
+            printPreviewDialog1.ShowDialog();
+        }
+
+
+        //דוחות רשימה
         private void DateToListView()
         {
             OrderArr curOrderArr = new OrderArr();
@@ -44,7 +80,38 @@ namespace RecordStore_CarmellWasserman.UI
                 listView_Clients.Items.Add(listViewItem);
             }
         }
+        private void listView_Clients_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            ListViewSorter sorter = new ListViewSorter();
+            listView_Clients.ListViewItemSorter = sorter;
+            sorter = listView_Clients.ListViewItemSorter as ListViewSorter;
+            sorter.ByColumn = e.Column;
 
+            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
+
+            if (m_LastColumnSortBy == e.Column)
+                if (m_LastSortOrder == SortOrder.Ascending)
+                    sorter.SortOrder = SortOrder.Descending;
+                else
+                    sorter.SortOrder = SortOrder.Ascending;
+
+            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
+
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+            listView_Clients.Sort();
+
+            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
+
+            m_LastColumnSortBy = e.Column;
+
+            // שומרים את סדר המיון האחרון
+
+            m_LastSortOrder = sorter.SortOrder;
+        }
+
+
+        //דוחות גרף
         public void DataToChart()
         {
             chart1.Palette = ChartColorPalette.Fire;
@@ -78,67 +145,8 @@ namespace RecordStore_CarmellWasserman.UI
             chart1.Series.Add(series);
          }
 
-        private void listView_Clients_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            ListViewSorter sorter = new ListViewSorter();
-            listView_Clients.ListViewItemSorter = sorter;
-            sorter = listView_Clients.ListViewItemSorter as ListViewSorter;
-            sorter.ByColumn = e.Column;
 
-            // אם לחצו שוב על אותה עמודה - המיון יהיה בסדר הפוך לקודם
 
-            if (m_LastColumnSortBy == e.Column)
-                if (m_LastSortOrder == SortOrder.Ascending)
-                    sorter.SortOrder = SortOrder.Descending;
-                else
-                    sorter.SortOrder = SortOrder.Ascending;
-
-            // אחרת - זוהי עמודה חדשה - המיון יהיה בסדר עולה
-
-            else
-                sorter.SortOrder = SortOrder.Ascending;
-            listView_Clients.Sort();
-
-            // שומרים את העמודה הנוכחית כאחרונה שלפיה היה המיון
-
-            m_LastColumnSortBy = e.Column;
-
-            // שומרים את סדר המיון האחרון
-
-            m_LastSortOrder = sorter.SortOrder;
-        }
-
-        private void document_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-
-            //מגדיר את העמוד שיודפס - כולל מרחק מהשמאל ומלמעלה
-
-            e.Graphics.DrawImage(m_bitmap, 0, 0, this.Width + 2 * this.Width / 5, this.Height + 2 * this.Height / 5);
-        }
-        private void CaptureScreen()
-        {
-
-            //תפיסת החלק של הטופס להדפסה כולל הרשימה והכותרת שמעליה - לתוך תמונת הסיביות
-
-            int addAboveListView = 0;
-            int moveLeft = 0;
-            Graphics graphics = this.CreateGraphics();
-            Size curSize = new Size(this.Width * 2 - 50, this.Height * 2 - 75);
-            curSize.Height += addAboveListView;
-            curSize.Width += moveLeft;
-            m_bitmap = new Bitmap(curSize.Width, curSize.Height, graphics);
-            graphics = Graphics.FromImage(m_bitmap);
-            Point panelLocation = PointToScreen(this.Location);
-            graphics.CopyFromScreen(panelLocation.X + 20, panelLocation.Y + 25,
-            moveLeft, -150, curSize);
-        }
-        private void button_Print_Click(object sender, EventArgs e)
-        {
-            CaptureScreen();
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Width = 600; printPreviewDialog1.Height = 800;
-            printPreviewDialog1.ShowDialog();
-        }
 
     }
 }

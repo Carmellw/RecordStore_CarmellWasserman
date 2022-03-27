@@ -20,12 +20,13 @@ namespace RecordStore_CarmellWasserman.UI
             EmployeeArrToForm();
         }
 
+
+        //הגבלת הכנסת פרטים
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -33,12 +34,7 @@ namespace RecordStore_CarmellWasserman.UI
                 e.KeyChar = char.MinValue;
             }
 
-
-
-
-
         }
-
         private void textBox_All_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ' &&!char.IsDigit(e.KeyChar) && char.IsSymbol(e.KeyChar))
@@ -46,12 +42,10 @@ namespace RecordStore_CarmellWasserman.UI
                 e.KeyChar = char.MinValue;
             }
 
-
-
-
-
         }
 
+
+        //שמירה
         private void save_Click(object sender, EventArgs e)
         {
             if (!CheckForm())
@@ -87,7 +81,6 @@ namespace RecordStore_CarmellWasserman.UI
                 textBox_Password.Text = "";
             }
         }
-
         private bool CheckForm()
         {
 
@@ -174,6 +167,8 @@ namespace RecordStore_CarmellWasserman.UI
             return flag;
         }
 
+
+        //המרות עובדים מהבי אל
         private Employee FormToEmployee()
         {
             Employee employee = new Employee();
@@ -192,13 +187,10 @@ namespace RecordStore_CarmellWasserman.UI
 
             return employee;
         }
-
-
-
         private void EmployeeArrToForm()
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ "מ אוסף עובדים לטופס
 
             EmployeeArr employeeArr = new EmployeeArr();
             employeeArr.Fill();
@@ -206,16 +198,14 @@ namespace RecordStore_CarmellWasserman.UI
             listBox_Employees.ValueMember = "Id";
             listBox_Employees.DisplayMember = "";
         }
-
-
         private void EmployeeToForm(Employee employee)
         {
 
-            //ממירה את המידע בטנ "מ לקוח לטופס
+            //ממירה את המידע בטנ "מ עובד לטופס
 
 
 
-            if (employee != null)
+            if (employee != null || employee.Id == -1)
             {
                 label_Id.Text = employee.Id.ToString();
                 textBox_FirstName.Text = employee.FirstName;
@@ -248,12 +238,16 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //ליסט בוקס
         private void listBox_Employees_DoubleClick(object sender, EventArgs e)
         {
             Employee employee = listBox_Employees.SelectedItem as Employee;
             EmployeeToForm(employee);
         }
 
+
+        //ניקוי טופס
         private void clear_Click(object sender, EventArgs e)
         {
 
@@ -266,7 +260,6 @@ namespace RecordStore_CarmellWasserman.UI
             textBox_Username.Text = "";
             textBox_Password.Text = "";
         }
-
         private void clearFilter_Click(object sender, EventArgs e)
         {
             textBox_IdFilter.Text = "";
@@ -276,6 +269,7 @@ namespace RecordStore_CarmellWasserman.UI
         }
 
 
+        //מחיקה
         private void button_Delete_Click(object sender, EventArgs e)
         {
             Employee employee = FormToEmployee();
@@ -287,7 +281,6 @@ namespace RecordStore_CarmellWasserman.UI
 
             {
 
-                //בהמשך תהיה כאן בדיקה שאין מידע נוסף על לקוח זה
                 if (MessageBox.Show("Are you sure?", "warning", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2,
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
@@ -315,6 +308,8 @@ namespace RecordStore_CarmellWasserman.UI
             }
         }
 
+
+        //פילטר
         private void textBox_Filter_KeyUp(object sender, KeyEventArgs e)
         {
             int id = 0;
@@ -324,31 +319,35 @@ namespace RecordStore_CarmellWasserman.UI
             if (textBox_IdFilter.Text != "")
                 id = int.Parse(textBox_IdFilter.Text);
 
-            //מייצרים אוסף של כלל הלקוחות
+            //מייצרים אוסף של כלל העובדים
 
             EmployeeArr employeeArr = new EmployeeArr();
             employeeArr.Fill();
 
-            //מסננים את אוסף הלקוחות לפי שדות הסינון שרשם המשתמש
+            //מסננים את אוסף העובדים לפי שדות הסינון שרשם המשתמש
 
             employeeArr = employeeArr.Filter(id, textBox_FirstNameFilter.Text, textBox_LastNameFilter.Text,
             textBox_PhoneNumberFilter.Text);
-            //מציבים בתיבת הרשימה את אוסף הלקוחות
+            //מציבים בתיבת הרשימה את אוסף העובדים
 
             listBox_Employees.DataSource = employeeArr;
 
         }
 
 
-        public Employee SelectedEmployee
-        {
-            get => listBox_Employees.SelectedItem as Employee;
-        }
-
+        //פתיחת טפסים אחרים
         private void button_EmployeeReport_Click(object sender, EventArgs e)
         {
             Form_EmployeeReport form_EmployeeReport = new Form_EmployeeReport();
             form_EmployeeReport.ShowDialog();
         }
+
+
+        //עובד למשמרת
+        public Employee SelectedEmployee
+        {
+            get => listBox_Employees.SelectedItem as Employee;
+        }
+
     }
 }

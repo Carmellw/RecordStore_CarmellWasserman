@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 using RecordStore_CarmellWasserman.UI;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Product : Form
     {
@@ -114,8 +114,6 @@ namespace RecordStore_CarmellWasserman
             }
             else
                 label_Price.ForeColor = Color.Black;
-
-            //בדיקת מיקוד //
             
 
 
@@ -139,7 +137,7 @@ namespace RecordStore_CarmellWasserman
                 label_Category.ForeColor = Color.Black;
             }
 
-            if ((comboBox_Genre.SelectedItem as Genre).Id < 0)
+            /*/if ((comboBox_Genre.SelectedItem as Genre).Id < 0)
             {
                 flag = false;
                 label_Genre.ForeColor = Color.Red;
@@ -157,7 +155,7 @@ namespace RecordStore_CarmellWasserman
             else
             {
                 label_Artist.ForeColor = Color.Black;
-            }
+            }/*/
 
             if ((comboBox_Company.SelectedItem as Company).Id < 0)
             {
@@ -181,15 +179,8 @@ namespace RecordStore_CarmellWasserman
             product.Category = comboBox_Category.SelectedItem as Category;
             product.Name = textBox_Name.Text;
             Genre genre = comboBox_Genre.SelectedItem as Genre;
-            if (genre.Id >= 0 )
-            {
-                product.Genre = comboBox_Genre.SelectedItem as Genre;
-            }
-            Artist artist = comboBox_Artist.SelectedItem as Artist;
-            if (artist.Id >= 0)
-            {
-                product.Artist = comboBox_Artist.SelectedItem as Artist;
-            }
+            product.Genre = comboBox_Genre.SelectedItem as Genre;
+            product.Artist = comboBox_Artist.SelectedItem as Artist;
             product.Company = comboBox_Company.SelectedItem as Company;
             product.IsNew = checkBox_IsNew.Checked;
             product.Price = int.Parse(textBox_Price.Text);
@@ -226,9 +217,17 @@ namespace RecordStore_CarmellWasserman
                 {
                     comboBox_Genre.SelectedValue = product.Genre.Id;
                 }
+                else
+                {
+                    comboBox_Genre.SelectedValue = -1;
+                }
                 if (product.Artist != null)
                 {
                     comboBox_Artist.SelectedValue = product.Artist.Id;
+                }
+                else
+                {
+                    comboBox_Artist.SelectedValue = -1;
                 }
                 comboBox_Company.SelectedValue = product.Company.Id;
                 checkBox_IsNew.Checked = product.IsNew;

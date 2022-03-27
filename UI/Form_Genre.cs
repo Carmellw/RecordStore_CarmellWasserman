@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_Genre : Form
     {
@@ -128,8 +128,9 @@ namespace RecordStore_CarmellWasserman
 
 
 
-            if (genre != null || genre.Id == -1 )
+            if (genre != null)
             {
+
                 label_Id.Text = genre.Id.ToString();
                 textBox_Name.Text = genre.Name;
 

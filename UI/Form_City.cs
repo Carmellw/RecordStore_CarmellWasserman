@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RecordStore_CarmellWasserman.BL;
 
-namespace RecordStore_CarmellWasserman
+namespace RecordStore_CarmellWasserman.UI
 {
     public partial class Form_City : Form
     {

@@ -212,9 +212,12 @@ namespace RecordStore_CarmellWasserman.BL
             GenreArr genreArr = new GenreArr();
             for (int i = 0; i < this.Count; i++)
             {
-                if (!(genreArr.IsContains((this[i] as Product).Genre.Name)))
+                if ((this[i] as Product).Genre != null)
                 {
-                    genreArr.Add((this[i] as Product).Genre);
+                    if (!(genreArr.IsContains((this[i] as Product).Genre.Name)))
+                    {
+                        genreArr.Add((this[i] as Product).Genre);
+                    }
                 }
             }
             return genreArr;
@@ -230,11 +233,13 @@ namespace RecordStore_CarmellWasserman.BL
 
                 product = (this[i] as Product);
 
-
-                if (product.Genre.Name == genre.Name)
+                if (product.Genre != null)
                 {
+                    if (product.Genre.Name == genre.Name)
+                    {
 
-                    productArr.Add(product);
+                        productArr.Add(product);
+                    }
                 }
             }
 

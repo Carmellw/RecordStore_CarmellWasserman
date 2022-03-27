@@ -41,7 +41,6 @@ namespace RecordStore_CarmellWasserman.UI
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
         private void textBox_Heb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
@@ -236,14 +235,25 @@ namespace RecordStore_CarmellWasserman.UI
             {
                 p = productArr[i] as Product;
                 string condition = "not new";
+                string genre = "";
+                string artist = "";
                 if (p.IsNew)
                 {
                     condition = "new";
                 }
+                if(p.Genre != null)
+                {
+                    genre = p.Genre.Name;
+                }
+                if (p.Artist != null)
+                {
+                    artist = p.Artist.Name;
+                }
+
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] {  p.Category.Name,
 
-                p.Name, p.Genre.Name, p.Artist.Name, p.Company.Name, condition, p.Count.ToString() });
+                p.Name, genre, artist, p.Company.Name, condition, p.Count.ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
 
 

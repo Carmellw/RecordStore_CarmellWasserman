@@ -57,7 +57,7 @@ namespace RecordStore_CarmellWasserman.BL
             }
 
             DataRow drArtist = dataRow.GetParentRow("ProductArtist");
-            if (drGenre != null)
+            if (drArtist != null)
             {
                 m_Artist = new Artist(dataRow.GetParentRow("ProductArtist"));
             }
@@ -74,10 +74,15 @@ namespace RecordStore_CarmellWasserman.BL
 
         public override string ToString()
         {
+            string name = "";
+            if(m_Artist != null)
+            {
+                name = "- " +m_Artist.Name;
+            }
             if (m_Count > 0)
-                return $"{m_Name} [{m_Artist.Name}] ({m_Count} In stock)";
+                return $"{m_Name} {name} ({m_Count} In stock)";
             else
-                return $"{m_Name} [{m_Artist.Name}] (Out of stock)";
+                return $"{m_Name} {name} (Out of stock)";
         }
 
         public bool Update()

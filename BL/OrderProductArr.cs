@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל ההזמנה-מוצר
 
             DataTable dataTable = OrderProduct_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף ההזמנה-מוצר
+            //להעביר כל שורה בטבלה להזמנה-מוצר
 
             DataRow dataRow;
             OrderProduct curOrderProduct;
@@ -74,7 +74,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Order curOrder)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מההזמנה-מוצר יש את היהזמנה-מוצר
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as OrderProduct).Order.Id == curOrder.Id)
@@ -86,7 +86,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Product curProduct)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מההזמנה-מוצר יש את המוצר
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as OrderProduct).Product.Id == curProduct.Id)
@@ -113,7 +113,7 @@ namespace RecordStore_CarmellWasserman.BL
         public OrderProduct GetOrderProductWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את ההזמנה-מוצר עם המזהה הגבוה ביותר
 
             OrderProduct maxOrderProduct = new OrderProduct();
             for (int i = 0; i < this.Count; i++)

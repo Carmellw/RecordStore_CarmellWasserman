@@ -34,7 +34,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Order(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת הזמנה מתוך שורת הזמנה
             
             m_Client = new Client(dataRow.GetParentRow("OrderClient"));
             m_Date = Convert.ToDateTime(dataRow["Date"].ToString());

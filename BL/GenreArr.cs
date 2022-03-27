@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל הגאנרים
 
             DataTable dataTable = Genre_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף הגאנרים
+            //להעביר כל שורה בטבלה לגאנר
 
             DataRow dataRow;
             Genre curGenre;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת הגאנר הנוכחי במשתנה עזר - גאנר
 
                 city = (this[i] as Genre);
                 if
@@ -52,7 +52,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //הגאנר ענה לדרישות הסינון - הוספת הגאנר לאוסף הגאנרים המוחזר
 
                     cityArr.Add(city);
             }
@@ -62,7 +62,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool IsContains(string cityName)
         {
 
-            //בדיקה האם יש ישוב עם אותו שם
+            //בדיקה האם יש גאנר עם אותו שם
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Genre).Name == cityName)
@@ -73,7 +73,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Genre GetGenreWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את הגאנר עם המזהה הגבוה ביותר
 
             Genre maxGenre = new Genre();
             for (int i = 0; i < this.Count; i++)

@@ -32,7 +32,7 @@ namespace RecordStore_CarmellWasserman.BL
         public ShiftEmployee(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת משמרת-עובד מתוך שורת משמרת-עובד
             DataRow drCatergory = dataRow.GetParentRow("ShiftEmployeeShift");
             m_Shift = new Shift(dataRow.GetParentRow("ShiftEmployeeShift"));
 

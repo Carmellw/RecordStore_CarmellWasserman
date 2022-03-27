@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Employee(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת עובד מתוך שורת עובד
 
             m_FirstName = dataRow["FirstName"].ToString();
             m_LastName = dataRow["LastName"].ToString();

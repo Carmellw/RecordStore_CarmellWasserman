@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל הערים
 
             DataTable dataTable = City_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף הערים
+            //להעביר כל שורה בטבלה לעיר
 
             DataRow dataRow;
             City curCity;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת העיר הנוכחי במשתנה עזר - עיר
 
                 city = (this[i] as City);
                 if
@@ -52,7 +52,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //העיר ענה לדרישות הסינון - הוספת העיר לאוסף הערים המוחזר
 
                     cityArr.Add(city);
             }

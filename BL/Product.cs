@@ -44,7 +44,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Product(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת מוצר מתוך שורת מוצר
             DataRow drCatergory = dataRow.GetParentRow("ProductCategory");
             m_Category = new Category(dataRow.GetParentRow("ProductCategory"));
 

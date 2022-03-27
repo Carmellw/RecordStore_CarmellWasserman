@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל העובדים
 
             DataTable dataTable = Employee_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף העובדים
+            //להעביר כל שורה בטבלה לעובד
 
             DataRow dataRow;
             Employee curEmployee;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת העובד הנוכחי במשתנה עזר - עובד
 
                 employee = (this[i] as Employee);
                 string phoneNumber = employee.PhoneNumber.ToString();
@@ -58,7 +58,7 @@ namespace RecordStore_CarmellWasserman.BL
                 && phoneNumber.StartsWith(cellNumber)
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //העובד ענה לדרישות הסינון - הוספת העובד לאוסף העובדים המוחזר
 
                     employeeArr.Add(employee);
             }
@@ -72,7 +72,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת העובד הנוכחי במשתנה עזר - עובד
 
                 employee = (this[i] as Employee);
                 if(username == employee.Username && password == employee.Password)

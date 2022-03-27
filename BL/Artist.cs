@@ -29,14 +29,11 @@ namespace RecordStore_CarmellWasserman.BL
         public Artist(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת אמן מתוך שורת אמן
 
             m_Name = dataRow["Name"].ToString();
             this.m_Id = (int)dataRow["id"];
         }
-
-        public override string ToString()
-        { return $"{m_Name}"; }
 
         public bool Update()
         {

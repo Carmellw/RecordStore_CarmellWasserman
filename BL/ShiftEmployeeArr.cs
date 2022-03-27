@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל המשמרת-עובד
 
             DataTable dataTable = ShiftEmployee_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף המשמרת-עובד
+            //להעביר כל שורה בטבלה למשמרת-עובד
 
             DataRow dataRow;
             ShiftEmployee curShiftEmployee;
@@ -107,7 +107,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Employee curEmployee)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמשמרת-עובד יש את העובד
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as ShiftEmployee).Employee.Id == curEmployee.Id)
@@ -208,7 +208,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המשמרת-עובד הנוכחי במשתנה עזר - משמרת-עובד
 
                 shiftEmployee = (this[i] as ShiftEmployee);
 

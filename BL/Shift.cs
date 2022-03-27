@@ -34,7 +34,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Shift(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת משמרת מתוך שורת משמרת
             
             m_Date = Convert.ToDateTime(dataRow["Date"].ToString());
             m_IsMorning = (bool)dataRow["IsMorning"];

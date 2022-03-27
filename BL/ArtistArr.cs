@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל האמנים
 
             DataTable dataTable = Artist_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף האמנים
+            //להעביר כל שורה בטבלה לאמן
 
             DataRow dataRow;
             Artist curArtist;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת האמן הנוכחי במשתנה עזר - אמן
 
                 city = (this[i] as Artist);
                 if
@@ -52,7 +52,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //האמן ענה לדרישות הסינון - הוספת האמן לאוסף האמנים המוחזר
 
                     cityArr.Add(city);
             }
@@ -62,7 +62,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool IsContains(string cityName)
         {
 
-            //בדיקה האם יש ישוב עם אותו שם
+            //בדיקה האם יש אמן עם אותו שם
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Artist).Name == cityName)
@@ -73,7 +73,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Artist GetArtistWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את האמן עם המזהה הגבוה ביותר
 
             Artist maxArtist = new Artist();
             for (int i = 0; i < this.Count; i++)

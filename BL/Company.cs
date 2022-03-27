@@ -29,7 +29,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Company(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת חברה מתוך שורת חברה
 
             m_Name = dataRow["Name"].ToString();
             this.m_Id = (int)dataRow["id"];

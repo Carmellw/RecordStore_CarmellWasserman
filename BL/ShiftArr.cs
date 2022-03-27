@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל המשמרות
 
             DataTable dataTable = Shift_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף המשמרות
+            //להעביר כל שורה בטבלה למשמרת
 
             DataRow dataRow;
             Shift curShift;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המשמרת הנוכחי במשתנה עזר - משמרת
 
                 shift = (this[i] as Shift);
                 if
@@ -53,7 +53,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //המשמרת ענה לדרישות הסינון - הוספת המשמרת לאוסף המשמרות המוחזר
 
                     shiftArr.Add(shift);
             }
@@ -65,7 +65,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Shift GetShiftWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את המשמרת עם המזהה הגבוה ביותר
 
             Shift maxShift = new Shift();
             for (int i = 0; i < this.Count; i++)
@@ -97,7 +97,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(DateTime dateTime, bool isMorning)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמשמרות יש את העובד
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Shift).Date == dateTime && (this[i] as Shift).IsMorning == isMorning)

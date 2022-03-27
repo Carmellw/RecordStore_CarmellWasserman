@@ -16,12 +16,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל ההזמנות
 
             DataTable dataTable = Order_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף ההזמנות
+            //להעביר כל שורה בטבלה להזמנה
 
             DataRow dataRow;
             Order curOrder;
@@ -40,7 +40,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת ההזמנה הנוכחי במשתנה עזר - הזמנה
 
                 order = (this[i] as Order);
                 if
@@ -55,7 +55,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //ההזמנה ענה לדרישות הסינון - הוספת ההזמנה לאוסף ההזמנות המוחזר
 
                     orderArr.Add(order);
             }
@@ -76,7 +76,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Client curClient)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מההזמנות יש את היהזמנה
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Order).Client.Id == curClient.Id)
@@ -88,7 +88,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Order GetOrderWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את ההזמנה עם המזהה הגבוה ביותר
 
             Order maxOrder = new Order();
             for (int i = 0; i < this.Count; i++)

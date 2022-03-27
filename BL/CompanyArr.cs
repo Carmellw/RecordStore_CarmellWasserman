@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל החברות
 
             DataTable dataTable = Company_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף החברות
+            //להעביר כל שורה בטבלה לחברה
 
             DataRow dataRow;
             Company curCompany;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת החברה הנוכחי במשתנה עזר - חברה
 
                 city = (this[i] as Company);
                 if
@@ -52,7 +52,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //החברה ענה לדרישות הסינון - הוספת החברה לאוסף החברות המוחזר
 
                     cityArr.Add(city);
             }
@@ -62,7 +62,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool IsContains(string cityName)
         {
 
-            //בדיקה האם יש ישוב עם אותו שם
+            //בדיקה האם יש חברה עם אותו שם
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Company).Name == cityName)
@@ -73,7 +73,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Company GetCompanyWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את החברה עם המזהה הגבוה ביותר
 
             Company maxCompany = new Company();
             for (int i = 0; i < this.Count; i++)

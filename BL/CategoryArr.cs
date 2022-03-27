@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל הקטגוריות
 
             DataTable dataTable = Category_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף הקטגוריות
+            //להעביר כל שורה בטבלה לקטגוריה
 
             DataRow dataRow;
             Category curCategory;
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת הקטגוריה הנוכחי במשתנה עזר - קטגוריה
 
                 city = (this[i] as Category);
                 if
@@ -52,7 +52,7 @@ namespace RecordStore_CarmellWasserman.BL
 
                 )
 
-                    //הלקוח ענה לדרישות הסינון - הוספת הלקוח לאוסף הלקוחות המוחזר
+                    //הקטגוריה ענה לדרישות הסינון - הוספת הקטגוריה לאוסף הקטגוריות המוחזר
 
                     cityArr.Add(city);
             }
@@ -62,7 +62,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool IsContains(string cityName)
         {
 
-            //בדיקה האם יש ישוב עם אותו שם
+            //בדיקה האם יש קטגוריה עם אותו שם
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Category).Name == cityName)
@@ -73,7 +73,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Category GetCategoryWithMaxId()
         {
 
-            //מחזירה את הישוב עם המזהה הגבוה ביותר
+            //מחזירה את הקטגוריה עם המזהה הגבוה ביותר
 
             Category maxCategory = new Category();
             for (int i = 0; i < this.Count; i++)

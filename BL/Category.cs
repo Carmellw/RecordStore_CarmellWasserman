@@ -29,7 +29,7 @@ namespace RecordStore_CarmellWasserman.BL
         public Category(DataRow dataRow)
         {
 
-            //מייצרת לקוח מתוך שורת לקוח
+            //מייצרת קטגוריה מתוך שורת קטגוריה
 
             m_Name = dataRow["Name"].ToString();
             this.m_Id = (int)dataRow["id"];

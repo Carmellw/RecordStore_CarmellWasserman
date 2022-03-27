@@ -15,12 +15,12 @@ namespace RecordStore_CarmellWasserman.BL
         public void Fill()
         {
 
-            //להביא מה-DAL טבלה מלאה בכל הלקוחות
+            //להביא מה-DAL טבלה מלאה בכל המוצרים
 
             DataTable dataTable = Product_Dal.GetDataTable();
 
-            //להעביר את הערכים מהטבלה לתוך אוסף הלקוחות
-            //להעביר כל שורה בטבלה ללקוח
+            //להעביר את הערכים מהטבלה לתוך אוסף המוצרים
+            //להעביר כל שורה בטבלה למוצר
 
             DataRow dataRow;
             Product curProduct;
@@ -64,7 +64,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Category curCategory)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמוצרים יש את הקטגוריה
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Product).Category.Id == curCategory.Id)
@@ -76,7 +76,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Genre curGenre)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמוצרים יש את הגאנר
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Product).Genre.Id == curGenre.Id)
@@ -88,7 +88,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Artist curArtist)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמוצרים יש את האומן
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Product).Artist.Id == curArtist.Id)
@@ -100,7 +100,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Company curCompany)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמוצרים יש את החברה
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Product).Company.Id == curCompany.Id)
@@ -136,7 +136,7 @@ namespace RecordStore_CarmellWasserman.BL
         public bool DoesExist(Product curProduct)
         {
 
-            //מחזירה האם לפחות לאחד מהלקוחות יש את היישוב
+            //מחזירה האם לפחות לאחד מהמוצרים יש את הימוצר
 
             for (int i = 0; i < this.Count; i++)
                 if ((this[i] as Product).Id == curProduct.Id)
@@ -193,7 +193,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
                 product = (this[i] as Product);
 
@@ -226,7 +226,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
                 product = (this[i] as Product);
 
@@ -247,7 +247,7 @@ namespace RecordStore_CarmellWasserman.BL
             for (int i = 0; i < this.Count; i++)
             {
 
-                //הצבת הלקוח הנוכחי במשתנה עזר - לקוח
+                //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
                 product = (this[i] as Product);
 

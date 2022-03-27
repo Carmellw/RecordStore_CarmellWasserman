@@ -40,7 +40,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static void FillDataSet(DataSet dataSet)
         {
 
-            //ממלאת את אוסף הטבלאות בטבלת הלקוחות
+            //ממלאת את אוסף הטבלאות בטבלת המשמרות
             Dal.FillDataSet(dataSet, "Table_Shift", "[Date]");
 
             

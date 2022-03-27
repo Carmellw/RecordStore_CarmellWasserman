@@ -13,7 +13,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Insert(int category, string name, int genre, int artist, int company, int isNew, int price, int count)
         {
 
-            //מוסיפה את הלקוח למסד הנתונים
+            //מוסיפה את המוצר למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Table_Product"
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static void FillDataSet(DataSet dataSet)
         {
 
-            //ממלאת את אוסף הטבלאות בטבלת הלקוחות
+            //ממלאת את אוסף הטבלאות בטבלת המוצרים
             Dal.FillDataSet(dataSet, "Table_Product", "[Name]");
 
             DataRelation dataRelationCategory = null;
@@ -127,7 +127,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Update(int Id, int category, string name, int genre, int artist, int company, int isNew, int price, int count)
         {
 
-            //מעדכנת את הלקוח במסד הנתונים
+            //מעדכנת את המוצר במסד הנתונים
 
             string str = "UPDATE Table_Product SET"
 
@@ -148,7 +148,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Delete(int id)
         {
 
-            //מוחקת את הלקוח ממסד הנתונים
+            //מוחקת את המוצר ממסד הנתונים
 
             string str = $"DELETE FROM Table_Product WHERE ID = {id}";
 

@@ -13,7 +13,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Insert(string name)
         {
 
-            //מוסיפה את הלקוח למסד הנתונים
+            //מוסיפה את היישוב למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Table_City"
@@ -50,7 +50,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Update(int Id, string name)
         {
 
-            //מעדכנת את הלקוח במסד הנתונים
+            //מעדכנת את היישוב במסד הנתונים
 
             string str = "UPDATE Table_City SET"
 
@@ -64,7 +64,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Delete(int id)
         {
 
-            //מוחקת את הלקוח ממסד הנתונים
+            //מוחקת את היישוב ממסד הנתונים
 
             string str = $"DELETE FROM Table_City WHERE ID = {id}";
 

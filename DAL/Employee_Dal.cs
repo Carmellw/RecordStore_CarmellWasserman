@@ -13,7 +13,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Insert(string firstName, string lastName, int phoneNumber, string email, int hourlyWage, string username, string password)
         {
 
-            //מוסיפה את הלקוח למסד הנתונים
+            //מוסיפה את העובד למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Table_Employee"
@@ -39,7 +39,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static void FillDataSet(DataSet dataSet)
         {
 
-            //ממלאת את אוסף הטבלאות בטבלת הלקוחות
+            //ממלאת את אוסף הטבלאות בטבלת העובדים
             Dal.FillDataSet(dataSet, "Table_Employee", "[LastName],[FirstName]");
 
             
@@ -51,7 +51,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Update(int Id, string firstName, string lastName, int phoneNumber, string email, int hourlyWage, string username, string password)
         {
 
-            //מעדכנת את הלקוח במסד הנתונים
+            //מעדכנת את העובד במסד הנתונים
 
             string str = "UPDATE Table_Employee SET"
 
@@ -71,7 +71,7 @@ namespace RecordStore_CarmellWasserman.DAL
         public static bool Delete(int id)
         {
 
-            //מוחקת את הלקוח ממסד הנתונים
+            //מוחקת את העובד ממסד הנתונים
 
             string str = $"DELETE FROM Table_Employee WHERE ID = {id}";
 

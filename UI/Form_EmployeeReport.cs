@@ -417,16 +417,10 @@ namespace RecordStore_CarmellWasserman.UI
             {
                 p = employeeArr[i] as Employee;
 
-                string digit = "";
-                if (p.PhoneNumber < 1000000000)
-                {
-                    digit = "0";
-                }
-
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.LastName,
 
-                p.FirstName,digit+ p.PhoneNumber.ToString(), p.Email });
+                p.FirstName, p.Username, p.Password });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
                 listView_EmployeesPassword.Items.Add(listViewItem);
             }
@@ -454,23 +448,22 @@ namespace RecordStore_CarmellWasserman.UI
             listView_EmployeesPayment.Items.Clear();
             Employee p;
             ListViewItem listViewItem;
+            ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
+            int shifts;
 
             //מעבר על כל הפריטים במקור הנתונים והוספה שלהם לתיבת התצוגה
 
             for (int i = 0; i < employeeArr.Count; i++)
             {
                 p = employeeArr[i] as Employee;
-
-                string digit = "";
-                if (p.PhoneNumber < 1000000000)
-                {
-                    digit = "0";
-                }
+                shiftEmployeeArr.Clear();
+                shiftEmployeeArr.Fill();
+                shifts = shiftEmployeeArr.FilterEmployee(p).FilterMonth(DateTime.Now.Month).Count;
 
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.LastName,
 
-                p.FirstName,digit+ p.PhoneNumber.ToString(), p.Email });
+                p.FirstName, shifts.ToString() , (shifts* p.HourlyWage*7).ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
                 listView_EmployeesPayment.Items.Add(listViewItem);
             }

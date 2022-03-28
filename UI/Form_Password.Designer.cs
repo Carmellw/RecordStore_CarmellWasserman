@@ -29,6 +29,7 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Password));
             this.groupBox_Filter = new System.Windows.Forms.GroupBox();
             this.label_Username = new System.Windows.Forms.Label();
             this.textBox_Password = new System.Windows.Forms.TextBox();
@@ -105,6 +106,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox_Filter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Password";
             this.Text = "Log In";
             this.groupBox_Filter.ResumeLayout(false);

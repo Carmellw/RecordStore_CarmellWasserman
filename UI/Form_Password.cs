@@ -24,6 +24,8 @@ namespace RecordStore_CarmellWasserman.UI
             employeeArr.Fill();
             if(employeeArr.IsLogIn(textBox_Username.Text, textBox_Password.Text))
             {
+                textBox_Username.Text = "";
+                textBox_Password.Text = "";
                 Form_Main form_Main = new Form_Main();
                 form_Main.ShowDialog();
                 

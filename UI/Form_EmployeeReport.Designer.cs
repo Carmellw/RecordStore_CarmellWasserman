@@ -29,22 +29,38 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_EmployeeReport));
             this.label_DateToday = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox_PhoneNumberFilter = new System.Windows.Forms.TextBox();
+            this.label_PhoneNumerFilter = new System.Windows.Forms.Label();
+            this.label_LastNameFilter = new System.Windows.Forms.Label();
+            this.textBox_FirstNameFilter = new System.Windows.Forms.TextBox();
+            this.label_FirstNameFilter = new System.Windows.Forms.Label();
+            this.textBox_LastNameFilter = new System.Windows.Forms.TextBox();
+            this.label_IdFilter = new System.Windows.Forms.Label();
             this.button_ClearFilter = new System.Windows.Forms.Button();
             this.listView_Employees = new System.Windows.Forms.ListView();
             this.columnHeader_LastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_FirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_PhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox_IdFilter = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_PhoneNumberFilterPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_FirstNameFilterPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_LastNameFilterPassword = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox_IdFilterPassword = new System.Windows.Forms.TextBox();
             this.button_ClearFilterPassword = new System.Windows.Forms.Button();
             this.listView_EmployeesPassword = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,6 +68,14 @@ namespace RecordStore_CarmellWasserman.UI
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox_PhoneNumberFilterPayment = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_FirstNameFilterPayment = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox_LastNameFilterPayment = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox_IdFilterPayment = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listView_EmployeesPayment = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,30 +86,6 @@ namespace RecordStore_CarmellWasserman.UI
             this.comboBox_Employees = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button_Print = new System.Windows.Forms.Button();
-            this.textBox_PhoneNumberFilter = new System.Windows.Forms.TextBox();
-            this.label_IdFilter = new System.Windows.Forms.Label();
-            this.textBox_FirstNameFilter = new System.Windows.Forms.TextBox();
-            this.label_FirstNameFilter = new System.Windows.Forms.Label();
-            this.label_LastNameFilter = new System.Windows.Forms.Label();
-            this.label_PhoneNumerFilter = new System.Windows.Forms.Label();
-            this.textBox_LastNameFilter = new System.Windows.Forms.TextBox();
-            this.textBox_IdFilter = new System.Windows.Forms.TextBox();
-            this.textBox_PhoneNumberFilterPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox_FirstNameFilterPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox_LastNameFilterPassword = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox_IdFilterPassword = new System.Windows.Forms.TextBox();
-            this.textBox_PhoneNumberFilterPayment = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox_FirstNameFilterPayment = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox_LastNameFilterPayment = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox_IdFilterPayment = new System.Windows.Forms.TextBox();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -161,6 +161,75 @@ namespace RecordStore_CarmellWasserman.UI
             this.tabPage1.Text = "Contact";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBox_PhoneNumberFilter
+            // 
+            this.textBox_PhoneNumberFilter.Location = new System.Drawing.Point(256, 62);
+            this.textBox_PhoneNumberFilter.MaxLength = 10;
+            this.textBox_PhoneNumberFilter.Name = "textBox_PhoneNumberFilter";
+            this.textBox_PhoneNumberFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_PhoneNumberFilter.TabIndex = 4;
+            this.textBox_PhoneNumberFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_PhoneNumberFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
+            // 
+            // label_PhoneNumerFilter
+            // 
+            this.label_PhoneNumerFilter.AutoSize = true;
+            this.label_PhoneNumerFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_PhoneNumerFilter.Location = new System.Drawing.Point(7, 56);
+            this.label_PhoneNumerFilter.Name = "label_PhoneNumerFilter";
+            this.label_PhoneNumerFilter.Size = new System.Drawing.Size(233, 37);
+            this.label_PhoneNumerFilter.TabIndex = 3;
+            this.label_PhoneNumerFilter.Text = "Phone Number";
+            // 
+            // label_LastNameFilter
+            // 
+            this.label_LastNameFilter.AutoSize = true;
+            this.label_LastNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_LastNameFilter.Location = new System.Drawing.Point(618, 10);
+            this.label_LastNameFilter.Name = "label_LastNameFilter";
+            this.label_LastNameFilter.Size = new System.Drawing.Size(182, 37);
+            this.label_LastNameFilter.TabIndex = 2;
+            this.label_LastNameFilter.Text = " Last Name";
+            // 
+            // textBox_FirstNameFilter
+            // 
+            this.textBox_FirstNameFilter.Location = new System.Drawing.Point(387, 16);
+            this.textBox_FirstNameFilter.MaxLength = 4000;
+            this.textBox_FirstNameFilter.Name = "textBox_FirstNameFilter";
+            this.textBox_FirstNameFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_FirstNameFilter.TabIndex = 2;
+            this.textBox_FirstNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
+            this.textBox_FirstNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
+            // 
+            // label_FirstNameFilter
+            // 
+            this.label_FirstNameFilter.AutoSize = true;
+            this.label_FirstNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_FirstNameFilter.Location = new System.Drawing.Point(197, 10);
+            this.label_FirstNameFilter.Name = "label_FirstNameFilter";
+            this.label_FirstNameFilter.Size = new System.Drawing.Size(184, 37);
+            this.label_FirstNameFilter.TabIndex = 1;
+            this.label_FirstNameFilter.Text = " First Name";
+            // 
+            // textBox_LastNameFilter
+            // 
+            this.textBox_LastNameFilter.Location = new System.Drawing.Point(806, 14);
+            this.textBox_LastNameFilter.Name = "textBox_LastNameFilter";
+            this.textBox_LastNameFilter.Size = new System.Drawing.Size(214, 31);
+            this.textBox_LastNameFilter.TabIndex = 3;
+            this.textBox_LastNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
+            this.textBox_LastNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
+            // 
+            // label_IdFilter
+            // 
+            this.label_IdFilter.AutoSize = true;
+            this.label_IdFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label_IdFilter.Location = new System.Drawing.Point(7, 10);
+            this.label_IdFilter.Name = "label_IdFilter";
+            this.label_IdFilter.Size = new System.Drawing.Size(43, 37);
+            this.label_IdFilter.TabIndex = 20;
+            this.label_IdFilter.Text = "Id";
+            // 
             // button_ClearFilter
             // 
             this.button_ClearFilter.Location = new System.Drawing.Point(1043, 54);
@@ -200,12 +269,21 @@ namespace RecordStore_CarmellWasserman.UI
             // columnHeader_PhoneNumber
             // 
             this.columnHeader_PhoneNumber.Text = "Phone Number";
-            this.columnHeader_PhoneNumber.Width = 119;
+            this.columnHeader_PhoneNumber.Width = 100;
             // 
             // columnHeader_Email
             // 
             this.columnHeader_Email.Text = "Email";
             this.columnHeader_Email.Width = 200;
+            // 
+            // textBox_IdFilter
+            // 
+            this.textBox_IdFilter.Location = new System.Drawing.Point(56, 14);
+            this.textBox_IdFilter.Name = "textBox_IdFilter";
+            this.textBox_IdFilter.Size = new System.Drawing.Size(122, 31);
+            this.textBox_IdFilter.TabIndex = 1;
+            this.textBox_IdFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
+            this.textBox_IdFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // tabPage2
             // 
@@ -226,243 +304,6 @@ namespace RecordStore_CarmellWasserman.UI
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Log In Details";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button_ClearFilterPassword
-            // 
-            this.button_ClearFilterPassword.Location = new System.Drawing.Point(1045, 54);
-            this.button_ClearFilterPassword.Name = "button_ClearFilterPassword";
-            this.button_ClearFilterPassword.Size = new System.Drawing.Size(94, 47);
-            this.button_ClearFilterPassword.TabIndex = 39;
-            this.button_ClearFilterPassword.Text = "clear";
-            this.button_ClearFilterPassword.UseVisualStyleBackColor = true;
-            this.button_ClearFilterPassword.Click += new System.EventHandler(this.button_ClearFilterPassword_Click);
-            // 
-            // listView_EmployeesPassword
-            // 
-            this.listView_EmployeesPassword.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listView_EmployeesPassword.HideSelection = false;
-            this.listView_EmployeesPassword.Location = new System.Drawing.Point(5, 114);
-            this.listView_EmployeesPassword.Name = "listView_EmployeesPassword";
-            this.listView_EmployeesPassword.Size = new System.Drawing.Size(1145, 605);
-            this.listView_EmployeesPassword.TabIndex = 40;
-            this.listView_EmployeesPassword.UseCompatibleStateImageBehavior = false;
-            this.listView_EmployeesPassword.View = System.Windows.Forms.View.Details;
-            this.listView_EmployeesPassword.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_EmployeesPassword_ColumnClick);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Last Name";
-            this.columnHeader1.Width = 112;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "First Name";
-            this.columnHeader2.Width = 139;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Username";
-            this.columnHeader3.Width = 119;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Password";
-            this.columnHeader4.Width = 200;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.textBox_PhoneNumberFilterPayment);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.textBox_FirstNameFilterPayment);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.textBox_LastNameFilterPayment);
-            this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Controls.Add(this.textBox_IdFilterPayment);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.listView_EmployeesPayment);
-            this.tabPage3.Location = new System.Drawing.Point(8, 39);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1154, 722);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Payment";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1045, 54);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 47);
-            this.button2.TabIndex = 49;
-            this.button2.Text = "clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button_ClearFilterPayment_Click);
-            // 
-            // listView_EmployeesPayment
-            // 
-            this.listView_EmployeesPayment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.listView_EmployeesPayment.HideSelection = false;
-            this.listView_EmployeesPayment.Location = new System.Drawing.Point(5, 114);
-            this.listView_EmployeesPayment.Name = "listView_EmployeesPayment";
-            this.listView_EmployeesPayment.Size = new System.Drawing.Size(1145, 594);
-            this.listView_EmployeesPayment.TabIndex = 50;
-            this.listView_EmployeesPayment.UseCompatibleStateImageBehavior = false;
-            this.listView_EmployeesPayment.View = System.Windows.Forms.View.Details;
-            this.listView_EmployeesPayment.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_EmployeesPayment_ColumnClick);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Last Name";
-            this.columnHeader5.Width = 112;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "First Name";
-            this.columnHeader6.Width = 139;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Shifts";
-            this.columnHeader7.Width = 119;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Payment";
-            this.columnHeader8.Width = 70;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.comboBox_Employees);
-            this.tabPage4.Controls.Add(this.chart1);
-            this.tabPage4.Location = new System.Drawing.Point(8, 39);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1154, 722);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Preferred Shift";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_Employees
-            // 
-            this.comboBox_Employees.FormattingEnabled = true;
-            this.comboBox_Employees.Location = new System.Drawing.Point(950, 34);
-            this.comboBox_Employees.Name = "comboBox_Employees";
-            this.comboBox_Employees.Size = new System.Drawing.Size(121, 33);
-            this.comboBox_Employees.TabIndex = 1;
-            this.comboBox_Employees.TextChanged += new System.EventHandler(this.comboBox_Employees_TextChanged);
-            // 
-            // chart1
-            // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(3, 0);
-            this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart1.Series.Add(series5);
-            this.chart1.Size = new System.Drawing.Size(903, 716);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
-            // 
-            // button_Print
-            // 
-            this.button_Print.Location = new System.Drawing.Point(1068, 14);
-            this.button_Print.Name = "button_Print";
-            this.button_Print.Size = new System.Drawing.Size(113, 80);
-            this.button_Print.TabIndex = 42;
-            this.button_Print.Text = "print";
-            this.button_Print.UseVisualStyleBackColor = true;
-            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
-            // 
-            // textBox_PhoneNumberFilter
-            // 
-            this.textBox_PhoneNumberFilter.Location = new System.Drawing.Point(256, 62);
-            this.textBox_PhoneNumberFilter.MaxLength = 10;
-            this.textBox_PhoneNumberFilter.Name = "textBox_PhoneNumberFilter";
-            this.textBox_PhoneNumberFilter.Size = new System.Drawing.Size(214, 31);
-            this.textBox_PhoneNumberFilter.TabIndex = 4;
-            this.textBox_PhoneNumberFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
-            this.textBox_PhoneNumberFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
-            // 
-            // label_IdFilter
-            // 
-            this.label_IdFilter.AutoSize = true;
-            this.label_IdFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_IdFilter.Location = new System.Drawing.Point(7, 10);
-            this.label_IdFilter.Name = "label_IdFilter";
-            this.label_IdFilter.Size = new System.Drawing.Size(43, 37);
-            this.label_IdFilter.TabIndex = 20;
-            this.label_IdFilter.Text = "Id";
-            // 
-            // textBox_FirstNameFilter
-            // 
-            this.textBox_FirstNameFilter.Location = new System.Drawing.Point(387, 16);
-            this.textBox_FirstNameFilter.MaxLength = 4000;
-            this.textBox_FirstNameFilter.Name = "textBox_FirstNameFilter";
-            this.textBox_FirstNameFilter.Size = new System.Drawing.Size(214, 31);
-            this.textBox_FirstNameFilter.TabIndex = 2;
-            this.textBox_FirstNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
-            this.textBox_FirstNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
-            // 
-            // label_FirstNameFilter
-            // 
-            this.label_FirstNameFilter.AutoSize = true;
-            this.label_FirstNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_FirstNameFilter.Location = new System.Drawing.Point(197, 10);
-            this.label_FirstNameFilter.Name = "label_FirstNameFilter";
-            this.label_FirstNameFilter.Size = new System.Drawing.Size(184, 37);
-            this.label_FirstNameFilter.TabIndex = 1;
-            this.label_FirstNameFilter.Text = " First Name";
-            // 
-            // label_LastNameFilter
-            // 
-            this.label_LastNameFilter.AutoSize = true;
-            this.label_LastNameFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_LastNameFilter.Location = new System.Drawing.Point(618, 10);
-            this.label_LastNameFilter.Name = "label_LastNameFilter";
-            this.label_LastNameFilter.Size = new System.Drawing.Size(182, 37);
-            this.label_LastNameFilter.TabIndex = 2;
-            this.label_LastNameFilter.Text = " Last Name";
-            // 
-            // label_PhoneNumerFilter
-            // 
-            this.label_PhoneNumerFilter.AutoSize = true;
-            this.label_PhoneNumerFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label_PhoneNumerFilter.Location = new System.Drawing.Point(7, 56);
-            this.label_PhoneNumerFilter.Name = "label_PhoneNumerFilter";
-            this.label_PhoneNumerFilter.Size = new System.Drawing.Size(233, 37);
-            this.label_PhoneNumerFilter.TabIndex = 3;
-            this.label_PhoneNumerFilter.Text = "Phone Number";
-            // 
-            // textBox_LastNameFilter
-            // 
-            this.textBox_LastNameFilter.Location = new System.Drawing.Point(806, 14);
-            this.textBox_LastNameFilter.Name = "textBox_LastNameFilter";
-            this.textBox_LastNameFilter.Size = new System.Drawing.Size(214, 31);
-            this.textBox_LastNameFilter.TabIndex = 3;
-            this.textBox_LastNameFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Heb_KeyPress);
-            this.textBox_LastNameFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
-            // 
-            // textBox_IdFilter
-            // 
-            this.textBox_IdFilter.Location = new System.Drawing.Point(56, 14);
-            this.textBox_IdFilter.Name = "textBox_IdFilter";
-            this.textBox_IdFilter.Size = new System.Drawing.Size(122, 31);
-            this.textBox_IdFilter.TabIndex = 1;
-            this.textBox_IdFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
-            this.textBox_IdFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // textBox_PhoneNumberFilterPassword
             // 
@@ -542,6 +383,72 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilterPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
             this.textBox_IdFilterPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_FilterPassword_KeyUp);
             // 
+            // button_ClearFilterPassword
+            // 
+            this.button_ClearFilterPassword.Location = new System.Drawing.Point(1045, 54);
+            this.button_ClearFilterPassword.Name = "button_ClearFilterPassword";
+            this.button_ClearFilterPassword.Size = new System.Drawing.Size(94, 47);
+            this.button_ClearFilterPassword.TabIndex = 39;
+            this.button_ClearFilterPassword.Text = "clear";
+            this.button_ClearFilterPassword.UseVisualStyleBackColor = true;
+            this.button_ClearFilterPassword.Click += new System.EventHandler(this.button_ClearFilterPassword_Click);
+            // 
+            // listView_EmployeesPassword
+            // 
+            this.listView_EmployeesPassword.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView_EmployeesPassword.HideSelection = false;
+            this.listView_EmployeesPassword.Location = new System.Drawing.Point(5, 114);
+            this.listView_EmployeesPassword.Name = "listView_EmployeesPassword";
+            this.listView_EmployeesPassword.Size = new System.Drawing.Size(1145, 605);
+            this.listView_EmployeesPassword.TabIndex = 40;
+            this.listView_EmployeesPassword.UseCompatibleStateImageBehavior = false;
+            this.listView_EmployeesPassword.View = System.Windows.Forms.View.Details;
+            this.listView_EmployeesPassword.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_EmployeesPassword_ColumnClick);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Last Name";
+            this.columnHeader1.Width = 112;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Username";
+            this.columnHeader3.Width = 119;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Password";
+            this.columnHeader4.Width = 200;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox_PhoneNumberFilterPayment);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.textBox_FirstNameFilterPayment);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox_LastNameFilterPayment);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.textBox_IdFilterPayment);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.listView_EmployeesPayment);
+            this.tabPage3.Location = new System.Drawing.Point(8, 39);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1154, 722);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Payment";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // textBox_PhoneNumberFilterPayment
             // 
             this.textBox_PhoneNumberFilterPayment.Location = new System.Drawing.Point(263, 67);
@@ -620,6 +527,99 @@ namespace RecordStore_CarmellWasserman.UI
             this.textBox_IdFilterPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
             this.textBox_IdFilterPayment.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_FilterPayment_KeyUp);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1045, 54);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 47);
+            this.button2.TabIndex = 49;
+            this.button2.Text = "clear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button_ClearFilterPayment_Click);
+            // 
+            // listView_EmployeesPayment
+            // 
+            this.listView_EmployeesPayment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.listView_EmployeesPayment.HideSelection = false;
+            this.listView_EmployeesPayment.Location = new System.Drawing.Point(5, 114);
+            this.listView_EmployeesPayment.Name = "listView_EmployeesPayment";
+            this.listView_EmployeesPayment.Size = new System.Drawing.Size(1145, 594);
+            this.listView_EmployeesPayment.TabIndex = 50;
+            this.listView_EmployeesPayment.UseCompatibleStateImageBehavior = false;
+            this.listView_EmployeesPayment.View = System.Windows.Forms.View.Details;
+            this.listView_EmployeesPayment.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_EmployeesPayment_ColumnClick);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Last Name";
+            this.columnHeader5.Width = 112;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "First Name";
+            this.columnHeader6.Width = 139;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Shifts";
+            this.columnHeader7.Width = 119;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Payment";
+            this.columnHeader8.Width = 70;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.comboBox_Employees);
+            this.tabPage4.Controls.Add(this.chart1);
+            this.tabPage4.Location = new System.Drawing.Point(8, 39);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1154, 722);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Preferred Shift";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_Employees
+            // 
+            this.comboBox_Employees.FormattingEnabled = true;
+            this.comboBox_Employees.Location = new System.Drawing.Point(882, 33);
+            this.comboBox_Employees.Name = "comboBox_Employees";
+            this.comboBox_Employees.Size = new System.Drawing.Size(201, 33);
+            this.comboBox_Employees.TabIndex = 1;
+            this.comboBox_Employees.TextChanged += new System.EventHandler(this.comboBox_Employees_TextChanged);
+            // 
+            // chart1
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
+            this.chart1.Location = new System.Drawing.Point(3, 0);
+            this.chart1.Name = "chart1";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart1.Series.Add(series4);
+            this.chart1.Size = new System.Drawing.Size(903, 716);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            // 
+            // button_Print
+            // 
+            this.button_Print.Location = new System.Drawing.Point(1068, 14);
+            this.button_Print.Name = "button_Print";
+            this.button_Print.Size = new System.Drawing.Size(113, 80);
+            this.button_Print.TabIndex = 42;
+            this.button_Print.Text = "print";
+            this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
+            // 
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.document_PrintPage);
@@ -646,6 +646,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button_Print);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_EmployeeReport";
             this.Text = "Employee Reports";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

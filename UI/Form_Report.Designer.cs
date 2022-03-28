@@ -29,6 +29,7 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Report));
             this.label_Stock = new System.Windows.Forms.Label();
             this.label_Clients = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
@@ -118,6 +119,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_Order);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Report";
             this.Text = "Reports";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

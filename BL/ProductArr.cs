@@ -42,6 +42,18 @@ namespace RecordStore_CarmellWasserman.BL
                 //הצבת המוצר הנוכחי במשתנה עזר - מוצר
 
                 Product product = (this[i] as Product);
+                bool notFilterArtist = true;
+                if(product.Artist == null)
+                {
+                    notFilterArtist = false;
+                }
+
+                else if(product.Artist.Id != artist.Id)
+                {
+                    notFilterArtist = false;
+                }
+
+
                 if (
 
                 //סינון לפי שם המוצר
@@ -49,14 +61,16 @@ namespace RecordStore_CarmellWasserman.BL
                 product.Name.ToLower().StartsWith(name.ToLower())
 
                 //סינון לפי החברה
-                && (artist == null || artist.Id == -1 || product.Artist.Id == artist.Id)
+                && (artist == null || artist.Id == -1 || notFilterArtist)
                 //סינון לפי קטגוריה
                 && (category == null || category.Id == -1 || product.Category.Id == category.Id)
                 )
-
+                {
                     //המוצר ענה לדרישות החיפוש - הוספה שלו לאוסף המוחזר
 
                     productArr.Add(product);
+                }
+                
             }
             return productArr;
         }

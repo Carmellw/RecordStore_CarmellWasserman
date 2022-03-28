@@ -312,6 +312,7 @@
     </Content>
     <Content Include="Properties\Photos\recordplayer.png" />
     <Content Include="Properties\Photos\recordplayerGIF.gif" />
+    <None Include="Resources\recordplayer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

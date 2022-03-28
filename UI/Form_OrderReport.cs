@@ -140,7 +140,7 @@ namespace RecordStore_CarmellWasserman.UI
 
             OrderArr curOrderArr = new OrderArr();
             curOrderArr.Fill();
-            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
+            SortedDictionary<int, int> dictionary = new SortedDictionary<int, int>();
 
             if (i == 0)
             {

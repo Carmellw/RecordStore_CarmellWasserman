@@ -117,17 +117,17 @@ namespace RecordStore_CarmellWasserman.BL
             }
             return returnArr;
         }
-        public SortedDictionary<string, int> GetSortedDictionary(int year)
+        public SortedDictionary<int, int> GetSortedDictionary(int year)
         {
 
             //מחזירה משתנה מסוג מילון הכולל עבור כל חודש בשנה מסוימת, כמות ההזמנות לאותו חודש
 
-            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
+            SortedDictionary<int, int> dictionary = new SortedDictionary<int, int>();
             for (int i = 1; i <= 12; i++)
             {
 
                 //אם רוצים את שם החודש בהתאם לשפת מערכת ההפעלה
-                string monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i);
+                int monthName = i ;
                 dictionary.Add(monthName, this.Filter(year, i).Count);
             }
             return dictionary;
@@ -149,17 +149,15 @@ namespace RecordStore_CarmellWasserman.BL
             return returnArr;
         }
 
-        public SortedDictionary<string, int> GetSortedDictionary()
+        public SortedDictionary<int, int> GetSortedDictionary()
         {
 
-            //מחזירה משתנה מסוג מילון הכולל עבור כל חודש בשנה מסוימת, כמות ההזמנות לאותו חודש
 
-            SortedDictionary<string, int> dictionary = new SortedDictionary<string, int>();
+            SortedDictionary<int, int> dictionary = new SortedDictionary<int, int>();
             for (int i = 0; i <= 6; i++)
             {
 
-                //אם רוצים את שם החודש בהתאם לשפת מערכת ההפעלה
-                string dayName = CultureInfo.CurrentCulture.DateTimeFormat.DayNames[i];
+                int dayName = i + 1;
                 dictionary.Add(dayName, this.Filter(i).Count);
             }
             return dictionary;

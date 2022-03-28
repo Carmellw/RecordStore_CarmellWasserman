@@ -154,14 +154,14 @@ namespace RecordStore_CarmellWasserman.UI
             for (int i = 0; i < employeeArr.Count; i++)
             {
                 p = employeeArr[i] as Employee;
+                shiftEmployeeArr.Clear();
                 shiftEmployeeArr.Fill();
                 shifts = shiftEmployeeArr.FilterEmployee(p).FilterMonth(DateTime.Now.Month).Count;
-
 
                 //יצירת פריט-תיבת-תצוגה
                 listViewItem = new ListViewItem(new[] { p.LastName,
 
-                p.FirstName, shifts.ToString() , (shifts* p.HourlyWage).ToString() });
+                p.FirstName, shifts.ToString() , (shifts* p.HourlyWage*7).ToString() });
                 //הוספת פריט-תיבת-תצוגה לתיבת תצוגה
                 listView_EmployeesPayment.Items.Add(listViewItem);
             }

@@ -399,6 +399,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.label_DateToday);
             this.Controls.Add(this.label_StoreName);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Shift";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 10, 10);
             this.Text = "Shifts";

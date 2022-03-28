@@ -29,6 +29,7 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.label_Order = new System.Windows.Forms.Label();
             this.label_StoreName = new System.Windows.Forms.Label();
             this.label_Clients = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.label_Reports = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_LogOut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -144,13 +146,24 @@ namespace RecordStore_CarmellWasserman.UI
             this.pictureBox1.TabIndex = 38;
             this.pictureBox1.TabStop = false;
             // 
+            // button_LogOut
+            // 
+            this.button_LogOut.Location = new System.Drawing.Point(12, 13);
+            this.button_LogOut.Name = "button_LogOut";
+            this.button_LogOut.Size = new System.Drawing.Size(135, 54);
+            this.button_LogOut.TabIndex = 43;
+            this.button_LogOut.Text = "Log Out";
+            this.button_LogOut.UseVisualStyleBackColor = true;
+            this.button_LogOut.Click += new System.EventHandler(this.button_LogOut_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Firebrick;
-            this.ClientSize = new System.Drawing.Size(1325, 888);
+            this.ClientSize = new System.Drawing.Size(1334, 888);
+            this.Controls.Add(this.button_LogOut);
             this.Controls.Add(this.label_Reports);
             this.Controls.Add(this.label_Stock);
             this.Controls.Add(this.label_Employees);
@@ -160,8 +173,9 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.label_Shifts);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label_Order);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Main";
-            this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 60);
+            this.Padding = new System.Windows.Forms.Padding(0, 0, 160, 100);
             this.Text = "Main";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -181,5 +195,6 @@ namespace RecordStore_CarmellWasserman.UI
         private System.Windows.Forms.Label label_Shifts;
         private System.Windows.Forms.Label label_Employees;
         private System.Windows.Forms.Label label_Reports;
+        private System.Windows.Forms.Button button_LogOut;
     }
 }

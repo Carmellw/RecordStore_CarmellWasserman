@@ -29,6 +29,7 @@ namespace RecordStore_CarmellWasserman.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Client));
             this.listBox_Clients = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_PhoneNumber = new System.Windows.Forms.TextBox();
@@ -397,6 +398,7 @@ namespace RecordStore_CarmellWasserman.UI
             this.Controls.Add(this.groupBox_Filter);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.listBox_Clients);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Client";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
             this.Text = "Clients";

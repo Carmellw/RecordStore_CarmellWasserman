@@ -53,5 +53,10 @@ namespace RecordStore_CarmellWasserman.UI
             Form_Report form_Report = new Form_Report();
             form_Report.ShowDialog();
         }
+
+        private void button_LogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -129,15 +129,17 @@ namespace RecordStore_CarmellWasserman.UI
                 ClientArrToForm(comboBox_Client, true);
                 listBox_InOrderProducts.DataSource = null;
                 listBox_InOrderProductsCount.Items.Clear();
+                listBox_Products.DataSource = null;
                 ProductArrToForm(listBox_Products);
                 PaymentToForm();
+                CategoryArrToForm(comboBox_CategoryFilterProduct, false);
+                ArtistArrToForm(comboBox_ArtistFilterProduct, false);
 
 
             }
         }
         private bool CheckForm()
         {
-
             //מחזירה האם הטופס תקין - שדות חובה ורשות
 
             bool flag = true;
@@ -358,7 +360,6 @@ namespace RecordStore_CarmellWasserman.UI
 
 
         //המרות לקוחות מהבי אל
-
         private void ClientArrToForm(ComboBox comboBox, bool isMustChoose, Client curClient = null)
         {
 

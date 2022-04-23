@@ -20,10 +20,9 @@ namespace RecordStore_CarmellWasserman.UI
         {
             InitializeComponent();
             label_DateToday.Text = DateTime.Now.ToLongDateString();
-            //label_DateToday.Text = "a" + Environment.NewLine + "a";
             Setarr();
             m_Sunday = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-            ShiftArrToForm(m_Sunday);
+            ShiftArrToForm();
         }
 
         //מערך של כל המשמרות בטבלה
@@ -77,14 +76,14 @@ namespace RecordStore_CarmellWasserman.UI
                 form_ShiftAdd.ShowDialog();
             }
 
-            ShiftArrToForm(m_Sunday);//עדכן משמרות
+            ShiftArrToForm();//עדכן משמרות
         }
 
 
         //הכנסת משמרות לטופס
-        private void ShiftArrToForm(DateTime sunday)
+        private void ShiftArrToForm()
         {
-            DateToForm(sunday);
+            DateToForm(m_Sunday);
             ShiftArr shiftArr = new ShiftArr();
             Shift shift = new Shift();
             shiftArr.Fill();
@@ -93,18 +92,18 @@ namespace RecordStore_CarmellWasserman.UI
                 for (int j = 0; j < shifts.GetLength(1); j++)
                 {
           
-                    if(shiftArr.DoesExist(m_Sunday.AddDays(i),Convert.ToBoolean(j)))
+                    if(shiftArr.DoesExist(this.m_Sunday.AddDays(i), Convert.ToBoolean(j)))
                     {
-                        
+
                         EmployeeArr employeeArrInShift = new EmployeeArr();
                         ShiftEmployeeArr shiftEmployeeArr = new ShiftEmployeeArr();
                         shiftEmployeeArr.Fill();
 
                         
-                        shift = shiftArr.GetShiftId(m_Sunday.AddDays(i), Convert.ToBoolean(j));
+                        shift = shiftArr.GetShiftId(this.m_Sunday.AddDays(i), Convert.ToBoolean(j));
                         shiftEmployeeArr = shiftEmployeeArr.FilterShift(shift);
                         employeeArrInShift = shiftEmployeeArr.GetEmployeeArr();
-                        EmployeeArrToForm(shifts[i,j],employeeArrInShift);
+                        EmployeeArrToForm(shifts[i, j], employeeArrInShift);
                     }
 
                     else
@@ -150,12 +149,12 @@ namespace RecordStore_CarmellWasserman.UI
         private void button_Future_Click(object sender, EventArgs e)
         {
             m_Sunday = m_Sunday.AddDays(7);
-            ShiftArrToForm(m_Sunday);
+            ShiftArrToForm();
         }
         private void button_Past_Click(object sender, EventArgs e)
         {
             m_Sunday = m_Sunday.AddDays(-7);
-            ShiftArrToForm(m_Sunday);
+            ShiftArrToForm();
         }
 
 

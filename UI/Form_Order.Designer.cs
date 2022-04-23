@@ -157,6 +157,7 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // dateTimePicker_ToDateFilter
             // 
+            this.dateTimePicker_ToDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_ToDateFilter.Location = new System.Drawing.Point(268, 212);
             this.dateTimePicker_ToDateFilter.Name = "dateTimePicker_ToDateFilter";
             this.dateTimePicker_ToDateFilter.Size = new System.Drawing.Size(213, 31);
@@ -176,6 +177,7 @@ namespace RecordStore_CarmellWasserman.UI
             // 
             // dateTimePicker_FromDateFilter
             // 
+            this.dateTimePicker_FromDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_FromDateFilter.Location = new System.Drawing.Point(268, 160);
             this.dateTimePicker_FromDateFilter.Name = "dateTimePicker_FromDateFilter";
             this.dateTimePicker_FromDateFilter.Size = new System.Drawing.Size(213, 31);

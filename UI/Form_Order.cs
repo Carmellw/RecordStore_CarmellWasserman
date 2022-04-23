@@ -619,20 +619,22 @@ namespace RecordStore_CarmellWasserman.UI
                 MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading) ==
                 System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (order.Delete())
+
+                    OrderProductArr orderProductArr_Old = new OrderProductArr();
+                    orderProductArr_Old.Fill();
+
+                    //סינון לפי ההזמנה הנוכחית
+
+                    orderProductArr_Old = orderProductArr_Old.FilterOrder(order);
+
+                    //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
+
+                    if (orderProductArr_Old.Delete() &&
+                    order.Delete())
                     {
-                        OrderProductArr orderProductArr_Old = new OrderProductArr();
-                        orderProductArr_Old.Fill();
-
-                        //סינון לפי ההזמנה הנוכחית
-
-                        orderProductArr_Old = orderProductArr_Old.FilterOrder(order);
-
-                        //מחיקת כל הפריטים באוסף ההזמנה-פריט של ההזמנה הנוכחית
-
-                        orderProductArr_Old.Delete();
                         MessageBox.Show("Deleted");
                     }
+
 
                     else
                     {
@@ -640,6 +642,15 @@ namespace RecordStore_CarmellWasserman.UI
                     }
                     OrderToForm(null);
                     OrderArrToForm();
+
+                    label_Id.Text = "0";
+                    richTextBox_Note.Text = "";
+                    dateTimePicker_Date.Value = DateTime.Now;
+                    ClientArrToForm(comboBox_Client, true);
+                    listBox_InOrderProducts.DataSource = null;
+                    listBox_InOrderProductsCount.Items.Clear();
+                    ProductArrToForm(listBox_Products);
+                    PaymentToForm();
                 }
             }
         }
